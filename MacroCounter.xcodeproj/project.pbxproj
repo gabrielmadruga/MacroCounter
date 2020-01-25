@@ -124,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
-				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
 				C0906363211A503E005FBAF5 /* Main.storyboard */,
+				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
 				C0906361211A503E005FBAF5 /* MainViewController.swift */,
 				C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
@@ -238,16 +238,16 @@
 				TargetAttributes = {
 					C090635B211A503E005FBAF5 = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 					};
 					C090636F211A5049005FBAF5 = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 						TestTargetID = C090635B211A503E005FBAF5;
 					};
 					C090637A211A5049005FBAF5 = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 						TestTargetID = C090635B211A503E005FBAF5;
 					};
 				};
@@ -498,7 +498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -516,7 +516,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -536,7 +536,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacroCounter.app/MacroCounter";
 			};
@@ -557,7 +557,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacroCounter.app/MacroCounter";
 			};
@@ -577,7 +577,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MacroCounter;
 			};
@@ -597,7 +597,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MacroCounter;
 			};

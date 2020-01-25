@@ -16,9 +16,8 @@ protocol Repository {
     func update(entry: Entry)
     func delete(entry: inout Entry)
     
-    func create(settings: inout Settings)
-    func readSettings() -> Settings
-    func update(settings: Settings)
+    func createOrUpdate(settings: Settings)
+    func readSettings() -> Settings?
     func delete(settings: inout Settings)
     
 }

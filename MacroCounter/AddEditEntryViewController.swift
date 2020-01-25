@@ -18,14 +18,19 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var servingsTextField: UITextField!
     @IBOutlet weak var saveAsFavouriteSwitch: UISwitch!
     
-    private var entry: Entry = Entry(fat: 0, carbs: 0, protein: 0, servings: 1) {
+    var entry: Entry = Entry(fat: 0, carbs: 0, protein: 0, servings: 1) {
         didSet {
-            entryChanged()
+            if (view != nil) {
+               entryChanged()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (entry.id != nil) {
+            self.title = "Edit Entry"
+        }
         entryChanged()
         dateTextField.delegate = self
     }
@@ -54,7 +59,11 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.create(entry: &entry)
+        if (entry.id != nil) {
+            appDelegate.repository?.update(entry: entry)
+        } else {
+            appDelegate.repository?.create(entry: &entry)
+        }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }

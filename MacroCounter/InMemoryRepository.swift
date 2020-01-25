@@ -15,7 +15,7 @@ class InMemoryRepository: Repository {
     
     func create(entry: inout Entry) {
         if entry.id != nil { fatalError("Can't create entry with repeated id") }
-        let id = Array(entries.keys).last ?? 0
+        let id = Array(entries.keys).count
         entry.id = id
         entries[id] = entry
     }
@@ -44,30 +44,16 @@ class InMemoryRepository: Repository {
     // MARK: - Settings
     var settings: Settings? = nil
     
-    func create(settings: inout Settings) {
-        if settings.id != nil { fatalError("Can't create settings with repeated id") }
-        let id = 0
-        settings.id = id
+    func createOrUpdate(settings: Settings) {
         self.settings = settings
     }
     
-    func readSettings() -> Settings {
-        guard let settings = self.settings else {
-            fatalError("Can't read settings, there are none")
-        }
-        return settings
-    }
-    
-    func update(settings: Settings) {
-        guard settings.id != nil else { fatalError("Can't update settings without id") }
-        self.settings = settings
+    func readSettings() -> Settings? {
+            return settings
     }
     
     func delete(settings: inout Settings) {
-        guard settings.id != nil else { fatalError("Can't delete settings without id") }
-        settings.id = nil
         self.settings = nil
     }
-    
     
 }
