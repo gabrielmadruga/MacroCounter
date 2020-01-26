@@ -291,20 +291,20 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgZ-hh-Feo">
-                                                            <rect key="frame" x="8" y="127.5" width="398" height="38.5"/>
+                                                            <rect key="frame" x="16" y="123.5" width="382" height="38.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add items by clicking on the + button in the top right corner" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRB-JZ-llv">
-                                                            <rect key="frame" x="8" y="174" width="398" height="48"/>
+                                                            <rect key="frame" x="16" y="170" width="382" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🧐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcB-di-nJ6">
-                                                            <rect key="frame" x="153" y="0.0" width="108" height="119.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                                            <rect key="frame" x="158.5" y="8" width="97" height="107.5"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="90"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -312,12 +312,12 @@
                                                     <constraints>
                                                         <constraint firstItem="wcB-di-nJ6" firstAttribute="centerX" secondItem="Zq7-YY-85e" secondAttribute="centerX" id="7ac-iS-BvC"/>
                                                         <constraint firstItem="gRB-JZ-llv" firstAttribute="top" secondItem="bgZ-hh-Feo" secondAttribute="bottom" constant="8" symbolic="YES" id="HJe-Pq-AD0"/>
-                                                        <constraint firstAttribute="trailing" secondItem="bgZ-hh-Feo" secondAttribute="trailing" constant="8" id="Nde-mr-ZTv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bgZ-hh-Feo" secondAttribute="trailing" constant="16" id="Nde-mr-ZTv"/>
                                                         <constraint firstItem="bgZ-hh-Feo" firstAttribute="top" secondItem="wcB-di-nJ6" secondAttribute="bottom" constant="8" symbolic="YES" id="USK-eQ-nII"/>
-                                                        <constraint firstItem="gRB-JZ-llv" firstAttribute="leading" secondItem="Zq7-YY-85e" secondAttribute="leading" constant="8" id="bv1-af-wXc"/>
-                                                        <constraint firstItem="wcB-di-nJ6" firstAttribute="top" secondItem="Zq7-YY-85e" secondAttribute="top" id="lF3-ps-khW"/>
-                                                        <constraint firstItem="bgZ-hh-Feo" firstAttribute="leading" secondItem="Zq7-YY-85e" secondAttribute="leading" constant="8" id="tkK-Ck-qmo"/>
-                                                        <constraint firstAttribute="trailing" secondItem="gRB-JZ-llv" secondAttribute="trailing" constant="8" id="zgp-Lr-rni"/>
+                                                        <constraint firstItem="gRB-JZ-llv" firstAttribute="leading" secondItem="Zq7-YY-85e" secondAttribute="leading" constant="16" id="bv1-af-wXc"/>
+                                                        <constraint firstItem="wcB-di-nJ6" firstAttribute="top" secondItem="Zq7-YY-85e" secondAttribute="top" constant="8" id="lF3-ps-khW"/>
+                                                        <constraint firstItem="bgZ-hh-Feo" firstAttribute="leading" secondItem="Zq7-YY-85e" secondAttribute="leading" constant="16" id="tkK-Ck-qmo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gRB-JZ-llv" secondAttribute="trailing" constant="16" id="zgp-Lr-rni"/>
                                                     </constraints>
                                                 </view>
                                                 <prototypes>
