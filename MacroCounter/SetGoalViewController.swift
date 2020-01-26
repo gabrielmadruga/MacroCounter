@@ -15,7 +15,8 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var caloriesTextField: UITextField!
     
-    private var settings: Settings? {
+    
+    private var settings: Settings! {
         didSet {
             settingsChanged()
         }
@@ -23,27 +24,28 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        settings = appDelegate.repository.readSettings()
         settingsChanged()
     }
     
     private func settingsChanged() {
         if (!fatTextField.isEditing) {
-//             fatTextView.text = entry.fat.description
+            fatTextField.text = settings.goals.fat.description
         }
         if (!carbsTextField.isEditing) {
-//             carbsTextView.text = entry.carbs.description
+             carbsTextField.text = settings.goals.carbs.description
         }
         if (!proteinTextField.isEditing) {
-//             proteinTextView.text = entry.protein.description
+             proteinTextField.text = settings.goals.protein.description
         }
         if (!caloriesTextField.isEditing) {
-//            caloriesTextView.text = entry.calories.description
+            caloriesTextField.text = settings.goals.calories.description
         }
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-//        appDelegate.repository?.create(entry: &entry)
+        appDelegate.repository?.createOrUpdate(settings: settings)
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
@@ -96,25 +98,25 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-//            self.entry.fat = value
+            settings.goals.fat = value
         } else {
-//            self.entry.fat = 0
+            settings.goals.fat = 0
         }
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-//            self.entry.carbs = value
+            settings.goals.carbs = value
         } else {
-//            self.entry.carbs = 0
+            settings.goals.carbs = 0
         }
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-//            self.entry.protein = value
+            settings.goals.protein = value
         } else {
-//            self.entry.protein = 0
+            settings.goals.protein = 0
         }
     }
     

@@ -24,10 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         
         repository = InMemoryRepository();
-        // TODO: setting this for the first time should be part of an onboarding process
-        // Usually this is set using a calculator that gives you the total calories from you weight and activity level
-        // and you know in which proportion of macros you want to get you calories from
-        // Another usefull feature could be to set different goals for workout vs non workout days
         repository?.createOrUpdate(settings: Settings(goals: Settings.Goals(fat: 40, carbs: 300, protein: 200)))
         return true
     }

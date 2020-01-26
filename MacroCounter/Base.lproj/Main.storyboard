@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-Vy-dta">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5NR-fc-Y72">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -287,8 +287,38 @@
                                                     </subviews>
                                                 </view>
                                                 <view key="tableFooterView" contentMode="scaleToFill" id="Zq7-YY-85e">
-                                                    <rect key="frame" x="0.0" y="177.5" width="414" height="16"/>
+                                                    <rect key="frame" x="0.0" y="177.5" width="414" height="243"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgZ-hh-Feo">
+                                                            <rect key="frame" x="8" y="127.5" width="398" height="38.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add items by clicking on the + button in the top right corner" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRB-JZ-llv">
+                                                            <rect key="frame" x="8" y="174" width="398" height="48"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🧐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcB-di-nJ6">
+                                                            <rect key="frame" x="153" y="0.0" width="108" height="119.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="wcB-di-nJ6" firstAttribute="centerX" secondItem="Zq7-YY-85e" secondAttribute="centerX" id="7ac-iS-BvC"/>
+                                                        <constraint firstItem="gRB-JZ-llv" firstAttribute="top" secondItem="bgZ-hh-Feo" secondAttribute="bottom" constant="8" symbolic="YES" id="HJe-Pq-AD0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bgZ-hh-Feo" secondAttribute="trailing" constant="8" id="Nde-mr-ZTv"/>
+                                                        <constraint firstItem="bgZ-hh-Feo" firstAttribute="top" secondItem="wcB-di-nJ6" secondAttribute="bottom" constant="8" symbolic="YES" id="USK-eQ-nII"/>
+                                                        <constraint firstItem="gRB-JZ-llv" firstAttribute="leading" secondItem="Zq7-YY-85e" secondAttribute="leading" constant="8" id="bv1-af-wXc"/>
+                                                        <constraint firstItem="wcB-di-nJ6" firstAttribute="top" secondItem="Zq7-YY-85e" secondAttribute="top" id="lF3-ps-khW"/>
+                                                        <constraint firstItem="bgZ-hh-Feo" firstAttribute="leading" secondItem="Zq7-YY-85e" secondAttribute="leading" constant="8" id="tkK-Ck-qmo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gRB-JZ-llv" secondAttribute="trailing" constant="8" id="zgp-Lr-rni"/>
+                                                    </constraints>
                                                 </view>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="entry" editingAccessoryType="detailButton" id="LqE-fp-IB0" customClass="QuickViewTableViewCell" customModule="MacroCounter" customModuleProvider="target">
@@ -396,7 +426,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Goals" id="wJ8-lZ-M9I">
+                    <navigationItem key="navigationItem" title="Goal" id="wJ8-lZ-M9I">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="9j5-9h-Xa7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -433,7 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-746.39999999999998" y="839.73013493253382"/>
+            <point key="canvasLocation" x="-747.82608695652175" y="839.0625"/>
         </scene>
         <!--Add Entry-->
         <scene sceneID="aaG-Lh-nTP">
@@ -744,16 +774,25 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Entry" id="44K-bd-JGY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jqM-nw-uDY">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="hOS-Nv-XMy" id="DlF-0Q-A9g"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="jqM-nw-uDY">
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="hOS-Nv-XMy" id="DlF-0Q-A9g"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" systemItem="trash" id="Ekd-GF-Kxh">
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="hOS-Nv-XMy" id="rfO-Ks-XOg"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="caloriesTextField" destination="TOM-FN-ek3" id="wra-ra-qWw"/>
                         <outlet property="carbsTextField" destination="Etf-77-Hwt" id="Kfd-Re-4QD"/>
                         <outlet property="dateTextField" destination="8Sf-FW-uLs" id="4Qk-js-Yb9"/>
+                        <outlet property="deleteButton" destination="Ekd-GF-Kxh" id="E2Z-6t-jIs"/>
                         <outlet property="fatTextField" destination="G17-fC-SKg" id="CBb-3Y-dTe"/>
                         <outlet property="proteinTextField" destination="yH6-io-9vN" id="DTD-E0-eia"/>
                         <outlet property="saveAsFavouriteSwitch" destination="S03-An-bF7" id="3mW-Rn-37s"/>
@@ -805,8 +844,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Daily Goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZS-84-Stu">
-                                                    <rect key="frame" x="36" y="11" width="115.5" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Daily Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZS-84-Stu">
+                                                    <rect key="frame" x="36" y="11" width="107" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -824,7 +863,7 @@
                                             <segue destination="hfM-Gm-Aex" kind="show" id="tAK-9a-DmC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="d1r-Pt-7kQ">
+                                    <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="d1r-Pt-7kQ">
                                         <rect key="frame" x="0.0" y="62" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d1r-Pt-7kQ" id="kqw-x4-mLd">
@@ -1145,7 +1184,15 @@
                             <outlet property="delegate" destination="hfM-Gm-Aex" id="RVZ-AZ-eUR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Set Daily Goal" id="Lib-lq-cg4"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Set Daily Goal" id="Lib-lq-cg4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zkr-2t-SIZ">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="hfM-Gm-Aex" id="pdT-5G-YBl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="caloriesTextField" destination="3ek-U5-iWN" id="ASe-ou-rFp"/>
                         <outlet property="carbsTextField" destination="AhI-xu-tbB" id="kLv-6a-ygn"/>

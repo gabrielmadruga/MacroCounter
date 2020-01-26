@@ -10,6 +10,7 @@ import UIKit
 
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
@@ -30,6 +31,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         if (entry.id != nil) {
             self.title = "Edit Entry"
+            deleteButton.isEnabled = true
         }
         entryChanged()
         dateTextField.delegate = self
@@ -67,6 +69,14 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        self.view.isUserInteractionEnabled = false
+        appDelegate.repository?.delete(entry: &entry)
+        self.view.isUserInteractionEnabled = true
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
@@ -108,7 +118,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         UIView.animate(withDuration: 0.2, animations: {
             UIView.setAnimationCurve(.easeOut)
-            textField.superview?.backgroundColor = UIColor.lightGray
+            textField.superview?.backgroundColor = UIColor.black
         }, completion: { finish in
             UIView.animate(withDuration: 0.2, animations: {
                 UIView.setAnimationCurve(.easeOut)

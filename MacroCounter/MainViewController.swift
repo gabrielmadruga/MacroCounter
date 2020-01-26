@@ -32,8 +32,12 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var scrollViewContentHeightConstraint: NSLayoutConstraint!
     
-    func setHeight() {
-        scrollViewContentHeightConstraint.constant = quickViewTableView.frame.minY + quickViewTableView.tableFooterView!.frame.maxY
+    func setHeight(_ hasEntries: Bool) {
+        DispatchQueue.main.async {
+            let tableFooterViewFrame = self.quickViewTableView.tableFooterView!.frame
+            let height = self.quickViewTableView.frame.minY + (hasEntries ? tableFooterViewFrame.minY : tableFooterViewFrame.maxY)
+            self.scrollViewContentHeightConstraint.constant = height
+        }
     }
     
     override func viewDidLoad() {
@@ -42,11 +46,11 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let hasEntries = !appDelegate.repository.readEntries(day: Date.init()).isEmpty
+        quickViewTableView.tableFooterView!.isHidden = hasEntries
         refreshGoals()
         quickViewTableView.reloadData()
-        DispatchQueue.main.async {
-            self.setHeight()
-        }
+        setHeight(hasEntries)
     }
     
     private func refreshGoals() {
@@ -122,13 +126,13 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            var entry = appDelegate.repository.readEntries(day: Date.init())[indexPath.row]
+            let entries = appDelegate.repository.readEntries(day: Date.init())
+            var entry = entries[indexPath.row]
             appDelegate.repository.delete(entry: &entry)
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.refreshGoals()
-            DispatchQueue.main.async {
-                self.setHeight()
-            }            
+            setHeight(!entries.isEmpty)
+                
         }
 //        else if editingStyle == .insert {
 //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

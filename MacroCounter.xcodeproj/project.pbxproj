@@ -71,6 +71,7 @@
 		C0D0E12A212A36C500AE49AF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewController.swift; sourceTree = "<group>"; };
 		C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
+		EEE797AB23DCFD1B0079DC77 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 		C090635E211A503E005FBAF5 /* MacroCounter */ = {
 			isa = PBXGroup;
 			children = (
+				EEE797AB23DCFD1B0079DC77 /* README.md */,
 				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
 				C0906363211A503E005FBAF5 /* Main.storyboard */,
 				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
