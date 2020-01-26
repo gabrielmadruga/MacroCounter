@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Settings {
+struct Settings: Codable {
     
-    struct Goals {
+    struct Goals: Codable {
         var fat: Float
         var carbs: Float
         var protein: Float

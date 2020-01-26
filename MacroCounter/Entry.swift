@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Entry {
+struct Entry: Codable {
     var id: Int?
     
     var date: Date

@@ -23,8 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = mainNavViewController
         window.makeKeyAndVisible()
         
-        repository = InMemoryRepository();
+        repository = FileRepository();
         repository?.createOrUpdate(settings: Settings(goals: Settings.Goals(fat: 40, carbs: 300, protein: 200)))
+        
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        print(url!.absoluteString)
+        
         return true
     }
 

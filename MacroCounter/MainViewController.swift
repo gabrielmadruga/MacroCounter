@@ -32,11 +32,21 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var scrollViewContentHeightConstraint: NSLayoutConstraint!
     
-    func setHeight(_ hasEntries: Bool) {
+    func setHeight(hasEntries: Bool) {
         DispatchQueue.main.async {
             let tableFooterViewFrame = self.quickViewTableView.tableFooterView!.frame
-            let height = self.quickViewTableView.frame.minY + (hasEntries ? tableFooterViewFrame.minY : tableFooterViewFrame.maxY)
+            let rowCount = self.quickViewTableView.numberOfRows(inSection: 0)
+            let tableHeaderViewFrame = self.quickViewTableView.tableHeaderView!.frame
+            var height = self.quickViewTableView.frame.minY + CGFloat(rowCount) * self.quickViewTableView.rowHeight + tableHeaderViewFrame.maxY
+            if (rowCount == 0) {
+                height += tableFooterViewFrame.height
+            }
             self.scrollViewContentHeightConstraint.constant = height
+            if (rowCount > 0) {
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
+            }
         }
     }
     
@@ -46,11 +56,19 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let hasEntries = !appDelegate.repository.readEntries(day: Date.init()).isEmpty
-        quickViewTableView.tableFooterView!.isHidden = hasEntries
-        refreshGoals()
         quickViewTableView.reloadData()
-        setHeight(hasEntries)
+        realoadNonTableData()
+    }
+    
+    private func realoadNonTableData() {
+        let hasEntries = !appDelegate.repository.readEntries(day: Date.init()).isEmpty
+        if self.quickViewTableView.tableFooterView!.isHidden != hasEntries {
+            UIView.transition(with: self.quickViewTableView.tableFooterView!, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.quickViewTableView.tableFooterView!.isHidden = hasEntries
+            })
+        }
+        setHeight(hasEntries: hasEntries)
+        refreshGoals()
     }
     
     private func refreshGoals() {
@@ -126,13 +144,12 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let entries = appDelegate.repository.readEntries(day: Date.init())
-            var entry = entries[indexPath.row]
-            appDelegate.repository.delete(entry: &entry)
+            let cell = tableView.cellForRow(at: indexPath) as! QuickViewTableViewCell
+            appDelegate.repository.delete(entry: &cell.entry)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            self.refreshGoals()
-            setHeight(!entries.isEmpty)
-                
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(250)) {
+                self.realoadNonTableData()
+            }
         }
 //        else if editingStyle == .insert {
 //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -155,17 +172,8 @@ extension MainViewController: UITableViewDataSource {
             guard let addEditEntryViewController = segue.destination as? AddEditEntryViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            
-            guard let cell = sender as? QuickViewTableViewCell else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
-            }
-            
-            guard let indexPath = quickViewTableView.indexPath(for: cell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-            
-            let entry = appDelegate.repository.readEntries(day: Date.init())[indexPath.row]
-            addEditEntryViewController.entry = entry
+            let cell = sender as! QuickViewTableViewCell
+            addEditEntryViewController.entry = cell.entry
         default:
             break
         }
@@ -178,7 +186,11 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! QuickViewTableViewCell
-        cell.entry = appDelegate.repository.readEntries(day: Date.init())[indexPath.row]
+        var entries = appDelegate.repository.readEntries(day: Date.init())
+        entries.sort { (e1, e2) -> Bool in
+            e1.date < e2.date
+        }
+        cell.entry = entries[indexPath.row]
         return cell
     }
     

@@ -26,6 +26,7 @@
 		C0D0E12B212A36C500AE49AF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12A212A36C500AE49AF /* Settings.swift */; };
 		C0D0E12D212D04ED00AE49AF /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */; };
 		C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */; };
+		EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC76E3823DE004700A7C483 /* FileRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		C0D0E12A212A36C500AE49AF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewController.swift; sourceTree = "<group>"; };
 		C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
+		EEC76E3823DE004700A7C483 /* FileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRepository.swift; sourceTree = "<group>"; };
 		EEE797AB23DCFD1B0079DC77 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */,
 				C0D0E1202129DF5B00AE49AF /* Repository.swift */,
 				C0D0E1222129E36B00AE49AF /* InMemoryRepository.swift */,
+				EEC76E3823DE004700A7C483 /* FileRepository.swift */,
 				C0D0E1172129CE8F00AE49AF /* Entry.swift */,
 				C0D0E12A212A36C500AE49AF /* Settings.swift */,
 				C0D0E1242129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift */,
@@ -315,6 +318,7 @@
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,
 				C0D0E1232129E36B00AE49AF /* InMemoryRepository.swift in Sources */,
 				C0906360211A503E005FBAF5 /* AppDelegate.swift in Sources */,
+				EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */,
 				C0D0E1252129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift in Sources */,
 				C0D0E12B212A36C500AE49AF /* Settings.swift in Sources */,
 				C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */,
