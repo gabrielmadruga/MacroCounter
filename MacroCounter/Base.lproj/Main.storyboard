@@ -427,10 +427,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Goal" id="wJ8-lZ-M9I">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="9j5-9h-Xa7">
+                        <barButtonItem key="leftBarButtonItem" title="Set Goal" id="9j5-9h-Xa7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="p3C-l7-spQ" kind="show" id="a9O-uq-WBi"/>
+                                <segue destination="hfM-Gm-Aex" kind="show" id="Xl2-Nv-1ym"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -863,7 +863,7 @@
                                             <segue destination="hfM-Gm-Aex" kind="show" id="tAK-9a-DmC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="d1r-Pt-7kQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="d1r-Pt-7kQ">
                                         <rect key="frame" x="0.0" y="62" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d1r-Pt-7kQ" id="kqw-x4-mLd">
@@ -1206,6 +1206,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Xl2-Nv-1ym"/>
         <segue reference="xRf-my-8E5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

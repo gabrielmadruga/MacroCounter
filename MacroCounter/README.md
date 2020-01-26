@@ -21,6 +21,8 @@ Another usefull feature could be to set different goals for workout vs non worko
 - Persistance
 - Favorites implementation
 - Properly support light/dark modes
+- Add version to the settings
+- Contact us
 - Publish the App!
     - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc
 
