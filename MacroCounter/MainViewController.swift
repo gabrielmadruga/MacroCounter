@@ -76,16 +76,16 @@ class MainViewController: UIViewController {
             fatalError("Goals must be set by now!")
         }
         let fatFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
-            current = current + entry.fat
+            current = current + entry.fat * entry.servings
         }
         let carbsFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
-            current = current + entry.carbs
+            current = current + entry.carbs * entry.servings
         }
         let proteinFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
-            current = current + entry.protein
+            current = current + entry.protein * entry.servings
         }
         let caloriesFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
-            current = current + entry.calories
+            current = current + entry.calories * entry.servings
         }
         // Update labels
         fatCurrentLabel.text = "\(Int(fatFromEntries).description)"
@@ -116,6 +116,7 @@ class QuickViewTableViewCell: UITableViewCell {
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var servingsLabel: UILabel!
     
     var entry: Entry! {
         didSet {
@@ -131,6 +132,7 @@ class QuickViewTableViewCell: UITableViewCell {
         carbsLabel.text = entry.carbs.description
         proteinLabel.text = entry.protein.description
         caloriesLabel.text = entry.calories.description
+        servingsLabel.text = "x\(Int(entry.servings).description)"
     }
     
     override func awakeFromNib() {
