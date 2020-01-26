@@ -52,7 +52,7 @@ class InMemoryRepository: Repository {
             return settings
     }
     
-    func delete(settings: inout Settings) {
+    func delete(settings: Settings) {
         self.settings = nil
     }
     

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-Vy-dta">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5NR-fc-Y72">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -433,15 +433,12 @@
                                 <segue destination="hfM-Gm-Aex" kind="show" id="Xl2-Nv-1ym"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="gMe-I4-8de">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="hOS-Nv-XMy" kind="show" identifier="New" id="cEb-tH-1K1"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Favourites" id="dyI-aw-HJX"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gMe-I4-8de">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="hOS-Nv-XMy" kind="show" identifier="New" id="cEb-tH-1K1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="caloriesCurrentLabel" destination="FaW-uQ-GV6" id="uFx-7I-jr1"/>

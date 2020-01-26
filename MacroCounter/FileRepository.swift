@@ -10,9 +10,8 @@ import Foundation
 
 
 public class FileRepository: Repository {
-    
-    let memoryRepo = InMemoryRepository()
-    
+       
+    // MARK: Entries
     func create(entry: inout Entry) {
         var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         entry.id = Int(entry.date.timeIntervalSince1970)
@@ -60,15 +59,29 @@ public class FileRepository: Repository {
         entry.id = nil
     }
     
+    // MARK: Settings
     func createOrUpdate(settings: Settings) {
-        memoryRepo.createOrUpdate(settings: settings)
+        var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(settings)
+        url.appendPathComponent("settings.json")
+        FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
     }
     
     func readSettings() -> Settings? {
-        return memoryRepo.readSettings()
+        var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        url.appendPathComponent("settings.json")
+        guard let data = FileManager.default.contents(atPath: url.path) else {
+            return nil
+        }
+        let decoder = JSONDecoder()
+        let settings = try! decoder.decode(Settings.self, from: data)
+        return settings
     }
     
-    func delete(settings: inout Settings) {
-        memoryRepo.delete(settings: &settings)
+    func delete(settings: Settings) {
+        var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        url.appendPathComponent("settings.json")
+        try? FileManager.default.removeItem(at: url)
     }
 }

@@ -18,11 +18,12 @@ Another usefull feature could be to set different goals for workout vs non worko
 - Week/Month view. View streak? how many days did I reach, didn't reach, or surpased the goal?
 
 # TODO:
-- Persistance
 - Favorites implementation
 - Properly support light/dark modes
-- Add version to the settings
-- Contact us
+- Settings
+    - Add version to the settings
+    - Contact us
+- Improve persistance
 - Publish the App!
     - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc
 

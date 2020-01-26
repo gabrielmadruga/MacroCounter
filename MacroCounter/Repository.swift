@@ -18,6 +18,6 @@ protocol Repository {
     
     func createOrUpdate(settings: Settings)
     func readSettings() -> Settings?
-    func delete(settings: inout Settings)
+    func delete(settings: Settings)
     
 }
