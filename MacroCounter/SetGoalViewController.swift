@@ -78,13 +78,21 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         UIView.animate(withDuration: 0.2, animations: {
             UIView.setAnimationCurve(.easeOut)
-            textField.superview?.backgroundColor = UIColor.lightGray
+            textField.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         }, completion: { finish in
-            UIView.animate(withDuration: 0.2, animations: {
-                UIView.setAnimationCurve(.easeOut)
+            UIView.animate(withDuration: 0.3, animations: {
+                UIView.setAnimationCurve(.easeInOut)
                 textField.superview?.backgroundColor = nil
             })
         })
+        
+        if (textField == caloriesTextField) {
+            self.view.endEditing(true)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.showToast(message: "Calories are calculated automatically")
+            }
+            return false
+        }
         
         return true
     }

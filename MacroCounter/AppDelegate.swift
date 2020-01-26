@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         
         repository = FileRepository();
-        repository?.createOrUpdate(settings: Settings(goals: Settings.Goals(fat: 40, carbs: 300, protein: 200)))
+        if (repository.readSettings() == nil){
+            repository?.createOrUpdate(settings: Settings(goals: Settings.Goals(fat: 40, carbs: 300, protein: 200)))
+        }
         
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         print(url!.absoluteString)
