@@ -23,10 +23,12 @@ Another usefull feature could be to set different goals for workout vs non worko
 - Settings
     - Add version to the settings
     - Contact us
-- Improve persistance
+- Improve persistance (SQLite or CoreData?)
 - Publish the App!
     - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc
 
 # Maybe latter
+- HealthKit integration
+- iCloud integration
 - Fasting features
 - Excercice/Weight lifting features

@@ -52,10 +52,15 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadAll), name: UIApplication.didBecomeActiveNotification, object: nil)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        reloadAll()
+    }
+    
+    @objc private func reloadAll() {
         quickViewTableView.reloadData()
         realoadNonTableData()
     }
