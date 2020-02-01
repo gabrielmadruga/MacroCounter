@@ -32,6 +32,32 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var scrollViewContentHeightConstraint: NSLayoutConstraint!
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        switch(segue.identifier ?? "") {
+        case "New":
+            break
+            // os_log("Adding a new entry.", log: OSLog.default, type: .debug)
+        case "Edit":
+            guard let addEditEntryViewController = segue.destination as? AddEditEntryViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            let cell = sender as! QuickViewTableViewCell
+            addEditEntryViewController.entry = cell.entry
+        case "Favorites":
+            guard let entriesViewController = segue.destination as? EntriesViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            entriesViewController.isFavorites = true
+        break
+        // os_log("Adding a new entry.", log: OSLog.default, type: .debug)
+        default:
+            break
+        }
+        
+    }
+    
     func setHeight(hasEntries: Bool) {
         DispatchQueue.main.async {
             let tableFooterViewFrame = self.quickViewTableView.tableFooterView!.frame
@@ -62,10 +88,10 @@ class MainViewController: UIViewController {
     
     @objc private func reloadAll() {
         quickViewTableView.reloadData()
-        realoadNonTableData()
+        reloadNonTableData()
     }
     
-    private func realoadNonTableData() {
+    private func reloadNonTableData() {
         let hasEntries = !appDelegate.repository.readEntries(day: Date.init()).isEmpty
         if self.quickViewTableView.tableFooterView!.isHidden != hasEntries {
             UIView.transition(with: self.quickViewTableView.tableFooterView!, duration: 0.5, options: .transitionCrossDissolve, animations: {
@@ -155,7 +181,7 @@ extension MainViewController: UITableViewDelegate {
             appDelegate.repository.delete(entry: &cell.entry)
             tableView.deleteRows(at: [indexPath], with: .fade)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(250)) {
-                self.realoadNonTableData()
+                self.reloadNonTableData()
             }
         }
 //        else if editingStyle == .insert {
@@ -168,24 +194,6 @@ extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: UITableViewDataSource {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        switch(segue.identifier ?? "") {
-        case "New":
-            break
-            // os_log("Adding a new entry.", log: OSLog.default, type: .debug)
-        case "Edit":
-            guard let addEditEntryViewController = segue.destination as? AddEditEntryViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            let cell = sender as! QuickViewTableViewCell
-            addEditEntryViewController.entry = cell.entry
-        default:
-            break
-        }
-        
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return appDelegate.repository.readEntries(day: Date.init()).count

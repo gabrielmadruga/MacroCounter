@@ -24,6 +24,7 @@ Another usefull feature could be to set different goals for workout vs non worko
     - Add version to the settings
     - Contact us
 - Improve persistance (SQLite or CoreData?)
+- Show warning message when going back after editing a value
 - Publish the App!
     - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc
 

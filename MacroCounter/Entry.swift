@@ -21,21 +21,26 @@ struct Entry: Codable {
     }
     var servings: Float
     
-    init(fat: Float, carbs: Float, protein: Float, servings: Float, date: Date = Date.init()) {
+    var isFavorite: Bool
+    #warning("TODO: too much wasted space?")
+    
+    init(fat: Float, carbs: Float, protein: Float, servings: Float, date: Date = Date.init(), isFavorite: Bool = false) {
         id = nil
         self.date = date
         self.fat = fat
         self.carbs = carbs
         self.protein = protein
         self.servings = servings
+        self.isFavorite = isFavorite
     }
     
-    func clone(from entry: Entry, id: Int) -> Entry {
+    func clone(from entry: Entry, id: Int? = nil) -> Entry {
         var entry = Entry(fat: entry.fat,
                           carbs: entry.carbs,
                           protein: entry.protein,
                           servings: entry.servings,
-                          date: entry.date)
+                          date: entry.date,
+                          isFavorite: entry.isFavorite)
         entry.id = id
         return entry
     }

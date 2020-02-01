@@ -61,10 +61,15 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        if (entry.id != nil) {
+        if entry.id != nil {
             appDelegate.repository?.update(entry: entry)
         } else {
             appDelegate.repository?.create(entry: &entry)
+        }
+        if saveAsFavouriteSwitch.isOn {
+            var favorite = entry.clone(from: entry)
+            favorite.isFavorite = true
+            appDelegate.repository?.create(entry: &favorite)
         }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)

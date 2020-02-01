@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = mainNavViewController
         window.makeKeyAndVisible()
         
-        repository = FileRepository();
+        repository = InMemoryRepository();
         if (repository.readSettings() == nil){
             repository?.createOrUpdate(settings: Settings(goals: Settings.Goals(fat: 40, carbs: 300, protein: 200)))
         }

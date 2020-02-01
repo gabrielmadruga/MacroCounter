@@ -15,6 +15,9 @@ public class FileRepository: Repository {
     func create(entry: inout Entry) {
         var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         entry.id = Int(entry.date.timeIntervalSince1970)
+        if entry.isFavorite {
+            entry.id! += 1
+        }
         url.appendPathComponent("entries", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: false, attributes: nil)
 
