@@ -1,40 +1,21 @@
 //
-//  EntriesViewController.swift
+//  FavoritesViewController.swift
 //  MacroCounter
 //
-//  Created by Gabriel Madruga on 1/31/20.
+//  Created by Gabriel Madruga on 2/2/20.
 //  Copyright © 2020 Gabriel Madruga. All rights reserved.
 //
 
 import UIKit
 
-
-//protocol EntriesViewControllerDelegate: class {
-//
-//    func didDeleteEntry()
-//}
-
-class EntriesViewController: UIViewController {
-    
-    //    weak var delegate: EntriesViewControllerDelegate?
+class FavoritesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private var emptyTableMessageView: UIView!
     
-    private weak var barsViewController: BarsViewController? {
-        get {
-            return self.children.first as? BarsViewController
-        }
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         emptyTableMessageView = tableView.tableFooterView
-    }
-    
-    deinit {
-        emptyTableMessageView = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +24,7 @@ class EntriesViewController: UIViewController {
     }
     
     private func refreshFooterView() {
-        let hasEntries = !entries.isEmpty
+        let hasEntries = !entryTemplates.isEmpty
         let messageIsShowing = self.tableView.tableFooterView != nil
         let shouldTransition = hasEntries == messageIsShowing
         if shouldTransition {
@@ -56,41 +37,43 @@ class EntriesViewController: UIViewController {
             })
         }
     }
+    
 }
 
-extension EntriesViewController: UITableViewDelegate {
+extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
-            appDelegate.repository.delete(cell.entry!)
+            let cell = tableView.cellForRow(at: indexPath) as! EntryTemplateTableViewCell
+            appDelegate.repository.delete(cell.entryTemplate!)
             tableView.deleteRows(at: [indexPath], with: .fade)
             refreshFooterView()
-            barsViewController?.reloadData()
-            //            delegate?.didDeleteEntry()
         }
     }
 }
 
-class EntryTableViewCell: UITableViewCell {
+class EntryTemplateTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
     
-    var entry: Entry! {
+    var entryTemplate: EntryTemplate! {
         didSet {
             refresh()
         }
     }
+    var entry: Entry {
+        get {
+            entryTemplate.entry
+        }
+    }
     
     private func refresh() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        dateLabel.text = formatter.string(from: entry.date)
+        nameLabel.text = entryTemplate.name
         fatLabel.text = entry.fat.description
         carbsLabel.text = entry.carbs.description
         proteinLabel.text = entry.protein.description
@@ -103,23 +86,21 @@ class EntryTableViewCell: UITableViewCell {
         bgColorView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
         self.selectedBackgroundView = bgColorView
     }
+    
 }
 
-protocol EntriesViewControllerDataSource {
-    var entries: [Entry] { get }
+
+protocol FavoritesViewControllerDataSource {
+    var entryTemplates: [EntryTemplate] { get }
 }
 
-extension EntriesViewController: EntriesViewControllerDataSource {
-    var entries: [Entry] {
-        return (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
-            Calendar.current.isDate(entry.date, inSameDayAs: .init())
-        }).sorted { (e1, e2) -> Bool in        
-            e1.date < e2.date
-        }
+extension FavoritesViewController: FavoritesViewControllerDataSource {
+    var entryTemplates: [EntryTemplate] {
+        return appDelegate.repository.read(EntryTemplate.self) as! [EntryTemplate]
     }
 }
 
-extension EntriesViewController: UITableViewDataSource {
+extension FavoritesViewController: UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -128,6 +109,7 @@ extension EntriesViewController: UITableViewDataSource {
             //            break
         //            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
         case "Edit":
+            #warning("TODO")
             guard let addEditEntryViewController = segue.destination as? AddEditEntryViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
@@ -140,14 +122,18 @@ extension EntriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        entries.count
+        entryTemplates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! EntryTableViewCell
-        cell.entry = entries[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "entryTemplate") as! EntryTemplateTableViewCell
+        cell.entryTemplate = entryTemplates[indexPath.row]
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! EntryTemplateTableViewCell
+        appDelegate.repository?.create(cell.entry)
+        self.navigationController?.popViewController(animated: true)
+    }
 }

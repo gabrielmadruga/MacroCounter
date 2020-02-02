@@ -27,6 +27,7 @@
 		C0D0E12D212D04ED00AE49AF /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */; };
 		C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */; };
 		EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4225DE23E663630089E881 /* BarsViewController.swift */; };
+		EE91332D23E72B68002D2F23 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91332C23E72B68002D2F23 /* FavoritesViewController.swift */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
 		EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC76E3823DE004700A7C483 /* FileRepository.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewController.swift; sourceTree = "<group>"; };
 		C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		EE4225DE23E663630089E881 /* BarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsViewController.swift; sourceTree = "<group>"; };
+		EE91332C23E72B68002D2F23 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		EEC76E3823DE004700A7C483 /* FileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRepository.swift; sourceTree = "<group>"; };
 		EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacroCounter.entitlements; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				EE4225DE23E663630089E881 /* BarsViewController.swift */,
 				C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */,
 				EEB522AC23E504E90077640F /* EntriesViewController.swift */,
+				EE91332C23E72B68002D2F23 /* FavoritesViewController.swift */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
 				C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */,
 				EEC3605123E63FEB00F1DA3C /* Back */,
@@ -341,6 +344,7 @@
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,
 				C0D0E1232129E36B00AE49AF /* InMemoryRepository.swift in Sources */,
+				EE91332D23E72B68002D2F23 /* FavoritesViewController.swift in Sources */,
 				EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */,
 				C0906360211A503E005FBAF5 /* AppDelegate.swift in Sources */,
 				EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */,
