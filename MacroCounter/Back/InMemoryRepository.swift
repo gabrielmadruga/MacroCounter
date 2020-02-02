@@ -18,12 +18,12 @@ class InMemoryRepository: Repository {
         switch item {
         case var entry as Entry:
             if entry.id != nil { fatalError("Can't create entry with repeated id") }
-            let id = Array(entries.keys).count
+            let id = (Array(entries.keys).max() ?? 0) + 1
             entry.id = id
             entries[id] = entry
         case var entryTemplate as EntryTemplate:
             if entryTemplate.id != nil { fatalError("Can't create entry template with repeated id") }
-            let id = Array(entryTemplates.keys).count
+            let id = (Array(entryTemplates.keys).max() ?? 0)  + 1
             entryTemplate.id = id
             entryTemplates[id] = entryTemplate
         case var settings as Settings:
