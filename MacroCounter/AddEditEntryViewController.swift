@@ -67,8 +67,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             appDelegate.repository?.create(entry)
         }
         if saveAsFavouriteSwitch.isOn {
-            var template = EntryTemplate(name: "TODO", entry: entry)
-//            appDelegate.repository?.create(entryTemplate: &template)
+            let template = EntryTemplate(name: "TODO", entry: entry)
+            appDelegate.repository?.create(template)
         }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
