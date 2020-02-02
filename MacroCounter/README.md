@@ -18,15 +18,19 @@ Another usefull feature could be to set different goals for workout vs non worko
 - Week/Month view. View streak? how many days did I reach, didn't reach, or surpased the goal?
 
 # TODO:
-- Favorites implementation
-- Make it easier to advance in textfields
 - Properly support light/dark modes
+- Improve persistance (https://developer.apple.com/documentation/coredata)
+- Favorites implementation
+    - Add (right now can only be added through an Entry)
+    - Edit
+- Onboarding
+    - Set goal
 - Settings
     - Add version to the settings
     - Contact us
-- Improve persistance (SQLite or CoreData?)
-- Notifications
+- Notifications (do we need meal plans?)
 - Show warning message when going back after editing a value
+- Make it easier to advance in textfields
 - Publish the App!
     - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc
 

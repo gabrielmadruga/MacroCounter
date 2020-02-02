@@ -144,7 +144,7 @@
 				EE91332C23E72B68002D2F23 /* FavoritesViewController.swift */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
 				C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */,
-				EEC3605123E63FEB00F1DA3C /* Back */,
+				EEC3605123E63FEB00F1DA3C /* Model */,
 				EEC3605223E6401900F1DA3C /* Helpers */,
 				C0906366211A5048005FBAF5 /* Assets.xcassets */,
 				C090636B211A5048005FBAF5 /* Info.plist */,
@@ -179,7 +179,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EEC3605123E63FEB00F1DA3C /* Back */ = {
+		EEC3605123E63FEB00F1DA3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				C0D0E1202129DF5B00AE49AF /* Repository.swift */,
@@ -188,7 +188,7 @@
 				C0D0E1172129CE8F00AE49AF /* Entry.swift */,
 				C0D0E12A212A36C500AE49AF /* Settings.swift */,
 			);
-			path = Back;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EEC3605223E6401900F1DA3C /* Helpers */ = {
