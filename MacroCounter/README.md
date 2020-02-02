@@ -19,11 +19,13 @@ Another usefull feature could be to set different goals for workout vs non worko
 
 # TODO:
 - Favorites implementation
+- Make it easier to advance in textfields
 - Properly support light/dark modes
 - Settings
     - Add version to the settings
     - Contact us
 - Improve persistance (SQLite or CoreData?)
+- Notifications
 - Show warning message when going back after editing a value
 - Publish the App!
     - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc

@@ -8,6 +8,20 @@
 
 import Foundation
 
+struct EntryTemplate: Codable {
+    var id: Int?
+    
+    var name: String
+    var entry: Entry
+    //#warning("TODO: too much wasted space?")
+    
+    init(name: String, entry: Entry) {
+        id = nil
+        self.name = name
+        self.entry = entry
+    }
+}
+
 struct Entry: Codable {
     var id: Int?
     
@@ -21,17 +35,14 @@ struct Entry: Codable {
     }
     var servings: Float
     
-    var isFavorite: Bool
-    #warning("TODO: too much wasted space?")
     
-    init(fat: Float, carbs: Float, protein: Float, servings: Float, date: Date = Date.init(), isFavorite: Bool = false) {
+    init(fat: Float, carbs: Float, protein: Float, servings: Float, date: Date = Date.init()) {
         id = nil
         self.date = date
         self.fat = fat
         self.carbs = carbs
         self.protein = protein
         self.servings = servings
-        self.isFavorite = isFavorite
     }
     
     func clone(from entry: Entry, id: Int? = nil) -> Entry {
@@ -39,8 +50,7 @@ struct Entry: Codable {
                           carbs: entry.carbs,
                           protein: entry.protein,
                           servings: entry.servings,
-                          date: entry.date,
-                          isFavorite: entry.isFavorite)
+                          date: entry.date)
         entry.id = id
         return entry
     }

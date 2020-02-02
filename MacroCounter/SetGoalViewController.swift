@@ -24,7 +24,7 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settings = appDelegate.repository.readSettings()
+        settings = (appDelegate.repository.read(Settings.self) as! [Settings]).first
         settingsChanged()
     }
     
@@ -45,7 +45,7 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.createOrUpdate(settings: settings)
+        appDelegate.repository?.update(settings!)
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }

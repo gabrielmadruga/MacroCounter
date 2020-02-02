@@ -46,8 +46,10 @@ class EntriesViewController: UIViewController {
     
     private func refreshFooterView() {
         let hasEntries = !entries.isEmpty
-        if let footerView = tableView.tableFooterView, footerView.isHidden != hasEntries {
-            UIView.transition(with: footerView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        let messageIsShowing = self.tableView.tableFooterView != nil
+        let shouldTransition = hasEntries == messageIsShowing
+        if shouldTransition {
+            UIView.transition(with: self.emptyTableMessageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 if hasEntries {
                     self.tableView.tableFooterView = nil
                 } else {
@@ -65,7 +67,7 @@ extension EntriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! QuickViewTableViewCell
-            appDelegate.repository.delete(entry: &cell.entry)
+            appDelegate.repository.delete(cell.entry!)
             tableView.deleteRows(at: [indexPath], with: .fade)
             refreshFooterView()
             delegate?.didDeleteEntry()
@@ -86,11 +88,14 @@ protocol EntriesViewControllerDataSource {
 extension EntriesViewController: EntriesViewControllerDataSource {
     var entries: [Entry] {
         if isFavorites {
-            return appDelegate.repository.readEntries().filter({ $0.isFavorite })
+            return appDelegate.repository.read(Entry.self) as! [Entry]
         }
-        return appDelegate.repository.readEntries(day: Date.init()).sorted { (e1, e2) -> Bool in
+        return (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
+            Calendar.current.isDate(entry.date, inSameDayAs: .init())
+        }).sorted { (e1, e2) -> Bool in        
             e1.date < e2.date
         }
+            
     }
     
     

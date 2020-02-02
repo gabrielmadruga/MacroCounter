@@ -62,14 +62,13 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
         if entry.id != nil {
-            appDelegate.repository?.update(entry: entry)
+            appDelegate.repository?.update(entry)
         } else {
-            appDelegate.repository?.create(entry: &entry)
+            appDelegate.repository?.create(entry)
         }
         if saveAsFavouriteSwitch.isOn {
-            var favorite = entry.clone(from: entry)
-            favorite.isFavorite = true
-            appDelegate.repository?.create(entry: &favorite)
+            var template = EntryTemplate(name: "TODO", entry: entry)
+//            appDelegate.repository?.create(entryTemplate: &template)
         }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
@@ -77,7 +76,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.delete(entry: &entry)
+        appDelegate.repository?.delete(entry)
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }

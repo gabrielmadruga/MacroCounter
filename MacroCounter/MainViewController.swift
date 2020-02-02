@@ -92,7 +92,10 @@ class MainViewController: UIViewController {
     }
     
     private func reloadNonTableData() {
-        let hasEntries = !appDelegate.repository.readEntries(day: Date.init()).isEmpty
+        let todayEntries = (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
+            Calendar.current.isDate(entry.date, inSameDayAs: .init())
+        })
+        let hasEntries = !todayEntries.isEmpty
         if self.quickViewTableView.tableFooterView!.isHidden != hasEntries {
             UIView.transition(with: self.quickViewTableView.tableFooterView!, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.quickViewTableView.tableFooterView!.isHidden = hasEntries
@@ -103,19 +106,23 @@ class MainViewController: UIViewController {
     }
     
     private func refreshGoals() {
-        guard let goals = appDelegate.repository.readSettings()?.goals else {
+        let todayEntries = (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
+            Calendar.current.isDate(entry.date, inSameDayAs: .init())
+        })
+        let settings = appDelegate.repository.read(Settings.self) as? [Settings]
+        guard let goals = settings?.first?.goals else {
             fatalError("Goals must be set by now!")
         }
-        let fatFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
+        let fatFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.fat * entry.servings
         }
-        let carbsFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
+        let carbsFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.carbs * entry.servings
         }
-        let proteinFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
+        let proteinFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.protein * entry.servings
         }
-        let caloriesFromEntries = appDelegate.repository.readEntries(day: Date.init()).reduce(into: 0.0) { (current, entry) in
+        let caloriesFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.calories * entry.servings
         }
         // Update labels
@@ -178,7 +185,7 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! QuickViewTableViewCell
-            appDelegate.repository.delete(entry: &cell.entry)
+            appDelegate.repository.delete(cell.entry!)
             tableView.deleteRows(at: [indexPath], with: .fade)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(250)) {
                 self.reloadNonTableData()
@@ -196,13 +203,17 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.repository.readEntries(day: Date.init()).count
+        let todayEntries = (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
+            Calendar.current.isDate(entry.date, inSameDayAs: .init())
+        })
+        return todayEntries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! QuickViewTableViewCell
-        var entries = appDelegate.repository.readEntries(day: Date.init())
-        entries.sort { (e1, e2) -> Bool in
+        let entries = (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
+            Calendar.current.isDate(entry.date, inSameDayAs: .init())
+        }).sorted { (e1, e2) -> Bool in
             e1.date < e2.date
         }
         cell.entry = entries[indexPath.row]

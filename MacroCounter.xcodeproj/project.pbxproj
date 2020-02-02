@@ -138,15 +138,8 @@
 				EEB522AC23E504E90077640F /* EntriesViewController.swift */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
 				C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */,
-				C0D0E1202129DF5B00AE49AF /* Repository.swift */,
-				C0D0E1222129E36B00AE49AF /* InMemoryRepository.swift */,
-				EEC76E3823DE004700A7C483 /* FileRepository.swift */,
-				C0D0E1172129CE8F00AE49AF /* Entry.swift */,
-				C0D0E12A212A36C500AE49AF /* Settings.swift */,
-				C0D0E1242129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift */,
-				C0D0E126212A080A00AE49AF /* DatePickerViewController.swift */,
-				C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */,
-				C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */,
+				EEC3605123E63FEB00F1DA3C /* Back */,
+				EEC3605223E6401900F1DA3C /* Helpers */,
 				C0906366211A5048005FBAF5 /* Assets.xcassets */,
 				C090636B211A5048005FBAF5 /* Info.plist */,
 				EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */,
@@ -178,6 +171,29 @@
 				C0D0E11E2129D76900AE49AF /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EEC3605123E63FEB00F1DA3C /* Back */ = {
+			isa = PBXGroup;
+			children = (
+				C0D0E1202129DF5B00AE49AF /* Repository.swift */,
+				C0D0E1222129E36B00AE49AF /* InMemoryRepository.swift */,
+				EEC76E3823DE004700A7C483 /* FileRepository.swift */,
+				C0D0E1172129CE8F00AE49AF /* Entry.swift */,
+				C0D0E12A212A36C500AE49AF /* Settings.swift */,
+			);
+			path = Back;
+			sourceTree = "<group>";
+		};
+		EEC3605223E6401900F1DA3C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C0D0E1242129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift */,
+				C0D0E126212A080A00AE49AF /* DatePickerViewController.swift */,
+				C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */,
+				C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
