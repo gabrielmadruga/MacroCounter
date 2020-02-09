@@ -47,24 +47,24 @@ class BarsViewController: UIViewController {
             fatalError("Goals must be set by now!")
         }
         let fatFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
-            current = current + entry.fat * entry.servings
+            current = current + entry.fats * entry.servings
         }
         let carbsFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.carbs * entry.servings
         }
         let proteinFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
-            current = current + entry.protein * entry.servings
+            current = current + entry.proteins * entry.servings
         }
         let caloriesFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.calories * entry.servings
         }
         // Update labels
         fatCurrentLabel.text = "\(Int(fatFromEntries).description)"
-        fatGoalLabel.text = "\(Int(goals.fat).description)"
+        fatGoalLabel.text = "\(Int(goals.fats).description)"
         carbsCurrentLabel.text = "\(Int(carbsFromEntries).description)"
         carbsGoalLabel.text = "\(Int(goals.carbs).description)"
         proteinCurrentLabel.text = "\(Int(proteinFromEntries).description)"
-        proteinGoalLabel.text = "\(Int(goals.protein).description)"
+        proteinGoalLabel.text = "\(Int(goals.proteins).description)"
         caloriesCurrentLabel.text = "\(Int(caloriesFromEntries).description)"
         caloriesGoalLabel.text = "\(Int(goals.calories).description)"
         // Update progress views
@@ -72,9 +72,9 @@ class BarsViewController: UIViewController {
             let ratio = value / goalValue
             return ratio > 1 ? 1 : ratio
         }
-        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, goals.fat), animated: true)
+        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, goals.fats), animated: true)
         carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, goals.carbs), animated: true)
-        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, goals.protein), animated: true)
+        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, goals.proteins), animated: true)
         caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, goals.calories), animated: true)
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class EntryTemplatesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private var emptyTableMessageView: UIView!
@@ -40,7 +40,7 @@ class FavoritesViewController: UIViewController {
     
 }
 
-extension FavoritesViewController: UITableViewDelegate {
+extension EntryTemplatesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -66,19 +66,14 @@ class EntryTemplateTableViewCell: UITableViewCell {
             refresh()
         }
     }
-    var entry: Entry {
-        get {
-            entryTemplate.entry
-        }
-    }
     
     private func refresh() {
         nameLabel.text = entryTemplate.name
-        fatLabel.text = entry.fat.description
-        carbsLabel.text = entry.carbs.description
-        proteinLabel.text = entry.protein.description
-        caloriesLabel.text = entry.calories.description
-        servingsLabel.text = "x\(Int(entry.servings).description)"
+        fatLabel.text = entryTemplate.fats.description
+        carbsLabel.text = entryTemplate.carbs.description
+        proteinLabel.text = entryTemplate.proteins.description
+        caloriesLabel.text = entryTemplate.calories.description
+//        servingsLabel.text = "x\(Int(entry.servings).description)"
     }
     
     override func awakeFromNib() {
@@ -94,13 +89,13 @@ protocol FavoritesViewControllerDataSource {
     var entryTemplates: [EntryTemplate] { get }
 }
 
-extension FavoritesViewController: FavoritesViewControllerDataSource {
+extension EntryTemplatesViewController: FavoritesViewControllerDataSource {
     var entryTemplates: [EntryTemplate] {
         return appDelegate.repository.read(EntryTemplate.self) as! [EntryTemplate]
     }
 }
 
-extension FavoritesViewController: UITableViewDataSource {
+extension EntryTemplatesViewController: UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -133,7 +128,9 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! EntryTemplateTableViewCell
-        appDelegate.repository?.create(cell.entry)
+        let newEntry = Entry(macros: cell.entryTemplate.macros, servings: 1)
+        #warning("servings")
+        appDelegate.repository?.create(newEntry)
         self.navigationController?.popViewController(animated: true)
     }
 }

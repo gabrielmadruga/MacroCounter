@@ -19,7 +19,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var servingsTextField: UITextField!
     @IBOutlet weak var saveAsFavouriteSwitch: UISwitch!
     
-    var entry: Entry = Entry(fat: 0, carbs: 0, protein: 0, servings: 1) {
+    var entry: Entry = Entry(macros: Macros(fats: 0, carbs: 0, proteins: 0), servings: 1) {
         didSet {
             if (view != nil) {
                entryChanged()
@@ -43,13 +43,13 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         dateFormatter.timeStyle = .short
         dateTextField.text = dateFormatter.string(from: entry.date)
         if (!fatTextField.isEditing) {
-            fatTextField.text = entry.fat.description
+            fatTextField.text = entry.fats.description
         }
         if (!carbsTextField.isEditing) {
             carbsTextField.text = entry.carbs.description
         }
         if (!proteinTextField.isEditing) {
-            proteinTextField.text = entry.protein.description
+            proteinTextField.text = entry.proteins.description
         }
         if (!caloriesTextField.isEditing) {
             caloriesTextField.text = entry.calories.description
@@ -67,7 +67,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             appDelegate.repository?.create(entry)
         }
         if saveAsFavouriteSwitch.isOn {
-            let template = EntryTemplate(name: "TODO", entry: entry)
+            let template = EntryTemplate(name: "TODO", macros: entry.macros)
             appDelegate.repository?.create(template)
         }
         self.view.isUserInteractionEnabled = true
@@ -168,9 +168,9 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.fat = value
+            self.entry.fats = value
         } else {
-            self.entry.fat = 0
+            self.entry.fats = 0
         }
     }
     
@@ -184,9 +184,9 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.protein = value
+            self.entry.proteins = value
         } else {
-            self.entry.protein = 0
+            self.entry.proteins = 0
         }
     }
     

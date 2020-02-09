@@ -47,7 +47,7 @@
                                     <segue destination="hOS-Nv-XMy" kind="show" identifier="New" id="cEb-tH-1K1"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Favorites" id="Nc7-1U-Gdw">
+                            <barButtonItem title="Templates" id="Nc7-1U-Gdw">
                                 <connections>
                                     <segue destination="ZnT-za-Qc2" kind="show" id="w3j-hU-Ehw"/>
                                 </connections>
@@ -223,7 +223,7 @@
             <objects>
                 <tableViewController id="hOS-Nv-XMy" customClass="AddEditEntryViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Wy9-y0-fEt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -490,15 +490,15 @@
                             </tableViewSection>
                             <tableViewSection id="Xdn-aR-s52">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="KVk-MZ-3DK">
+                                    <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="KVk-MZ-3DK">
                                         <rect key="frame" x="0.0" y="390" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KVk-MZ-3DK" id="sph-32-fuu">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as Favorite?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wq-Zf-gxD">
-                                                    <rect key="frame" x="36" y="11" width="156" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a template from this?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wq-Zf-gxD">
+                                                    <rect key="frame" x="36" y="11" width="252" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1258,10 +1258,10 @@
             </objects>
             <point key="canvasLocation" x="164" y="-275"/>
         </scene>
-        <!--Favorites-->
+        <!--Templates-->
         <scene sceneID="1TH-0x-Bbt">
             <objects>
-                <viewController title="Favorites" id="ZnT-za-Qc2" customClass="FavoritesViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Templates" id="ZnT-za-Qc2" customClass="EntryTemplatesViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9kD-eP-d8E">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1396,7 +1396,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dVh-rx-Yb3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" id="M1Z-hm-1os">
+                    <navigationItem key="navigationItem" title="Templates" id="M1Z-hm-1os">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OpD-GH-hLL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
@@ -1412,7 +1412,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Xl2-Nv-1ym"/>
-        <segue reference="6Mp-p5-IYe"/>
+        <segue reference="cEb-tH-1K1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

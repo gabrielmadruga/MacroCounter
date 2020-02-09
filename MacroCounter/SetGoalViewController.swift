@@ -30,13 +30,13 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     private func settingsChanged() {
         if (!fatTextField.isEditing) {
-            fatTextField.text = settings.goals.fat.description
+            fatTextField.text = settings.goals.fats.description
         }
         if (!carbsTextField.isEditing) {
              carbsTextField.text = settings.goals.carbs.description
         }
         if (!proteinTextField.isEditing) {
-             proteinTextField.text = settings.goals.protein.description
+             proteinTextField.text = settings.goals.proteins.description
         }
         if (!caloriesTextField.isEditing) {
             caloriesTextField.text = settings.goals.calories.description
@@ -106,9 +106,9 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.fat = value
+            settings.goals.fats = value
         } else {
-            settings.goals.fat = 0
+            settings.goals.fats = 0
         }
     }
     
@@ -122,9 +122,9 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.protein = value
+            settings.goals.proteins = value
         } else {
-            settings.goals.protein = 0
+            settings.goals.proteins = 0
         }
     }
     

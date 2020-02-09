@@ -91,9 +91,9 @@ class EntryTableViewCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
         dateLabel.text = formatter.string(from: entry.date)
-        fatLabel.text = entry.fat.description
+        fatLabel.text = entry.fats.description
         carbsLabel.text = entry.carbs.description
-        proteinLabel.text = entry.protein.description
+        proteinLabel.text = entry.proteins.description
         caloriesLabel.text = entry.calories.description
         servingsLabel.text = "x\(Int(entry.servings).description)"
     }

@@ -8,51 +8,88 @@
 
 import Foundation
 
-struct EntryTemplate: Codable {
-    var id: Int?
-    
-    var name: String
-    var entry: Entry
-    //#warning("TODO: too much wasted space?")
-    
-    init(name: String, entry: Entry) {
-        id = nil
-        self.name = name
-        self.entry = entry
+
+struct Macros: Codable {
+    var fats: Float
+    var carbs: Float
+    var proteins: Float
+    var calories: Float {
+        return fats * 9 + carbs * 4 + proteins * 4
     }
 }
 
-struct Entry: Codable {
+protocol Macroable {
+    var macros: Macros { get set }
+}
+
+extension Macroable {
+    var fats: Float {
+        get {
+            return macros.fats
+        }
+        set {
+            macros.fats = newValue
+        }
+    }
+    var carbs: Float {
+        get {
+            return macros.carbs
+        }
+        set {
+            macros.carbs = newValue
+        }
+    }
+    var proteins: Float {
+        get {
+            return macros.proteins
+        }
+        set {
+            macros.proteins = newValue
+        }
+    }
+    var calories: Float {
+        return macros.calories
+    }
+}
+
+struct Entry: Codable, Macroable {
     var id: Int?
     
     var date: Date
+    var macros: Macros
+//    var fats: Float {
+//        return macros.fats * servings
+//    }
+//    var carbs: Float {
+//        return macros.carbs * servings
+//    }
+//    var proteins: Float {
+//        return macros.proteins * servings
+//    }
+//    var calories: Float {
+//        return macros.calories * servings
+//    }
     
-    var fat: Float
-    var carbs: Float
-    var protein: Float
-    var calories: Float {
-        return fat * 9 + carbs * 4 + protein * 4
-    }
     var servings: Float
     
-    
-    init(fat: Float, carbs: Float, protein: Float, servings: Float, date: Date = Date.init()) {
+    init(macros: Macros, servings: Float, date: Date = Date.init()) {
         id = nil
         self.date = date
-        self.fat = fat
-        self.carbs = carbs
-        self.protein = protein
+        self.macros = macros
         self.servings = servings
     }
+
+}
+
+struct EntryTemplate: Codable, Macroable {
+    var id: Int?
     
-    func clone(from entry: Entry, id: Int? = nil) -> Entry {
-        var entry = Entry(fat: entry.fat,
-                          carbs: entry.carbs,
-                          protein: entry.protein,
-                          servings: entry.servings,
-                          date: entry.date)
-        entry.id = id
-        return entry
+    var name: String
+    var macros: Macros
+    
+    init(name: String, macros: Macros) {
+        id = nil
+        self.name = name
+        self.macros = macros
     }
-    
 }

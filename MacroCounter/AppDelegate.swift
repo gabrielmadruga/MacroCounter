@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         repository = InMemoryRepository();
         if repository.read(Settings.self).isEmpty {
-            let s = Settings(goals: Settings.Goals(fat: 40, carbs: 300, protein: 200))
+            let s = Settings(macros: Macros(fats: 40, carbs: 300, proteins: 200))
             repository?.create(s)
         }
         

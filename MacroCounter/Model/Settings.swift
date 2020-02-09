@@ -8,18 +8,17 @@
 
 import Foundation
 
-struct Settings: Codable {
-    
-    struct Goals: Codable {
-        var fat: Float
-        var carbs: Float
-        var protein: Float
-        var calories: Float {
-            return fat * 9 + carbs * 4 + protein * 4
+struct Settings: Codable, Macroable {
+
+    var id: Int? = nil
+    var macros: Macros
+    var goals: Macros {
+        get {
+            return macros
+        }
+        set {
+            macros = newValue
         }
     }
-    
-    var id: Int? = nil
-    var goals: Goals
     
 }

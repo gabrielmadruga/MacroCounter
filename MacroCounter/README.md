@@ -1,41 +1,30 @@
 # MacroCounter
 
-This is an app for mesuring what you eat.
+This documentation is written at three different levels of abstraction:
 
-In this app you:
-- Set goals.
-- Register what you eat.
-- Make sure you achive your goals.
+- [🙋🏼‍♂️ High](Docs/🙋🏼‍♂️High.md)
 
-## Setting goals
-Setting the user goals for the first time should be part of an onboarding process. Usually this is set using a calculator that gives you the total calories from you weight and activity level and you know in which proportion of macros you want to get you calories from
-Another usefull feature could be to set different goals for workout vs non workout days
+- [👨🏼‍💻 Mid](Docs/👨🏼‍💻Mid.md )
 
-## Registering what you eat
+- [🤖 Low](Docs/🤖Low.md)
 
-## Review your progress
-- Daily review
-- Week/Month view. View streak? how many days did I reach, didn't reach, or surpased the goal?
+## 🙋🏼‍♂️ High
 
-# TODO:
-- Properly support light/dark modes
-- Improve persistance (https://developer.apple.com/documentation/coredata)
-- Favorites implementation
-    - Add (right now can only be added through an Entry)
-    - Edit
-- Onboarding
-    - Set goal
-- Settings
-    - Add version to the settings
-    - Contact us
-- Notifications (do we need meal plans?)
-- Show warning message when going back after editing a value
-- Make it easier to advance in textfields
-- Publish the App!
-    - Find resources on how to make a good first impresion on the AppStore, screenshots, icon, etc
+High level is what you would would read on the app description, or what a salesperson would speak with a lead.
+Costumer development stuff belong here.
+Some books to extract ideas:
 
-# Maybe latter
-- HealthKit integration
-- iCloud integration
-- Fasting features
-- Excercice/Weight lifting features
+- Talking to Humans
+
+- Lean Customer Development
+
+## 👨🏼‍💻 Mid
+
+  Mid level is where a developer would find the required documentation to build the product.
+  Uses cases 
+  Mockups
+  Entity entity relationship models
+
+## 🤖 Low
+
+  Low level records technical decisions, and other technical documentation.
