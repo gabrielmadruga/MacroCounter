@@ -1,4 +1,4 @@
-👨🏼‍💻 Mid
+# 👨🏼‍💻 Mid
 
 ## Use Cases
 
@@ -13,13 +13,9 @@
 
 2. Date is automatically added to the entry
 
-### 
-
 ### AddEntryFromTemplate
 
 1. Input EntryTemplate and number of servings
-
-### 
 
 ### AddEntryTemplate
 

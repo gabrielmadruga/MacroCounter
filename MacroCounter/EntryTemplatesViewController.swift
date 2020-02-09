@@ -41,6 +41,22 @@ class EntryTemplatesViewController: UIViewController {
 }
 
 extension EntryTemplatesViewController: UITableViewDelegate {
+        
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let cell = tableView.cellForRow(at: indexPath) as! EntryTemplateTableViewCell
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, complete) in
+            self.appDelegate.repository.delete(cell.entryTemplate!)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.refreshFooterView()
+            complete(true)
+        }
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, complete) in
+            self.performSegue(withIdentifier: "Edit", sender: cell)
+            complete(true)
+        }
+        editAction.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -59,7 +75,6 @@ class EntryTemplateTableViewCell: UITableViewCell {
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var servingsLabel: UILabel!
     
     var entryTemplate: EntryTemplate! {
         didSet {
@@ -105,15 +120,15 @@ extension EntryTemplatesViewController: UITableViewDataSource {
         //            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
         case "Edit":
             #warning("TODO")
-            guard let addEditEntryViewController = segue.destination as? AddEditEntryViewController else {
+            guard let vc = segue.destination as? AddEditEntryTemplateViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            let cell = sender as! EntryTableViewCell
-            addEditEntryViewController.entry = cell.entry
+            let cell = sender as! EntryTemplateTableViewCell
+            vc.entryTemplate = cell.entryTemplate
         default:
             break
         }
-        
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

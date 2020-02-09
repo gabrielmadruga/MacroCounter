@@ -1325,33 +1325,27 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="19.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="wtX-iW-ESo">
-                                                            <rect key="frame" x="88" y="0.0" width="58" height="48"/>
+                                                            <rect key="frame" x="88" y="0.0" width="67.5" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="1" green="0.8980392157" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="20.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="QIs-CT-qhY">
-                                                            <rect key="frame" x="154" y="0.0" width="58.5" height="48"/>
+                                                            <rect key="frame" x="163.5" y="0.0" width="67.5" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.18823529410000001" green="0.73725490199999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="40.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="E0R-fL-rBJ">
-                                                            <rect key="frame" x="220.5" y="0.0" width="58" height="48"/>
+                                                            <rect key="frame" x="239" y="0.0" width="67.5" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.98823529409999999" green="0.31764705879999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="16.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="RB8-Cw-ZU2">
-                                                            <rect key="frame" x="286.5" y="0.0" width="58.5" height="48"/>
+                                                            <rect key="frame" x="314.5" y="0.0" width="67.5" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.039215686270000001" green="0.67843137249999996" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="16.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="PMn-6c-Q0O">
-                                                            <rect key="frame" x="353" y="0.0" width="29" height="48"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1359,7 +1353,6 @@
                                                         <constraint firstItem="QIs-CT-qhY" firstAttribute="width" secondItem="RB8-Cw-ZU2" secondAttribute="width" id="91Y-vR-UrK"/>
                                                         <constraint firstItem="wtX-iW-ESo" firstAttribute="width" secondItem="RB8-Cw-ZU2" secondAttribute="width" id="PaM-Ge-2Bf"/>
                                                         <constraint firstItem="E0R-fL-rBJ" firstAttribute="width" secondItem="RB8-Cw-ZU2" secondAttribute="width" id="hDA-Q8-OyO"/>
-                                                        <constraint firstItem="PMn-6c-Q0O" firstAttribute="width" secondItem="RB8-Cw-ZU2" secondAttribute="width" multiplier="0.5" id="wYH-sQ-UO8"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -1377,7 +1370,6 @@
                                             <outlet property="fatLabel" destination="wtX-iW-ESo" id="kdy-n7-Kg1"/>
                                             <outlet property="nameLabel" destination="2PX-ha-omA" id="t23-Lt-AB7"/>
                                             <outlet property="proteinLabel" destination="E0R-fL-rBJ" id="JOO-7u-VeE"/>
-                                            <outlet property="servingsLabel" destination="PMn-6c-Q0O" id="7GT-Bz-ZTz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1400,12 +1392,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OpD-GH-hLL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="gZY-xk-wbr" kind="show" id="Z63-4B-osV"/>
+                                <segue destination="gZY-xk-wbr" kind="show" identifier="New" id="Z63-4B-osV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="d9z-iW-o2Y" id="O8Q-sM-ftN"/>
+                        <segue destination="gZY-xk-wbr" kind="show" identifier="Edit" id="fvO-4r-yrR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoW-8P-xs9" sceneMemberID="firstResponder"/>
@@ -1442,6 +1435,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="onNameEditingChanged:" destination="gZY-xk-wbr" eventType="editingChanged" id="g6M-47-mQ9"/>
                                                         <outlet property="delegate" destination="gZY-xk-wbr" id="uSJ-yo-2Y5"/>
                                                     </connections>
                                                 </textField>
@@ -1680,6 +1674,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="fvO-4r-yrR"/>
         <segue reference="Xl2-Nv-1ym"/>
         <segue reference="cEb-tH-1K1"/>
     </inferredMetricsTieBreakers>

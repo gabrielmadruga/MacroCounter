@@ -17,7 +17,7 @@ class AddEditEntryTemplateViewController: UITableViewController, UITextFieldDele
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var caloriesTextField: UITextField!
     
-    var entry: Entry = Entry(macros: Macros(fats: 0, carbs: 0, proteins: 0), servings: 1) {
+    var entryTemplate: EntryTemplate = EntryTemplate(name: "", macros: Macros(fats: 0, carbs: 0, proteins: 0)) {
         didSet {
             if (view != nil) {
                entryChanged()
@@ -27,34 +27,37 @@ class AddEditEntryTemplateViewController: UITableViewController, UITextFieldDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (entry.id != nil) {
-            self.title = "Edit Entry"
+        if (entryTemplate.id != nil) {
+            self.title = "Edit Entry Template"
             deleteButton.isEnabled = true
         }
         entryChanged()
     }
 
     private func entryChanged() {
+        if (!nameTextField.isEditing) {
+            nameTextField.text = entryTemplate.name.description
+        }
         if (!fatTextField.isEditing) {
-            fatTextField.text = entry.fats.description
+            fatTextField.text = entryTemplate.fats.description
         }
         if (!carbsTextField.isEditing) {
-            carbsTextField.text = entry.carbs.description
+            carbsTextField.text = entryTemplate.carbs.description
         }
         if (!proteinTextField.isEditing) {
-            proteinTextField.text = entry.proteins.description
+            proteinTextField.text = entryTemplate.proteins.description
         }
         if (!caloriesTextField.isEditing) {
-            caloriesTextField.text = entry.calories.description
+            caloriesTextField.text = entryTemplate.calories.description
         }
     }
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        if entry.id != nil {
-            appDelegate.repository?.update(entry)
+        if entryTemplate.id != nil {
+            appDelegate.repository?.update(entryTemplate)
         } else {
-            appDelegate.repository?.create(entry)
+            appDelegate.repository?.create(entryTemplate)
         }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
@@ -62,7 +65,7 @@ class AddEditEntryTemplateViewController: UITableViewController, UITextFieldDele
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.delete(entry)
+        appDelegate.repository?.delete(entryTemplate)
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
@@ -131,50 +134,41 @@ class AddEditEntryTemplateViewController: UITableViewController, UITextFieldDele
         entryChanged()
     }
     
+    @IBAction func onNameEditingChanged(_ textField: UITextField) {
+        if let value = textField.text {
+            self.entryTemplate.name = value
+        } else {
+            self.entryTemplate.name = ""
+        }
+    }
+    
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.fats = value
+            self.entryTemplate.fats = value
         } else {
-            self.entry.fats = 0
+            self.entryTemplate.fats = 0
         }
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.carbs = value
+            self.entryTemplate.carbs = value
         } else {
-            self.entry.carbs = 0
+            self.entryTemplate.carbs = 0
         }
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.proteins = value
+            self.entryTemplate.proteins = value
         } else {
-            self.entry.proteins = 0
+            self.entryTemplate.proteins = 0
         }
     }
     
     @IBAction func onCaloriesEditingChanged(_ textField: UITextField) {
         
     }
-    
-    @IBAction func onServingsEditingChanged(_ textField: UITextField) {
-        if let value = textField.parseFloatAndAdjust() {
-            self.entry.servings = value
-        } else {
-            self.entry.servings = 0
-        }
-    }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }

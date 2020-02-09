@@ -3,10 +3,7 @@
 ## TODO:
 
 - Properly support light/dark modes
-- Improve persistance ([https://developer.apple.com/documentation/coredata](https://developer.apple.com/documentation/coredata))
-- Favorites implementation
-  - Add (right now can only be added through an Entry)
-  - Edit
+- 
 - Onboarding
   - Set goal
 - Settings
