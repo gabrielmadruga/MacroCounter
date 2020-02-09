@@ -1,58 +1,83 @@
 //
-//  SetGoalViewController.swift
+//  AddEditEntryViewController.swift
 //  MacroCounter
 //
-//  Created by Gabriel Madruga on 8/21/18.
+//  Created by Gabriel Madruga on 8/19/18.
 //  Copyright © 2018 Gabriel Madruga. All rights reserved.
 //
 
 import UIKit
 
-class SetGoalViewController: UITableViewController, UITextFieldDelegate {
-    
+class AddEditEntryTemplateViewController: UITableViewController, UITextFieldDelegate {
+
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var caloriesTextField: UITextField!
     
-    
-    private var settings: Settings! {
+    var entry: Entry = Entry(macros: Macros(fats: 0, carbs: 0, proteins: 0), servings: 1) {
         didSet {
-            settingsChanged()
+            if (view != nil) {
+               entryChanged()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settings = (appDelegate.repository.read(Settings.self) as! [Settings]).first
-        settingsChanged()
+        if (entry.id != nil) {
+            self.title = "Edit Entry"
+            deleteButton.isEnabled = true
+        }
+        entryChanged()
     }
-    
-    private func settingsChanged() {
+
+    private func entryChanged() {
         if (!fatTextField.isEditing) {
-            fatTextField.text = settings.goals.fats.description
+            fatTextField.text = entry.fats.description
         }
         if (!carbsTextField.isEditing) {
-             carbsTextField.text = settings.goals.carbs.description
+            carbsTextField.text = entry.carbs.description
         }
         if (!proteinTextField.isEditing) {
-             proteinTextField.text = settings.goals.proteins.description
+            proteinTextField.text = entry.proteins.description
         }
         if (!caloriesTextField.isEditing) {
-            caloriesTextField.text = settings.goals.calories.description
+            caloriesTextField.text = entry.calories.description
         }
     }
-    
+
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.update(settings!)
+        if entry.id != nil {
+            appDelegate.repository?.update(entry)
+        } else {
+            appDelegate.repository?.create(entry)
+        }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        self.view.isUserInteractionEnabled = false
+        appDelegate.repository?.delete(entry)
+        self.view.isUserInteractionEnabled = true
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
+            switch indexPath.row {
+            case 0:
+                nameTextField.becomeFirstResponder()
+            default:
+                return
+            }
+        case 1:
             switch indexPath.row {
             case 0:
                 fatTextField.becomeFirstResponder()
@@ -88,7 +113,14 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
             }
             return false
         }
-        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameTextField {
+            fatTextField.becomeFirstResponder()
+            return false
+        }
         return true
     }
     
@@ -96,30 +128,30 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
         textField.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        settingsChanged()
+        entryChanged()
     }
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.fats = value
+            self.entry.fats = value
         } else {
-            settings.goals.fats = 0
+            self.entry.fats = 0
         }
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.carbs = value
+            self.entry.carbs = value
         } else {
-            settings.goals.carbs = 0
+            self.entry.carbs = 0
         }
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.proteins = value
+            self.entry.proteins = value
         } else {
-            settings.goals.proteins = 0
+            self.entry.proteins = 0
         }
     }
     
@@ -127,16 +159,22 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func onServingsEditingChanged(_ textField: UITextField) {
+        if let value = textField.parseFloatAndAdjust() {
+            self.entry.servings = value
+        } else {
+            self.entry.servings = 0
+        }
+    }
     
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
 }
-
-

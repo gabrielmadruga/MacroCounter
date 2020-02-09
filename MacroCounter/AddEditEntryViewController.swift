@@ -88,32 +88,24 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             switch indexPath.row {
             case 0:
                 dateTextField.becomeFirstResponder()
-                break
             default:
                 return
             }
-            break
         case 1:
             switch indexPath.row {
             case 0:
                 fatTextField.becomeFirstResponder()
-                break
             case 1:
                 carbsTextField.becomeFirstResponder()
-                break
             case 2:
                 proteinTextField.becomeFirstResponder()
-                break
             case 3:
                 caloriesTextField.becomeFirstResponder()
-                break
             default:
                 return
             }
-            break
         case 2:
             servingsTextField.becomeFirstResponder()
-            break
         default:
             return
         }
