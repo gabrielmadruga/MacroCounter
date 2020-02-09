@@ -10,9 +10,37 @@ import Foundation
 
 class InMemoryRepository: Repository {
     
-    var entries: [Int: Entry] = [:]
-    var entryTemplates: [Int: EntryTemplate] = [:]
-    var settings: Settings? = nil
+    struct State: Codable {
+        var entries: [Int: Entry] = [:]
+        var entryTemplates: [Int: EntryTemplate] = [:]
+        var settings: Settings? = nil
+    }
+    var state = State()
+    
+    var entries: [Int: Entry] {
+        get {
+            return state.entries
+        }
+        set {
+            state.entries = newValue
+        }
+    }
+    var entryTemplates: [Int: EntryTemplate] {
+        get {
+            return state.entryTemplates
+        }
+        set {
+            state.entryTemplates = newValue
+        }
+    }
+    var settings: Settings? {
+        get {
+            return state.settings
+        }
+        set {
+            state.settings = newValue
+        }
+    }
     
     func create(_ item: Any) {
         switch item {
