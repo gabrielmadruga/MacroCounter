@@ -28,6 +28,7 @@
 		C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */; };
 		EE06F09F23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */; };
 		EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4225DE23E663630089E881 /* BarsViewController.swift */; };
+		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
 		EE91332D23E72B68002D2F23 /* EntryTemplatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
 		EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC76E3823DE004700A7C483 /* FileRepository.swift */; };
@@ -78,6 +79,7 @@
 		C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditEntryTemplateViewController.swift; sourceTree = "<group>"; };
 		EE4225DE23E663630089E881 /* BarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsViewController.swift; sourceTree = "<group>"; };
+		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		EEC76E3823DE004700A7C483 /* FileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRepository.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				C0D0E126212A080A00AE49AF /* DatePickerViewController.swift */,
 				C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */,
 				C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */,
+				EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */,
 				EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */,
 				C0D0E1252129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift in Sources */,
+				EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */,
 				C0D0E12B212A36C500AE49AF /* Settings.swift in Sources */,
 				C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */,
 				C0D0E1212129DF5B00AE49AF /* Repository.swift in Sources */,
@@ -460,7 +464,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -514,7 +518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -529,14 +533,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MacroCounter/MacroCounter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = L3XJ424Z5K;
 				INFOPLIST_FILE = MacroCounter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -548,14 +555,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MacroCounter/MacroCounter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = L3XJ424Z5K;
 				INFOPLIST_FILE = MacroCounter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielmadruga.MacroCounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
