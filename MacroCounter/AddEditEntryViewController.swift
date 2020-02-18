@@ -113,11 +113,9 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         UIView.animate(withDuration: 0.2, animations: {
-            UIView.setAnimationCurve(.easeOut)
             textField.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         }, completion: { finish in
             UIView.animate(withDuration: 0.3, animations: {
-                UIView.setAnimationCurve(.easeInOut)
                 textField.superview?.backgroundColor = nil
             })
         })
