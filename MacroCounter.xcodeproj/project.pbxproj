@@ -31,7 +31,6 @@
 		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
 		EE91332D23E72B68002D2F23 /* EntryTemplatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
-		EEB7E62823FB95F100A7749B /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = EEB7E62723FB95F100A7749B /* TODO.md */; };
 		EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC76E3823DE004700A7C483 /* FileRepository.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +82,6 @@
 		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
-		EEB7E62723FB95F100A7749B /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		EEC76E3823DE004700A7C483 /* FileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRepository.swift; sourceTree = "<group>"; };
 		EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacroCounter.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,7 +136,6 @@
 		C090635E211A503E005FBAF5 /* MacroCounter */ = {
 			isa = PBXGroup;
 			children = (
-				EEB7E62723FB95F100A7749B /* TODO.md */,
 				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
 				C0906363211A503E005FBAF5 /* Main.storyboard */,
 				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
@@ -316,7 +313,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEB7E62823FB95F100A7749B /* TODO.md in Resources */,
 				C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */,
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
 				C0906365211A503E005FBAF5 /* Main.storyboard in Resources */,
