@@ -112,18 +112,30 @@ extension EntriesViewController: EntriesViewControllerDataSource {
     }
 }
 
+extension EntriesViewController: AddEditEntryViewControllerDelegate {
+    
+    func didSaveEntry() {
+        tableView.reloadData()
+    }
+    
+    func didDeleteEntry() {
+        tableView.reloadData()
+    }
+}
+
 extension EntriesViewController: UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        guard let addEditEntryViewController = (segue.destination as? UINavigationController)?.viewControllers.first as? AddEditEntryViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        addEditEntryViewController.delegate = self
         switch(segue.identifier ?? "") {
-            //        case "New":
-            //            break
-        //            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
+//        case "New":
+//
+//            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
         case "Edit":
-            guard let addEditEntryViewController = segue.destination as? AddEditEntryViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
             let cell = sender as! EntryTableViewCell
             addEditEntryViewController.entry = cell.entry
         default:

@@ -11,6 +11,7 @@ import CoreData
 
 protocol AddEditEntryViewControllerDelegate: class {
 
+    func didSaveEntry()
     func didDeleteEntry()
 }
 
@@ -73,9 +74,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    @IBAction func doneButtonPressed(_ sender: Any) {
+    @IBAction func saveButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
         try! appDelegate.persistentContainer.viewContext.save()
+        delegate?.didSaveEntry()
 //        if saveAsFavouriteSwitch.isOn {
 //            let template = EntryTemplate(name: "TODO", macros: entry.macros)
 //            appDelegate.repository?.create(template)
@@ -88,6 +90,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         self.view.isUserInteractionEnabled = false
         appDelegate.persistentContainer.viewContext.delete(entry!)
         try! appDelegate.persistentContainer.viewContext.save()
+        delegate?.didDeleteEntry()
         self.view.isUserInteractionEnabled = true
         self.dismiss(animated: true, completion: nil)
     }
@@ -208,14 +211,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
     
 }
