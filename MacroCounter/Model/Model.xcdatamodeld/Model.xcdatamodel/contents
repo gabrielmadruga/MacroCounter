@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DailyTarget" representedClassName="DailyTarget" syncable="YES">
+        <attribute name="calories" optional="YES" attributeType="Float" usesScalarValueType="YES"/>
+        <attribute name="carbs" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fats" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="proteins" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Settings" inverseName="dailyTarget" inverseEntity="Settings"/>
+    </entity>
+    <entity name="Entry" representedClassName="Entry" syncable="YES">
+        <attribute name="calories" attributeType="Float" usesScalarValueType="YES"/>
+        <attribute name="carbs" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fats" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="proteins" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="servings" attributeType="Float" defaultValueString="1" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES">
+        <relationship name="dailyTarget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyTarget" inverseName="settings" inverseEntity="DailyTarget"/>
+    </entity>
+    <elements>
+        <element name="Entry" positionX="-24337.921875" positionY="-6322.8671875" width="110.5625" height="148"/>
+        <element name="DailyTarget" positionX="-23976.5078125" positionY="-6226.9375" width="128" height="118"/>
+        <element name="Settings" positionX="-24137.05859375" positionY="-6225.1484375" width="87.359375" height="58"/>
+    </elements>
+</model>

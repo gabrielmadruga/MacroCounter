@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
@@ -19,17 +20,15 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var servingsTextField: UITextField!
     @IBOutlet weak var saveAsFavouriteSwitch: UISwitch!
     
-    var entry: Entry = Entry(macros: Macros(fats: 0, carbs: 0, proteins: 0), servings: 1) {
-        didSet {
-            if (view != nil) {
-               entryChanged()
-            }
-        }
-    }
+    var entry: Entry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (entry.id != nil) {
+        if self.entry == nil {
+            let managedContext = appDelegate.persistentContainer.viewContext
+            entry = Entry.init(context: managedContext)
+            entry!.date = .init()
+        } else {
             self.title = "Edit Entry"
             deleteButton.isEnabled = true
         }
@@ -38,10 +37,13 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     }
 
     private func entryChanged() {
+        guard let entry = self.entry else {
+            return
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        dateTextField.text = dateFormatter.string(from: entry.date)
+        dateTextField.text = dateFormatter.string(from: entry.date!)
         if (!fatTextField.isEditing) {
             fatTextField.text = entry.fats.description
         }
@@ -61,27 +63,23 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        if entry.id != nil {
-            appDelegate.repository?.update(entry)
-        } else {
-            appDelegate.repository?.create(entry)
-        }
-        if saveAsFavouriteSwitch.isOn {
-            let template = EntryTemplate(name: "TODO", macros: entry.macros)
-            appDelegate.repository?.create(template)
-        }
+        try! appDelegate.persistentContainer.viewContext.save()
+//        if saveAsFavouriteSwitch.isOn {
+//            let template = EntryTemplate(name: "TODO", macros: entry.macros)
+//            appDelegate.repository?.create(template)
+//        }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.delete(entry)
+        appDelegate.persistentContainer.viewContext.delete(entry!)
+        try! appDelegate.persistentContainer.viewContext.save()
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -125,9 +123,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
                                           message: "Select the day and time you ate this",
                                           preferredStyle: .actionSheet)
             let today = Date.init()
-            self.entry.date = today
-            alert.addDatePicker(mode: .dateAndTime, date: today, minimumDate: nil, maximumDate: today) { date in
-                self.entry.date = date
+            self.entry?.date = today
+            alert.addDatePicker(mode: .dateAndTime, date: today, minimumDate: nil, maximumDate: today) {  [unowned self] date in
+                self.entry?.date = date
+                self.entryChanged()
             }
             alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -144,39 +143,33 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField == dateTextField) {
-            return
-        }
         textField.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if (textField == dateTextField) {
-            return
-        }
         entryChanged()
     }
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.fats = value
+            self.entry?.fats = value
         } else {
-            self.entry.fats = 0
+            self.entry?.fats = 0
         }
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.carbs = value
+            self.entry?.carbs = value
         } else {
-            self.entry.carbs = 0
+            self.entry?.carbs = 0
         }
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.proteins = value
+            self.entry?.proteins = value
         } else {
-            self.entry.proteins = 0
+            self.entry?.proteins = 0
         }
     }
     
@@ -186,9 +179,9 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onServingsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            self.entry.servings = value
+            self.entry?.servings = value
         } else {
-            self.entry.servings = 0
+            self.entry?.servings = 0
         }
     }
     

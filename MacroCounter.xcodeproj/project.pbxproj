@@ -14,24 +14,29 @@
 		C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */; };
 		C0906375211A5049005FBAF5 /* MacroCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0906374211A5049005FBAF5 /* MacroCounterTests.swift */; };
 		C0906380211A5049005FBAF5 /* MacroCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090637F211A5049005FBAF5 /* MacroCounterUITests.swift */; };
-		C0D0E1182129CE8F00AE49AF /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E1172129CE8F00AE49AF /* Entry.swift */; };
 		C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */; };
 		C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */; };
 		C0D0E11F2129D76900AE49AF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D0E11E2129D76900AE49AF /* libsqlite3.tbd */; };
-		C0D0E1212129DF5B00AE49AF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E1202129DF5B00AE49AF /* Repository.swift */; };
-		C0D0E1232129E36B00AE49AF /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E1222129E36B00AE49AF /* InMemoryRepository.swift */; };
 		C0D0E1252129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E1242129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift */; };
 		C0D0E127212A080A00AE49AF /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E126212A080A00AE49AF /* DatePickerViewController.swift */; };
 		C0D0E129212A2EAC00AE49AF /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */; };
-		C0D0E12B212A36C500AE49AF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12A212A36C500AE49AF /* Settings.swift */; };
-		C0D0E12D212D04ED00AE49AF /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */; };
+		C0D0E12D212D04ED00AE49AF /* SetDailyTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */; };
 		C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */; };
-		EE06F09F23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */; };
 		EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4225DE23E663630089E881 /* BarsViewController.swift */; };
 		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
-		EE91332D23E72B68002D2F23 /* EntryTemplatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
-		EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC76E3823DE004700A7C483 /* FileRepository.swift */; };
+		EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EED94EE52427E5460094BCBB /* Model.xcdatamodeld */; };
+		EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2B2427ECA70094BCBB /* Macros.swift */; };
+		EED94F2E2427ED500094BCBB /* EntryTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2D2427ED500094BCBB /* EntryTemplate.swift */; };
+		EED94F5424280D360094BCBB /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F4E24280D360094BCBB /* Settings+CoreDataClass.swift */; };
+		EED94F5524280D360094BCBB /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F4F24280D360094BCBB /* Settings+CoreDataProperties.swift */; };
+		EED94F5624280D360094BCBB /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5024280D360094BCBB /* Entry+CoreDataClass.swift */; };
+		EED94F5724280D360094BCBB /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5124280D360094BCBB /* Entry+CoreDataProperties.swift */; };
+		EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */; };
+		EED94F5924280D360094BCBB /* DailyTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */; };
+		EED94F5D24283EAA0094BCBB /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED94F5C24283EAA0094BCBB /* Entry.storyboard */; };
+		EED94F5F24283EE50094BCBB /* EntryTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */; };
+		EED94F61242841F60094BCBB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED94F60242841F60094BCBB /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,25 +70,32 @@
 		C090637B211A5049005FBAF5 /* MacroCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacroCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C090637F211A5049005FBAF5 /* MacroCounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroCounterUITests.swift; sourceTree = "<group>"; };
 		C0906381211A5049005FBAF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C0D0E1172129CE8F00AE49AF /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditEntryViewController.swift; sourceTree = "<group>"; };
 		C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C0D0E11E2129D76900AE49AF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		C0D0E1202129DF5B00AE49AF /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		C0D0E1222129E36B00AE49AF /* InMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
 		C0D0E1242129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerEasyInstantiation.swift; sourceTree = "<group>"; };
 		C0D0E126212A080A00AE49AF /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		C0D0E12A212A36C500AE49AF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewController.swift; sourceTree = "<group>"; };
+		C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDailyTargetViewController.swift; sourceTree = "<group>"; };
 		C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditEntryTemplateViewController.swift; sourceTree = "<group>"; };
 		EE4225DE23E663630089E881 /* BarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsViewController.swift; sourceTree = "<group>"; };
 		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
-		EEC76E3823DE004700A7C483 /* FileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRepository.swift; sourceTree = "<group>"; };
 		EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacroCounter.entitlements; sourceTree = "<group>"; };
+		EED94EE62427E5460094BCBB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		EED94F2B2427ECA70094BCBB /* Macros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
+		EED94F2D2427ED500094BCBB /* EntryTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplate.swift; sourceTree = "<group>"; };
+		EED94F4E24280D360094BCBB /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EED94F4F24280D360094BCBB /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EED94F5024280D360094BCBB /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EED94F5124280D360094BCBB /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTarget+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EED94F5C24283EAA0094BCBB /* Entry.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entry.storyboard; sourceTree = "<group>"; };
+		EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EntryTemplate.storyboard; sourceTree = "<group>"; };
+		EED94F60242841F60094BCBB /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +150,9 @@
 			children = (
 				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
 				C0906363211A503E005FBAF5 /* Main.storyboard */,
+				EED94F5C24283EAA0094BCBB /* Entry.storyboard */,
+				EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */,
+				EED94F60242841F60094BCBB /* Settings.storyboard */,
 				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
 				C0906361211A503E005FBAF5 /* MainViewController.swift */,
 				EE4225DE23E663630089E881 /* BarsViewController.swift */,
@@ -146,7 +161,7 @@
 				EEB522AC23E504E90077640F /* EntriesViewController.swift */,
 				EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
-				C0D0E12C212D04ED00AE49AF /* SetGoalViewController.swift */,
+				C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */,
 				EEC3605123E63FEB00F1DA3C /* Model */,
 				EEC3605223E6401900F1DA3C /* Helpers */,
 				C0906366211A5048005FBAF5 /* Assets.xcassets */,
@@ -185,11 +200,10 @@
 		EEC3605123E63FEB00F1DA3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C0D0E1202129DF5B00AE49AF /* Repository.swift */,
-				C0D0E1222129E36B00AE49AF /* InMemoryRepository.swift */,
-				EEC76E3823DE004700A7C483 /* FileRepository.swift */,
-				C0D0E1172129CE8F00AE49AF /* Entry.swift */,
-				C0D0E12A212A36C500AE49AF /* Settings.swift */,
+				EED94F4D24280BAD0094BCBB /* Entities */,
+				EED94EE52427E5460094BCBB /* Model.xcdatamodeld */,
+				EED94F2B2427ECA70094BCBB /* Macros.swift */,
+				EED94F2D2427ED500094BCBB /* EntryTemplate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +218,19 @@
 				EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EED94F4D24280BAD0094BCBB /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EED94F4E24280D360094BCBB /* Settings+CoreDataClass.swift */,
+				EED94F4F24280D360094BCBB /* Settings+CoreDataProperties.swift */,
+				EED94F5024280D360094BCBB /* Entry+CoreDataClass.swift */,
+				EED94F5124280D360094BCBB /* Entry+CoreDataProperties.swift */,
+				EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */,
+				EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,9 +340,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED94F5F24283EE50094BCBB /* EntryTemplate.storyboard in Resources */,
 				C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */,
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
+				EED94F61242841F60094BCBB /* Settings.storyboard in Resources */,
 				C0906365211A503E005FBAF5 /* Main.storyboard in Resources */,
+				EED94F5D24283EAA0094BCBB /* Entry.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,25 +370,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0D0E1182129CE8F00AE49AF /* Entry.swift in Sources */,
+				EED94F2E2427ED500094BCBB /* EntryTemplate.swift in Sources */,
 				C0906362211A503E005FBAF5 /* MainViewController.swift in Sources */,
+				EED94F5724280D360094BCBB /* Entry+CoreDataProperties.swift in Sources */,
+				EED94F5624280D360094BCBB /* Entry+CoreDataClass.swift in Sources */,
 				C0D0E129212A2EAC00AE49AF /* UIViewControllerExtensions.swift in Sources */,
 				C0D0E127212A080A00AE49AF /* DatePickerViewController.swift in Sources */,
-				C0D0E12D212D04ED00AE49AF /* SetGoalViewController.swift in Sources */,
+				C0D0E12D212D04ED00AE49AF /* SetDailyTargetViewController.swift in Sources */,
+				EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */,
+				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,
-				C0D0E1232129E36B00AE49AF /* InMemoryRepository.swift in Sources */,
-				EE91332D23E72B68002D2F23 /* EntryTemplatesViewController.swift in Sources */,
+				EED94F5524280D360094BCBB /* Settings+CoreDataProperties.swift in Sources */,
+				EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */,
 				EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */,
 				C0906360211A503E005FBAF5 /* AppDelegate.swift in Sources */,
 				EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */,
-				EEC76E3923DE004700A7C483 /* FileRepository.swift in Sources */,
 				C0D0E1252129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift in Sources */,
+				EED94F5924280D360094BCBB /* DailyTarget+CoreDataProperties.swift in Sources */,
 				EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */,
-				C0D0E12B212A36C500AE49AF /* Settings.swift in Sources */,
+				EED94F5424280D360094BCBB /* Settings+CoreDataClass.swift in Sources */,
 				C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */,
-				C0D0E1212129DF5B00AE49AF /* Repository.swift in Sources */,
-				EE06F09F23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +725,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EED94EE52427E5460094BCBB /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EED94EE62427E5460094BCBB /* Model.xcdatamodel */,
+			);
+			currentVersion = EED94EE62427E5460094BCBB /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C0906354211A503E005FBAF5 /* Project object */;
 }

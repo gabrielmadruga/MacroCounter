@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 
 //protocol EntriesViewControllerDelegate: class {
 //
@@ -63,7 +63,8 @@ extension EntriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
-            appDelegate.repository.delete(cell.entry!)
+            appDelegate.persistentContainer.viewContext.delete(cell.entry!)
+            try! appDelegate.persistentContainer.viewContext.save()
             tableView.deleteRows(at: [indexPath], with: .fade)
             refreshFooterView()
             barsViewController?.reloadData()
@@ -90,7 +91,7 @@ class EntryTableViewCell: UITableViewCell {
     private func refresh() {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
-        dateLabel.text = formatter.string(from: entry.date)
+        dateLabel.text = formatter.string(from: entry.date!)
         fatLabel.text = entry.fats.description
         carbsLabel.text = entry.carbs.description
         proteinLabel.text = entry.proteins.description
@@ -111,11 +112,9 @@ protocol EntriesViewControllerDataSource {
 
 extension EntriesViewController: EntriesViewControllerDataSource {
     var entries: [Entry] {
-        return (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
-            Calendar.current.isDate(entry.date, inSameDayAs: .init())
-        }).sorted { (e1, e2) -> Bool in        
-            e1.date < e2.date
-        }
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        let todayEntries = try! appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+        return todayEntries
     }
 }
 

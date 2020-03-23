@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+import CoreData
+		
 class BarsViewController: UIViewController {
     
-    @IBOutlet weak var goalsStackView: UIStackView!
+    @IBOutlet weak var dailyTargetStackView: UIStackView!
     @IBOutlet weak var fatCurrentLabel: UILabel!
     @IBOutlet weak var fatGoalLabel: UILabel!
     @IBOutlet weak var fatProgressView: UIProgressView!
@@ -39,12 +40,10 @@ class BarsViewController: UIViewController {
     }
     
     @objc func reloadData() {
-        let todayEntries = (appDelegate.repository.read(Entry.self) as! [Entry]).filter({ (entry) -> Bool in
-            Calendar.current.isDate(entry.date, inSameDayAs: .init())
-        })
-        let settings = appDelegate.repository.read(Settings.self) as? [Settings]
-        guard let goals = settings?.first?.goals else {
-            fatalError("Goals must be set by now!")
+        let todayEntries = try! appDelegate.persistentContainer.viewContext.fetch(Entry.fetchRequest() as NSFetchRequest<Entry>)
+            
+        guard let dailyTarget = (try? appDelegate.persistentContainer.viewContext.fetch(DailyTarget.fetchRequest() as NSFetchRequest<DailyTarget>))?.first else {
+            fatalError("A daily target must be set by now!")
         }
         let fatFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.fats * entry.servings
@@ -60,22 +59,22 @@ class BarsViewController: UIViewController {
         }
         // Update labels
         fatCurrentLabel.text = "\(Int(fatFromEntries).description)"
-        fatGoalLabel.text = "\(Int(goals.fats).description)"
+        fatGoalLabel.text = "\(Int(dailyTarget.fats).description)"
         carbsCurrentLabel.text = "\(Int(carbsFromEntries).description)"
-        carbsGoalLabel.text = "\(Int(goals.carbs).description)"
+        carbsGoalLabel.text = "\(Int(dailyTarget.carbs).description)"
         proteinCurrentLabel.text = "\(Int(proteinFromEntries).description)"
-        proteinGoalLabel.text = "\(Int(goals.proteins).description)"
+        proteinGoalLabel.text = "\(Int(dailyTarget.proteins).description)"
         caloriesCurrentLabel.text = "\(Int(caloriesFromEntries).description)"
-        caloriesGoalLabel.text = "\(Int(goals.calories).description)"
+        caloriesGoalLabel.text = "\(Int(dailyTarget.calories).description)"
         // Update progress views
         func capedRatioTo1(_ value: Float, _ goalValue: Float) -> Float {
             let ratio = value / goalValue
             return ratio > 1 ? 1 : ratio
         }
-        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, goals.fats), animated: true)
-        carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, goals.carbs), animated: true)
-        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, goals.proteins), animated: true)
-        caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, goals.calories), animated: true)
+        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, dailyTarget.fats), animated: true)
+        carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, dailyTarget.carbs), animated: true)
+        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, dailyTarget.proteins), animated: true)
+        caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, dailyTarget.calories), animated: true)
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }

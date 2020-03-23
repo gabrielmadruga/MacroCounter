@@ -143,9 +143,9 @@ extension EntryTemplatesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! EntryTemplateTableViewCell
-        let newEntry = Entry(macros: cell.entryTemplate.macros, servings: 1)
-        #warning("servings")
-        appDelegate.repository?.create(newEntry)
+//        let newEntry = Entry(macros: cell.entryTemplate.macros, servings: 1)
+//        #warning("servings")
+//        appDelegate.repository?.create(newEntry)
         self.navigationController?.popViewController(animated: true)
     }
 }

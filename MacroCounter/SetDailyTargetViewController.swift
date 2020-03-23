@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class SetGoalViewController: UITableViewController, UITextFieldDelegate {
+class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
@@ -16,36 +17,34 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var caloriesTextField: UITextField!
     
     
-    private var settings: Settings! {
-        didSet {
-            settingsChanged()
-        }
-    }
+    private var settings: Settings!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settings = (appDelegate.repository.read(Settings.self) as! [Settings]).first
+        let settings = (try! appDelegate.persistentContainer.viewContext.fetch(Settings.fetchRequest() as NSFetchRequest<Settings>)).first
+        self.settings = settings
         settingsChanged()
     }
     
     private func settingsChanged() {
         if (!fatTextField.isEditing) {
-            fatTextField.text = settings.goals.fats.description
+            fatTextField.text = settings.dailyTarget?.fats.description
         }
         if (!carbsTextField.isEditing) {
-             carbsTextField.text = settings.goals.carbs.description
+             carbsTextField.text = settings.dailyTarget?.carbs.description
         }
         if (!proteinTextField.isEditing) {
-             proteinTextField.text = settings.goals.proteins.description
+             proteinTextField.text = settings.dailyTarget?.proteins.description
         }
         if (!caloriesTextField.isEditing) {
-            caloriesTextField.text = settings.goals.calories.description
+            caloriesTextField.text = settings.dailyTarget?.calories.description
         }
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.update(settings!)
+        try? appDelegate.persistentContainer.viewContext.save()
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
@@ -99,25 +98,25 @@ class SetGoalViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.fats = value
+            settings.dailyTarget?.fats = value
         } else {
-            settings.goals.fats = 0
+            settings.dailyTarget?.fats = 0
         }
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.carbs = value
+            settings.dailyTarget?.carbs = value
         } else {
-            settings.goals.carbs = 0
+            settings.dailyTarget?.carbs = 0
         }
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.goals.proteins = value
+            settings.dailyTarget?.proteins = value
         } else {
-            settings.goals.proteins = 0
+            settings.dailyTarget?.proteins = 0
         }
     }
     
