@@ -9,17 +9,25 @@
 import UIKit
 import CoreData
 
+protocol AddEditEntryViewControllerDelegate: class {
+
+    func didDeleteEntry()
+}
+
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var servingsTextField: UITextField!
-    @IBOutlet weak var saveAsFavouriteSwitch: UISwitch!
     
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    
+    weak var delegate: AddEditEntryViewControllerDelegate?
     var entry: Entry?
     
     override func viewDidLoad() {
@@ -28,9 +36,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             let managedContext = appDelegate.persistentContainer.viewContext
             entry = Entry.init(context: managedContext)
             entry!.date = .init()
+            deleteButton.isHidden = true
         } else {
             self.title = "Edit Entry"
-            deleteButton.isEnabled = true
+            deleteButton.isHidden = false
         }
         entryChanged()
         dateTextField.delegate = self
@@ -44,6 +53,9 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         dateTextField.text = dateFormatter.string(from: entry.date!)
+        if (!nameTextField.isEditing) {
+            nameTextField.text = entry.name
+        }
         if (!fatTextField.isEditing) {
             fatTextField.text = entry.fats.description
         }
@@ -69,7 +81,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 //            appDelegate.repository?.create(template)
 //        }
         self.view.isUserInteractionEnabled = true
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
@@ -77,7 +89,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         appDelegate.persistentContainer.viewContext.delete(entry!)
         try! appDelegate.persistentContainer.viewContext.save()
         self.view.isUserInteractionEnabled = true
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,6 +97,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         case 0:
             switch indexPath.row {
             case 0:
+                nameTextField.becomeFirstResponder()
+            case 1:
                 dateTextField.becomeFirstResponder()
             default:
                 return
@@ -110,13 +124,13 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        UIView.animate(withDuration: 0.2, animations: {
-            textField.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        }, completion: { finish in
-            UIView.animate(withDuration: 0.3, animations: {
-                textField.superview?.backgroundColor = nil
-            })
-        })
+//        UIView.animate(withDuration: 0.2, animations: {
+//            textField.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        }, completion: { finish in
+//            UIView.animate(withDuration: 0.3, animations: {
+//                textField.superview?.backgroundColor = nil
+//            })
+//        })
         
         if (textField == dateTextField) {
             let alert = UIAlertController(title: "Date",
@@ -146,7 +160,16 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         textField.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.entry!.calories = entry!.macros.calories
         entryChanged()
+    }
+    
+    @IBAction func onNameEditingChanged(_ textField: UITextField) {
+        if let value = textField.text {
+            self.entry?.name = value
+        } else {
+            self.entry?.name = ""
+        }
     }
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {

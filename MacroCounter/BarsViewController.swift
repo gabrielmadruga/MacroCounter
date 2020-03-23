@@ -12,22 +12,23 @@ import CoreData
 class BarsViewController: UIViewController {
     
     @IBOutlet weak var dailyTargetStackView: UIStackView!
-    @IBOutlet weak var fatCurrentLabel: UILabel!
-    @IBOutlet weak var fatGoalLabel: UILabel!
+    @IBOutlet weak var caloriesProgressView: UIProgressView!
     @IBOutlet weak var fatProgressView: UIProgressView!
-    
-    @IBOutlet weak var carbsCurrentLabel: UILabel!
-    @IBOutlet weak var carbsGoalLabel: UILabel!
     @IBOutlet weak var carbsProgressView: UIProgressView!
-    
-    @IBOutlet weak var proteinCurrentLabel: UILabel!
-    @IBOutlet weak var proteinGoalLabel: UILabel!
     @IBOutlet weak var proteinProgressView: UIProgressView!
     
-    @IBOutlet weak var caloriesCurrentLabel: UILabel!
-    @IBOutlet weak var caloriesGoalLabel: UILabel!
-    @IBOutlet weak var caloriesProgressView: UIProgressView!
-    
+//    @IBOutlet weak var caloriesCurrentLabel: UILabel!
+//    @IBOutlet weak var caloriesGoalLabel: UILabel!
+//
+//    @IBOutlet weak var fatCurrentLabel: UILabel!
+//    @IBOutlet weak var fatGoalLabel: UILabel!
+//
+//    @IBOutlet weak var carbsCurrentLabel: UILabel!
+//    @IBOutlet weak var carbsGoalLabel: UILabel!
+//
+//    @IBOutlet weak var proteinCurrentLabel: UILabel!
+//    @IBOutlet weak var proteinGoalLabel: UILabel!
+       
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +59,14 @@ class BarsViewController: UIViewController {
             current = current + entry.calories * entry.servings
         }
         // Update labels
-        fatCurrentLabel.text = "\(Int(fatFromEntries).description)"
-        fatGoalLabel.text = "\(Int(dailyTarget.fats).description)"
-        carbsCurrentLabel.text = "\(Int(carbsFromEntries).description)"
-        carbsGoalLabel.text = "\(Int(dailyTarget.carbs).description)"
-        proteinCurrentLabel.text = "\(Int(proteinFromEntries).description)"
-        proteinGoalLabel.text = "\(Int(dailyTarget.proteins).description)"
-        caloriesCurrentLabel.text = "\(Int(caloriesFromEntries).description)"
-        caloriesGoalLabel.text = "\(Int(dailyTarget.calories).description)"
+//        fatCurrentLabel.text = "\(Int(fatFromEntries).description)"
+//        fatGoalLabel.text = "\(Int(dailyTarget.fats).description)"
+//        carbsCurrentLabel.text = "\(Int(carbsFromEntries).description)"
+//        carbsGoalLabel.text = "\(Int(dailyTarget.carbs).description)"
+//        proteinCurrentLabel.text = "\(Int(proteinFromEntries).description)"
+//        proteinGoalLabel.text = "\(Int(dailyTarget.proteins).description)"
+//        caloriesCurrentLabel.text = "\(Int(caloriesFromEntries).description)"
+//        caloriesGoalLabel.text = "\(Int(dailyTarget.calories).description)"
         // Update progress views
         func capedRatioTo1(_ value: Float, _ goalValue: Float) -> Float {
             let ratio = value / goalValue

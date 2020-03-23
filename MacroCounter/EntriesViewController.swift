@@ -9,15 +9,9 @@
 import UIKit
 import CoreData
 
-//protocol EntriesViewControllerDelegate: class {
-//
-//    func didDeleteEntry()
-//}
 
 class EntriesViewController: UIViewController {
-    
-    //    weak var delegate: EntriesViewControllerDelegate?
-    
+        
     @IBOutlet private weak var tableView: UITableView!
     private var emptyTableMessageView: UIView!
     
@@ -99,11 +93,11 @@ class EntryTableViewCell: UITableViewCell {
         servingsLabel.text = "x\(Int(entry.servings).description)"
     }
     
-    override func awakeFromNib() {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        self.selectedBackgroundView = bgColorView
-    }
+//    override func awakeFromNib() {
+//        let bgColorView = UIView()
+//        bgColorView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+//        self.selectedBackgroundView = bgColorView
+//    }
 }
 
 protocol EntriesViewControllerDataSource {
