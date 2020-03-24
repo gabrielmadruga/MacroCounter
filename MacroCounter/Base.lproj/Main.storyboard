@@ -19,16 +19,16 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjh-WO-5Rg">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="220" id="U6O-KD-ef1"/>
+                                            <constraint firstAttribute="height" constant="80" id="U6O-KD-ef1"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="pIs-tn-pvi" kind="embed" id="tP7-rU-WgD"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2d-8q-seq">
-                                        <rect key="frame" x="0.0" y="220" width="414" height="554"/>
+                                        <rect key="frame" x="0.0" y="80" width="414" height="694"/>
                                         <connections>
                                             <segue destination="I4m-DA-8rf" kind="embed" id="Pst-w4-f0b"/>
                                         </connections>
@@ -79,7 +79,7 @@
             <objects>
                 <viewController title="Bars" id="pIs-tn-pvi" customClass="BarsViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DJn-Pr-3g7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="iif-Ey-8mj">
@@ -134,7 +134,7 @@
                             <barButtonItem title="Favorites" id="UgR-GR-qHL"/>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="400"/>
+                    <size key="freeformSize" width="414" height="80"/>
                     <connections>
                         <outlet property="caloriesProgressView" destination="i1Y-uG-MQH" id="qZQ-pg-QnK"/>
                         <outlet property="carbsProgressView" destination="oHn-mH-Ojb" id="YgU-Rt-jP9"/>
@@ -162,7 +162,7 @@
             <objects>
                 <tableViewController id="I4m-DA-8rf" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YuU-Hv-wqc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="Hmo-xt-WLg">

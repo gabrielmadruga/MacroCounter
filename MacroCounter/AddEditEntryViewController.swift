@@ -26,6 +26,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var servingsTextField: UITextField!
     
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     
     weak var delegate: AddEditEntryViewControllerDelegate?
@@ -33,6 +34,14 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupHideKeyboardOnTap()
+        isModalInPresentation = true
+        nameTextField.becomeFirstResponder()
+        nameTextField.addToolbar(tagsRange: 1..<5)
+        fatTextField.addToolbar(tagsRange: 1..<5)
+        carbsTextField.addToolbar(tagsRange: 1..<5)
+        proteinTextField.addToolbar(tagsRange: 1..<5)
+        servingsTextField.addToolbar(tagsRange: 1..<5)
         if self.entry == nil {
             let managedContext = appDelegate.persistentContainer.viewContext
             entry = Entry.init(context: managedContext)
@@ -67,6 +76,9 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             proteinTextField.text = entry.proteins.description
         }
         if (!caloriesTextField.isEditing) {
+            if caloriesTextField.tag == -1 {
+                self.entry!.calories = entry.macros.calories
+            }
             caloriesTextField.text = entry.calories.description
         }
         if (!servingsTextField.isEditing) {
@@ -75,6 +87,12 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func saveButtonPressed(_ sender: Any) {
+        if entry?.name == nil {
+            showToast(message: "A name is required") { [unowned self] in
+                self.nameTextField.becomeFirstResponder()
+            }
+            return
+        }
         self.view.isUserInteractionEnabled = false
         try! appDelegate.persistentContainer.viewContext.save()
         delegate?.didSaveEntry()
@@ -93,6 +111,12 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         delegate?.didDeleteEntry()
         self.view.isUserInteractionEnabled = true
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true) { [unowned self] in
+            self.appDelegate.persistentContainer.viewContext.delete(self.entry!)
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -150,20 +174,38 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             return false
         }
         if (textField == caloriesTextField) {
-            self.view.endEditing(true)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                self.showToast(message: "Calories are calculated automatically")
+            if textField.tag == -1 {
+                let overrideAction = UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
+                    textField.tag = 1
+                    self.fatTextField.tag += 1
+                    self.carbsTextField.tag += 1
+                    self.proteinTextField.tag += 1
+                    self.servingsTextField.tag += 1
+                    textField.becomeFirstResponder()
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                    
+                }
+                let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
+                alert.addAction(overrideAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true)
+                return false
             }
-            return false
+            return true
         }
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.nextButtonTapped()
+        return false
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.entry!.calories = entry!.macros.calories
         entryChanged()
     }
     
@@ -181,6 +223,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         } else {
             self.entry?.fats = 0
         }
+        entryChanged()
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
@@ -189,6 +232,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         } else {
             self.entry?.carbs = 0
         }
+        entryChanged()
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
@@ -197,10 +241,15 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         } else {
             self.entry?.proteins = 0
         }
+        entryChanged()
     }
     
     @IBAction func onCaloriesEditingChanged(_ textField: UITextField) {
-        
+        if let value = textField.parseFloatAndAdjust() {
+            self.entry?.calories = value
+        } else {
+            self.entry?.calories = 0
+        }
     }
     
     @IBAction func onServingsEditingChanged(_ textField: UITextField) {
@@ -209,12 +258,6 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         } else {
             self.entry?.servings = 0
         }
-    }
-    
-    // MARK: - Navigation
-
-    @IBAction func onCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
 }
