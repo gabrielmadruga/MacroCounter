@@ -35,14 +35,14 @@ extension UITextField {
         let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
         let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
         
-        var items = [UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action), UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)]
+        var items = [UIBarButtonItem(title: "Close", style: .plain, target: onCancel.target, action: onCancel.action), UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)]
+        if self.tag > 1 {
+            items.append(UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(previousButtonTapped)))
+            let someSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
+            someSpace.width = 32
+            items.append(someSpace)
+        }
         if tagsRange.contains(self.tag) {
-            if self.tag > 1 {
-                items.append(UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(previousButtonTapped)))
-                let someSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
-                someSpace.width = 32
-                items.append(someSpace)
-            }
             items.append(UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(nextButtonTapped)))
         } else {
             items.append(UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action))

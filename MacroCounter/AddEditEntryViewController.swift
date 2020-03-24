@@ -34,7 +34,6 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHideKeyboardOnTap()
         isModalInPresentation = true
         nameTextField.becomeFirstResponder()
         nameTextField.addToolbar(tagsRange: 1..<5)
@@ -120,6 +119,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setSelected(false, animated: false)
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -133,13 +134,13 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                fatTextField.becomeFirstResponder()
-            case 1:
-                carbsTextField.becomeFirstResponder()
-            case 2:
-                proteinTextField.becomeFirstResponder()
-            case 3:
                 caloriesTextField.becomeFirstResponder()
+            case 1:
+                fatTextField.becomeFirstResponder()
+            case 2:
+                carbsTextField.becomeFirstResponder()
+            case 3:
+                proteinTextField.becomeFirstResponder()
             default:
                 return
             }
@@ -176,16 +177,20 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         if (textField == caloriesTextField) {
             if textField.tag == -1 {
                 let overrideAction = UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
-                    textField.tag = 1
+                    textField.tag = self.nameTextField.tag + 1
                     self.fatTextField.tag += 1
                     self.carbsTextField.tag += 1
                     self.proteinTextField.tag += 1
                     self.servingsTextField.tag += 1
+                    self.nameTextField.addToolbar(tagsRange: 1..<6)
+                    self.caloriesTextField.addToolbar(tagsRange: 1..<6)
+                    self.fatTextField.addToolbar(tagsRange: 1..<6)
+                    self.carbsTextField.addToolbar(tagsRange: 1..<6)
+                    self.proteinTextField.addToolbar(tagsRange: 1..<6)
+                    self.servingsTextField.addToolbar(tagsRange: 1..<6)
                     textField.becomeFirstResponder()
                 }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-                    
-                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
                 let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
                 alert.addAction(overrideAction)
                 alert.addAction(cancelAction)
