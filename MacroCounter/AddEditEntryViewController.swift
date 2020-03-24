@@ -25,6 +25,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var servingsTextField: UITextField!
     
+    @IBOutlet weak var calculateCaloriesButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
@@ -35,20 +36,25 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         isModalInPresentation = true
+        calculateCaloriesButton.isHidden = true
         nameTextField.addToolbar(tagsRange: 1..<5)
         fatTextField.addToolbar(tagsRange: 1..<5)
         carbsTextField.addToolbar(tagsRange: 1..<5)
         proteinTextField.addToolbar(tagsRange: 1..<5)
         servingsTextField.addToolbar(tagsRange: 1..<5, onDone: (target: self, action: #selector(saveButtonPressed(_:))))
-        if self.entry == nil {
+        if let entry = self.entry {
+            self.title = "Edit Entry"
+            if !entry.macros.calories.isEqual(to: entry.calories) {
+                overrideCalories()
+            }
+            deleteButton.isHidden = false
+            deleteButton.backgroundColor = deleteButton.backgroundColor?.withAlphaComponent(0.2)
+        } else {
             let managedContext = appDelegate.persistentContainer.viewContext
             entry = Entry.init(context: managedContext)
             entry!.date = .init()
             deleteButton.isHidden = true
             nameTextField.becomeFirstResponder()
-        } else {
-            self.title = "Edit Entry"
-            deleteButton.isHidden = false
         }
         entryChanged()
         dateTextField.delegate = self
@@ -177,17 +183,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         if (textField == caloriesTextField) {
             if textField.tag == -1 {
                 let overrideAction = UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
-                    textField.tag = self.nameTextField.tag + 1
-                    self.fatTextField.tag += 1
-                    self.carbsTextField.tag += 1
-                    self.proteinTextField.tag += 1
-                    self.servingsTextField.tag += 1
-                    self.nameTextField.addToolbar(tagsRange: 1..<6)
-                    self.caloriesTextField.addToolbar(tagsRange: 1..<6)
-                    self.fatTextField.addToolbar(tagsRange: 1..<6)
-                    self.carbsTextField.addToolbar(tagsRange: 1..<6)
-                    self.proteinTextField.addToolbar(tagsRange: 1..<6)
-                    self.servingsTextField.addToolbar(tagsRange: 1..<6, onDone: (target: self, action: #selector(self.saveButtonPressed(_:))))
+                    self.overrideCalories()
                     textField.becomeFirstResponder()
                 }
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -200,6 +196,37 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             return true
         }
         return true
+    }
+    
+    func overrideCalories() {
+        self.caloriesTextField.tag = self.nameTextField.tag + 1
+        self.fatTextField.tag += 1
+        self.carbsTextField.tag += 1
+        self.proteinTextField.tag += 1
+        self.servingsTextField.tag += 1
+        self.nameTextField.addToolbar(tagsRange: 1..<6)
+        self.caloriesTextField.addToolbar(tagsRange: 1..<6)
+        self.fatTextField.addToolbar(tagsRange: 1..<6)
+        self.carbsTextField.addToolbar(tagsRange: 1..<6)
+        self.proteinTextField.addToolbar(tagsRange: 1..<6)
+        self.servingsTextField.addToolbar(tagsRange: 1..<6, onDone: (target: self, action: #selector(self.saveButtonPressed(_:))))
+        self.calculateCaloriesButton.isHidden = false
+    }
+    
+    @IBAction func undoOverrideCalories(_ sender: Any) {
+        caloriesTextField.tag = -1
+        fatTextField.tag -= 1
+        carbsTextField.tag -= 1
+        proteinTextField.tag -= 1
+        servingsTextField.tag -= 1
+        nameTextField.addToolbar(tagsRange: 1..<5)
+        fatTextField.addToolbar(tagsRange: 1..<5)
+        carbsTextField.addToolbar(tagsRange: 1..<5)
+        proteinTextField.addToolbar(tagsRange: 1..<5)
+        servingsTextField.addToolbar(tagsRange: 1..<5, onDone: (target: self, action: #selector(saveButtonPressed(_:))))
+        self.calculateCaloriesButton.isHidden = true
+        caloriesTextField.resignFirstResponder()
+        entryChanged()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -12,7 +12,7 @@
         <scene sceneID="cv8-Oi-gV7">
             <objects>
                 <tableViewController id="ulx-2G-5VL" customClass="AddEditEntryViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8TP-Tt-EEB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8TP-Tt-EEB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -21,15 +21,16 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7n-35-CSi">
-                                    <rect key="frame" x="37" y="143" width="340" height="44"/>
+                                    <rect key="frame" x="8" y="141" width="398" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <state key="normal" title="Delete">
                                         <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="16"/>
+                                            <integer key="value" value="12"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
@@ -37,16 +38,16 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-7f-v1B">
-                                    <rect key="frame" x="37" y="78" width="340" height="46"/>
+                                    <rect key="frame" x="8" y="75" width="398" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <state key="normal" title="Save">
-                                        <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="16"/>
+                                            <integer key="value" value="12"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
@@ -157,14 +158,30 @@
                                                         <outlet property="delegate" destination="ulx-2G-5VL" id="eJT-Y6-8Ne"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="RJd-5h-NGp">
+                                                    <rect key="frame" x="362" y="0.0" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="K2l-QE-P6h"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" image="wand.and.stars" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="regular"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="undoOverrideCalories:" destination="ulx-2G-5VL" eventType="touchUpInside" id="oci-Si-tMl"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="RJd-5h-NGp" secondAttribute="trailing" constant="8" id="08j-Uy-Ju4"/>
                                                 <constraint firstItem="RQv-EP-agg" firstAttribute="firstBaseline" secondItem="pQW-8d-6Af" secondAttribute="firstBaseline" id="1PP-X0-sRv"/>
                                                 <constraint firstAttribute="trailing" secondItem="VYF-3v-X0Q" secondAttribute="trailing" constant="16" id="Cun-is-ngX"/>
                                                 <constraint firstAttribute="trailing" secondItem="RQv-EP-agg" secondAttribute="trailing" constant="175" id="DIv-8n-LKJ"/>
                                                 <constraint firstItem="RQv-EP-agg" firstAttribute="leading" secondItem="pQW-8d-6Af" secondAttribute="trailing" constant="32" id="G5M-jk-P7O"/>
                                                 <constraint firstItem="VYF-3v-X0Q" firstAttribute="firstBaseline" secondItem="pQW-8d-6Af" secondAttribute="firstBaseline" id="HTQ-h9-xOv"/>
                                                 <constraint firstItem="VYF-3v-X0Q" firstAttribute="leading" secondItem="RQv-EP-agg" secondAttribute="trailing" constant="32" id="IBi-ar-cKQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="RJd-5h-NGp" secondAttribute="bottom" id="Mkb-dI-CEp"/>
+                                                <constraint firstItem="RJd-5h-NGp" firstAttribute="top" secondItem="2SH-1Z-OOI" secondAttribute="top" id="bn3-SO-cuU"/>
                                                 <constraint firstAttribute="bottom" secondItem="RQv-EP-agg" secondAttribute="bottom" id="cnr-qG-owU"/>
                                                 <constraint firstItem="RQv-EP-agg" firstAttribute="top" secondItem="2SH-1Z-OOI" secondAttribute="top" id="jGr-7O-J7A"/>
                                                 <constraint firstItem="pQW-8d-6Af" firstAttribute="leading" secondItem="2SH-1Z-OOI" secondAttribute="leadingMargin" constant="16" id="lco-fa-Iao"/>
@@ -356,6 +373,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="calculateCaloriesButton" destination="RJd-5h-NGp" id="XEb-S5-iHP"/>
                         <outlet property="caloriesTextField" destination="RQv-EP-agg" id="zhf-fh-7aJ"/>
                         <outlet property="carbsTextField" destination="ui1-WB-GpB" id="3rm-1J-4aC"/>
                         <outlet property="dateTextField" destination="Lnw-lc-XLA" id="BUa-q8-AZ3"/>
@@ -549,6 +567,9 @@
             <point key="canvasLocation" x="-162.31884057971016" y="96.428571428571431"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wand.and.stars" catalog="system" width="64" height="56"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oxn-X4-nq4"/>
     </inferredMetricsTieBreakers>
