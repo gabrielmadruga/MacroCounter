@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TjB-L0-VQt">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjh-WO-5Rg">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -28,7 +28,7 @@
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2d-8q-seq">
-                                        <rect key="frame" x="0.0" y="80" width="414" height="694"/>
+                                        <rect key="frame" x="0.0" y="80" width="414" height="642"/>
                                         <connections>
                                             <segue destination="I4m-DA-8rf" kind="embed" id="Pst-w4-f0b"/>
                                         </connections>
@@ -45,7 +45,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Target" largeTitleDisplayMode="never" id="wJ8-lZ-M9I"/>
+                    <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyg-he-hgl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.78260869565219" y="533.70535714285711"/>
+            <point key="canvasLocation" x="167" y="541"/>
         </scene>
         <!--Entries-->
         <scene sceneID="rWG-64-D0L">
@@ -155,7 +155,7 @@
             <objects>
                 <tableViewController id="I4m-DA-8rf" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YuU-Hv-wqc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="642"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="Hmo-xt-WLg">
@@ -229,7 +229,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqO-3Z-3xU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260.86956521739131" y="1011.8303571428571"/>
+            <point key="canvasLocation" x="206" y="988"/>
         </scene>
         <!--SetDailyTargetViewController-->
         <scene sceneID="qs0-eo-4ht">

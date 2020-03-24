@@ -33,8 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dailyTarget.proteins = 100
             settings.dailyTarget = dailyTarget
             try! managedContext.save()
-        }        
+        }
+        UserDefaults.standard.userInterfaceStyle = .unspecified
+        if let userInterfaceStyle = UserDefaults.standard.userInterfaceStyle {
+            window.overrideUserInterfaceStyle = userInterfaceStyle
+        }
         
+        #warning("This is just for debugging")
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         print(url!.absoluteString)
         

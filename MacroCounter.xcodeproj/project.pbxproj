@@ -24,6 +24,7 @@
 		C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */; };
 		EE4225DF23E663630089E881 /* BarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4225DE23E663630089E881 /* BarsViewController.swift */; };
 		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
+		EE81498E242AAD12008E5052 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE81498D242AAD12008E5052 /* UserDefaults+Extensions.swift */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
 		EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EED94EE52427E5460094BCBB /* Model.xcdatamodeld */; };
 		EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2B2427ECA70094BCBB /* Macros.swift */; };
@@ -81,6 +82,7 @@
 		EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditEntryTemplateViewController.swift; sourceTree = "<group>"; };
 		EE4225DE23E663630089E881 /* BarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsViewController.swift; sourceTree = "<group>"; };
 		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		EE81498D242AAD12008E5052 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacroCounter.entitlements; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */,
 				C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */,
 				EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */,
+				EE81498D242AAD12008E5052 /* UserDefaults+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				C0D0E127212A080A00AE49AF /* DatePickerViewController.swift in Sources */,
 				C0D0E12D212D04ED00AE49AF /* SetDailyTargetViewController.swift in Sources */,
 				EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */,
+				EE81498E242AAD12008E5052 /* UserDefaults+Extensions.swift in Sources */,
 				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,

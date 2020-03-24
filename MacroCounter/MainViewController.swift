@@ -13,9 +13,9 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        self.title =  formatter.string(from: .init())
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .full
+//        self.title =  formatter.string(from: .init())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
