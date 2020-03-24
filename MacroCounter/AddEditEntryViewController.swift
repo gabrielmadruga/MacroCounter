@@ -35,17 +35,17 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         isModalInPresentation = true
-        nameTextField.becomeFirstResponder()
         nameTextField.addToolbar(tagsRange: 1..<5)
         fatTextField.addToolbar(tagsRange: 1..<5)
         carbsTextField.addToolbar(tagsRange: 1..<5)
         proteinTextField.addToolbar(tagsRange: 1..<5)
-        servingsTextField.addToolbar(tagsRange: 1..<5)
+        servingsTextField.addToolbar(tagsRange: 1..<5, onDone: (target: self, action: #selector(saveButtonPressed(_:))))
         if self.entry == nil {
             let managedContext = appDelegate.persistentContainer.viewContext
             entry = Entry.init(context: managedContext)
             entry!.date = .init()
             deleteButton.isHidden = true
+            nameTextField.becomeFirstResponder()
         } else {
             self.title = "Edit Entry"
             deleteButton.isHidden = false
@@ -187,7 +187,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
                     self.fatTextField.addToolbar(tagsRange: 1..<6)
                     self.carbsTextField.addToolbar(tagsRange: 1..<6)
                     self.proteinTextField.addToolbar(tagsRange: 1..<6)
-                    self.servingsTextField.addToolbar(tagsRange: 1..<6)
+                    self.servingsTextField.addToolbar(tagsRange: 1..<6, onDone: (target: self, action: #selector(self.saveButtonPressed(_:))))
                     textField.becomeFirstResponder()
                 }
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

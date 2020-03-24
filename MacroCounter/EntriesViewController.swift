@@ -116,10 +116,12 @@ extension EntriesViewController: AddEditEntryViewControllerDelegate {
     
     func didSaveEntry() {
         tableView.reloadData()
+        refreshFooterView()
     }
     
     func didDeleteEntry() {
         tableView.reloadData()
+        refreshFooterView()
     }
 }
 
