@@ -120,7 +120,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true) { [unowned self] in
-            self.appDelegate.persistentContainer.viewContext.delete(self.entry!)
+            #warning("This is bad. Stackoverflow says I should use other context and merge them at the end or blow it")
+            if self.deleteButton.isHidden {
+                self.appDelegate.persistentContainer.viewContext.delete(self.entry!)
+            }
         }
     }
 
