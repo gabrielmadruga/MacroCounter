@@ -17,27 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ScJ-JW-2Qn">
-                            <rect key="frame" x="0.0" y="416" width="414" height="283"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="frame" x="0.0" y="416" width="414" height="341"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azr-Lo-leH">
-                                    <rect key="frame" x="8" y="225" width="398" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <state key="normal" title="Cancel"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="12"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" eventType="touchUpInside" id="qtJ-wh-RXJ"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7n-35-CSi">
-                                    <rect key="frame" x="8" y="159" width="398" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7n-35-CSi">
+                                    <rect key="frame" x="8" y="203" width="398" height="55"/>
                                     <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="55" id="8B0-Nf-RPR"/>
+                                        <constraint firstAttribute="width" constant="360" id="gsd-e7-NbC"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <state key="normal" title="Delete">
                                         <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,10 +40,30 @@
                                         <action selector="deleteButtonPressed:" destination="ulx-2G-5VL" eventType="touchUpInside" id="GYk-bG-8Th"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-7f-v1B">
-                                    <rect key="frame" x="8" y="93" width="398" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azr-Lo-leH">
+                                    <rect key="frame" x="8" y="266" width="398" height="55"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="360" id="hsB-ku-T54"/>
+                                        <constraint firstAttribute="height" constant="55" id="otW-KP-sOk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <state key="normal" title="Cancel"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" eventType="touchUpInside" id="qtJ-wh-RXJ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-7f-v1B">
+                                    <rect key="frame" x="8" y="140" width="398" height="55"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="55" id="8Fp-PZ-Meo"/>
+                                        <constraint firstAttribute="width" constant="360" id="VVV-4O-yUM"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <state key="normal" title="Save">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,6 +78,17 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="n7n-35-CSi" firstAttribute="leading" secondItem="ScJ-JW-2Qn" secondAttribute="leading" constant="8" id="4iv-Rb-v3b"/>
+                                <constraint firstItem="n7n-35-CSi" firstAttribute="top" secondItem="bVp-7f-v1B" secondAttribute="bottom" constant="8" id="D9I-B4-COk"/>
+                                <constraint firstAttribute="trailing" secondItem="Azr-Lo-leH" secondAttribute="trailing" constant="8" id="NO6-kg-Kz1"/>
+                                <constraint firstItem="Azr-Lo-leH" firstAttribute="leading" secondItem="ScJ-JW-2Qn" secondAttribute="leading" constant="8" id="UkV-Un-GzX"/>
+                                <constraint firstAttribute="bottom" secondItem="Azr-Lo-leH" secondAttribute="bottom" constant="20" symbolic="YES" id="gi5-Ch-hfn"/>
+                                <constraint firstItem="Azr-Lo-leH" firstAttribute="top" secondItem="n7n-35-CSi" secondAttribute="bottom" constant="8" id="hF1-YB-b7C"/>
+                                <constraint firstItem="bVp-7f-v1B" firstAttribute="leading" secondItem="ScJ-JW-2Qn" secondAttribute="leading" constant="8" id="pcS-Rw-6Vr"/>
+                                <constraint firstAttribute="trailing" secondItem="bVp-7f-v1B" secondAttribute="trailing" constant="8" id="vJX-Qb-gZg"/>
+                                <constraint firstAttribute="trailing" secondItem="n7n-35-CSi" secondAttribute="trailing" constant="8" id="wwU-lx-6dV"/>
+                            </constraints>
                         </view>
                         <sections>
                             <tableViewSection id="vLT-U7-5uY">
@@ -379,7 +399,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Entry" id="LXt-rg-CBu">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="84q-vC-Ipb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="84q-vC-Ipb">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" id="oKe-2i-21Y"/>
                             </connections>

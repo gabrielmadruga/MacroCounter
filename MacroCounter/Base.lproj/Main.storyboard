@@ -45,14 +45,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Target" largeTitleDisplayMode="never" id="wJ8-lZ-M9I">
-                        <barButtonItem key="leftBarButtonItem" title="Set Target" id="9j5-9h-Xa7">
-                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <segue destination="Lp4-PV-rsi" kind="show" id="Exg-Po-SQ8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Target" largeTitleDisplayMode="never" id="wJ8-lZ-M9I"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,7 +148,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="br3-qS-ulP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134" y="739"/>
+            <point key="canvasLocation" x="1007" y="933"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="Vqd-CO-3MP">
@@ -198,7 +191,24 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r2g-2O-gzY" id="1gC-j2-8mU">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Daily Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVb-JR-t0O">
+                                                    <rect key="frame" x="20" y="11" width="334" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GVb-JR-t0O" firstAttribute="top" secondItem="1gC-j2-8mU" secondAttribute="topMargin" id="R8Q-7N-2ss"/>
+                                                <constraint firstItem="GVb-JR-t0O" firstAttribute="trailing" secondItem="1gC-j2-8mU" secondAttribute="trailingMargin" id="mEk-Rs-281"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="GVb-JR-t0O" secondAttribute="bottom" constant="1" id="yRC-qW-cNh"/>
+                                                <constraint firstItem="GVb-JR-t0O" firstAttribute="leading" secondItem="1gC-j2-8mU" secondAttribute="leadingMargin" id="zbK-jQ-lZH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Lp4-PV-rsi" kind="presentation" id="WKZ-UO-Bs6"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ufd-Up-sEM">
                                         <rect key="frame" x="20" y="105" width="374" height="43.5"/>
@@ -219,7 +229,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqO-3Z-3xU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="1012"/>
+            <point key="canvasLocation" x="260.86956521739131" y="1011.8303571428571"/>
         </scene>
         <!--SetDailyTargetViewController-->
         <scene sceneID="qs0-eo-4ht">
@@ -229,7 +239,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMj-sr-Sh0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-547" y="1229"/>
+            <point key="canvasLocation" x="1063" y="1055"/>
         </scene>
     </scenes>
 </document>
