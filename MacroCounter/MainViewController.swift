@@ -13,9 +13,32 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .full
-//        self.title =  formatter.string(from: .init())
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let dateLabel = UILabel()
+        dateLabel.textColor = .secondaryLabel
+        dateLabel.font = .preferredFont(forTextStyle: .title3)
+        dateLabel.text = formatter.string(from: .init())
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
+        
+        let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let addEntryButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 60)))
+        addEntryButton.setTitle("Add Entry", for: .normal)
+        addEntryButton.setTitleColor(.systemBlue, for: .normal)
+        addEntryButton.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.5), for: .highlighted)
+        addEntryButton.titleLabel?.font = .preferredFont(forTextStyle: .callout)
+        addEntryButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        addEntryButton.imageView?.frame = CGRect(x: 0, y: 0, width: 100, height: 60)
+        addEntryButton.imageEdgeInsets = .init(top: 0, left: -10, bottom: 0, right: 0)
+        addEntryButton.addTarget(self, action: #selector(presentAddEditEntry), for: .touchUpInside)
+        let addEntryBarButton = UIBarButtonItem(customView: addEntryButton)
+        setToolbarItems([someSpace, addEntryBarButton], animated: true)
+    }
+    
+    @objc private func presentAddEditEntry() {
+        let nav = UIStoryboard.init(.entry).instantiateViewController(identifier: "AddEditEntry")
+        self.present(nav, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

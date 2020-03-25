@@ -37,6 +37,7 @@ class BarsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         reloadData()
     }
     
@@ -72,13 +73,11 @@ class BarsViewController: UIViewController {
             let ratio = value / goalValue
             return ratio > 1 ? 1 : ratio
         }
-        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, dailyTarget.fats), animated: true)
-        carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, dailyTarget.carbs), animated: true)
-        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, dailyTarget.proteins), animated: true)
-        caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, dailyTarget.calories), animated: true)
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
+        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, dailyTarget.fats), animated: false)
+        carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, dailyTarget.carbs), animated: false)
+        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, dailyTarget.proteins), animated: false)
+        caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, dailyTarget.calories), animated: false)
+
     }
     
 }

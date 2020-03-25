@@ -16,19 +16,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TjB-L0-VQt">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjh-WO-5Rg">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="U6O-KD-ef1"/>
+                                            <constraint firstAttribute="height" constant="160" id="U6O-KD-ef1"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="pIs-tn-pvi" kind="embed" id="tP7-rU-WgD"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2d-8q-seq">
-                                        <rect key="frame" x="0.0" y="80" width="414" height="642"/>
+                                        <rect key="frame" x="0.0" y="160" width="414" height="513"/>
                                         <connections>
                                             <segue destination="I4m-DA-8rf" kind="embed" id="Pst-w4-f0b"/>
                                         </connections>
@@ -45,7 +45,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,11 +56,15 @@
         <!--Navigation Controller-->
         <scene sceneID="KZv-uO-xd7">
             <objects>
-                <navigationController id="G5E-x2-blZ" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="G5E-x2-blZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mCv-ib-C7I">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2XP-Cu-kbZ">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="LOb-AR-OEF"/>
                     </connections>
@@ -72,38 +78,38 @@
             <objects>
                 <viewController title="Bars" id="pIs-tn-pvi" customClass="BarsViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DJn-Pr-3g7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="iif-Ey-8mj">
-                                <rect key="frame" x="16" y="16" width="382" height="49"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iif-Ey-8mj">
+                                <rect key="frame" x="16" y="16" width="382" height="120"/>
                                 <subviews>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i1Y-uG-MQH">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="4"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="i1Y-uG-MQH">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="25"/>
                                         <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="CyU-lc-QBy"/>
+                                            <constraint firstAttribute="height" constant="24" id="CyU-lc-QBy"/>
                                         </constraints>
                                     </progressView>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tOi-Kr-8yW">
-                                        <rect key="frame" x="0.0" y="15" width="382" height="4"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="tOi-Kr-8yW">
+                                        <rect key="frame" x="0.0" y="32" width="382" height="25"/>
                                         <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="u9f-Du-rAm"/>
+                                            <constraint firstAttribute="height" constant="24" id="u9f-Du-rAm"/>
                                         </constraints>
                                     </progressView>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oHn-mH-Ojb">
-                                        <rect key="frame" x="0.0" y="30" width="382" height="4"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="oHn-mH-Ojb">
+                                        <rect key="frame" x="0.0" y="64" width="382" height="25"/>
                                         <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="3zb-ho-kl8"/>
+                                            <constraint firstAttribute="height" constant="24" id="3zb-ho-kl8"/>
                                         </constraints>
                                     </progressView>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IPb-VE-2vB">
-                                        <rect key="frame" x="0.0" y="45" width="382" height="4"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="IPb-VE-2vB">
+                                        <rect key="frame" x="0.0" y="96" width="382" height="25"/>
                                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="C3o-PB-jGL"/>
+                                            <constraint firstAttribute="height" constant="24" id="C3o-PB-jGL"/>
                                         </constraints>
                                     </progressView>
                                 </subviews>
@@ -127,7 +133,7 @@
                             <barButtonItem title="Favorites" id="UgR-GR-qHL"/>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="80"/>
+                    <size key="freeformSize" width="414" height="200"/>
                     <connections>
                         <outlet property="caloriesProgressView" destination="i1Y-uG-MQH" id="qZQ-pg-QnK"/>
                         <outlet property="carbsProgressView" destination="oHn-mH-Ojb" id="YgU-Rt-jP9"/>
@@ -138,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyg-he-hgl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="167" y="541"/>
+            <point key="canvasLocation" x="166.66666666666669" y="540.40178571428567"/>
         </scene>
         <!--Entries-->
         <scene sceneID="rWG-64-D0L">
@@ -154,8 +160,8 @@
         <scene sceneID="Vqd-CO-3MP">
             <objects>
                 <tableViewController id="I4m-DA-8rf" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YuU-Hv-wqc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="642"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YuU-Hv-wqc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="513"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="Hmo-xt-WLg">
@@ -207,7 +213,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Lp4-PV-rsi" kind="presentation" id="WKZ-UO-Bs6"/>
+                                            <segue destination="Lp4-PV-rsi" kind="show" id="WKZ-UO-Bs6"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ufd-Up-sEM">
