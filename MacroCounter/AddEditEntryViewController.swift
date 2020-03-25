@@ -99,12 +99,14 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             }
             return
         }
+        appDelegate.coreData.saveContext()
         delegate?.didSaveEntry()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         managedContext.delete(entry!)
+        appDelegate.coreData.saveContext()
         delegate?.didDeleteEntry()
         self.dismiss(animated: true, completion: nil)
     }
