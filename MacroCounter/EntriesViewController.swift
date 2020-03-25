@@ -11,7 +11,9 @@ import CoreData
 
 
 class EntriesViewController: UIViewController {
-        
+    
+    var managedContext: NSManagedObjectContext!
+    
     @IBOutlet private weak var tableView: UITableView!
     private var emptyTableMessageView: UIView!
     
@@ -24,6 +26,7 @@ class EntriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        managedContext = appDelegate.coreData.managedContext
         emptyTableMessageView = tableView.tableFooterView
     }
     
@@ -57,8 +60,7 @@ extension EntriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
-            appDelegate.persistentContainer.viewContext.delete(cell.entry!)
-            try! appDelegate.persistentContainer.viewContext.save()
+            managedContext.delete(cell.entry!)
             tableView.deleteRows(at: [indexPath], with: .fade)
             refreshFooterView()
             barsViewController?.reloadData()
@@ -107,7 +109,7 @@ protocol EntriesViewControllerDataSource {
 extension EntriesViewController: EntriesViewControllerDataSource {
     var entries: [Entry] {
         let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        let todayEntries = try! appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+        let todayEntries = try! managedContext.fetch(fetchRequest)
         return todayEntries
     }
 }

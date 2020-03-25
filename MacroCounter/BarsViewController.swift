@@ -11,6 +11,7 @@ import CoreData
 		
 class BarsViewController: UIViewController {
     
+    var managedContext: NSManagedObjectContext!
     @IBOutlet weak var dailyTargetStackView: UIStackView!
     @IBOutlet weak var caloriesProgressView: UIProgressView!
     @IBOutlet weak var fatProgressView: UIProgressView!
@@ -32,8 +33,8 @@ class BarsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        managedContext = appDelegate.coreData.managedContext
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,9 +43,9 @@ class BarsViewController: UIViewController {
     }
     
     @objc func reloadData() {
-        let todayEntries = try! appDelegate.persistentContainer.viewContext.fetch(Entry.fetchRequest() as NSFetchRequest<Entry>)
+        let todayEntries = try! managedContext.fetch(Entry.fetchRequest() as NSFetchRequest<Entry>)
             
-        guard let dailyTarget = (try? appDelegate.persistentContainer.viewContext.fetch(DailyTarget.fetchRequest() as NSFetchRequest<DailyTarget>))?.first else {
+        guard let dailyTarget = (try? managedContext.fetch(DailyTarget.fetchRequest() as NSFetchRequest<DailyTarget>))?.first else {
             fatalError("A daily target must be set by now!")
         }
         let fatFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in

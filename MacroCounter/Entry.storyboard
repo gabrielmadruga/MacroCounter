@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N3Z-Oq-ai0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N3Z-Oq-ai0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,80 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="ScJ-JW-2Qn">
-                            <rect key="frame" x="0.0" y="416" width="414" height="341"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7n-35-CSi">
-                                    <rect key="frame" x="8" y="203" width="398" height="55"/>
-                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="55" id="8B0-Nf-RPR"/>
-                                        <constraint firstAttribute="width" constant="360" id="gsd-e7-NbC"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <state key="normal" title="Delete">
-                                        <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="12"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="deleteButtonPressed:" destination="ulx-2G-5VL" eventType="touchUpInside" id="GYk-bG-8Th"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azr-Lo-leH">
-                                    <rect key="frame" x="8" y="266" width="398" height="55"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="360" id="hsB-ku-T54"/>
-                                        <constraint firstAttribute="height" constant="55" id="otW-KP-sOk"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <state key="normal" title="Cancel"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="12"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" eventType="touchUpInside" id="qtJ-wh-RXJ"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-7f-v1B">
-                                    <rect key="frame" x="8" y="140" width="398" height="55"/>
-                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="55" id="8Fp-PZ-Meo"/>
-                                        <constraint firstAttribute="width" constant="360" id="VVV-4O-yUM"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <state key="normal" title="Save">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="12"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="saveButtonPressed:" destination="ulx-2G-5VL" eventType="touchUpInside" id="LOG-Dw-D5F"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="n7n-35-CSi" firstAttribute="leading" secondItem="ScJ-JW-2Qn" secondAttribute="leading" constant="8" id="4iv-Rb-v3b"/>
-                                <constraint firstItem="n7n-35-CSi" firstAttribute="top" secondItem="bVp-7f-v1B" secondAttribute="bottom" constant="8" id="D9I-B4-COk"/>
-                                <constraint firstAttribute="trailing" secondItem="Azr-Lo-leH" secondAttribute="trailing" constant="8" id="NO6-kg-Kz1"/>
-                                <constraint firstItem="Azr-Lo-leH" firstAttribute="leading" secondItem="ScJ-JW-2Qn" secondAttribute="leading" constant="8" id="UkV-Un-GzX"/>
-                                <constraint firstAttribute="bottom" secondItem="Azr-Lo-leH" secondAttribute="bottom" constant="20" symbolic="YES" id="gi5-Ch-hfn"/>
-                                <constraint firstItem="Azr-Lo-leH" firstAttribute="top" secondItem="n7n-35-CSi" secondAttribute="bottom" constant="8" id="hF1-YB-b7C"/>
-                                <constraint firstItem="bVp-7f-v1B" firstAttribute="leading" secondItem="ScJ-JW-2Qn" secondAttribute="leading" constant="8" id="pcS-Rw-6Vr"/>
-                                <constraint firstAttribute="trailing" secondItem="bVp-7f-v1B" secondAttribute="trailing" constant="8" id="vJX-Qb-gZg"/>
-                                <constraint firstAttribute="trailing" secondItem="n7n-35-CSi" secondAttribute="trailing" constant="8" id="wwU-lx-6dV"/>
-                            </constraints>
-                        </view>
                         <sections>
                             <tableViewSection id="vLT-U7-5uY">
                                 <cells>
@@ -399,11 +325,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Entry" id="LXt-rg-CBu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="84q-vC-Ipb">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="84q-vC-Ipb">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" id="oKe-2i-21Y"/>
+                                <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" id="qFx-0o-Qor"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="Duh-Um-DEW">
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="ulx-2G-5VL" id="FxZ-Tu-ss6"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="BHj-vp-z3a">
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="ulx-2G-5VL" id="H8q-HZ-KXB"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -411,11 +350,11 @@
                         <outlet property="caloriesTextField" destination="RQv-EP-agg" id="zhf-fh-7aJ"/>
                         <outlet property="carbsTextField" destination="ui1-WB-GpB" id="3rm-1J-4aC"/>
                         <outlet property="dateTextField" destination="Lnw-lc-XLA" id="BUa-q8-AZ3"/>
-                        <outlet property="deleteButton" destination="n7n-35-CSi" id="FM6-53-GvP"/>
+                        <outlet property="deleteButton" destination="BHj-vp-z3a" id="J7j-o8-RHK"/>
                         <outlet property="fatTextField" destination="Pms-Nb-ck1" id="LXg-X0-v8b"/>
                         <outlet property="nameTextField" destination="4WR-cU-z7H" id="09x-J6-KvY"/>
                         <outlet property="proteinTextField" destination="wsN-0Q-C3G" id="GcL-5d-QEC"/>
-                        <outlet property="saveButton" destination="bVp-7f-v1B" id="zl5-F9-Nrx"/>
+                        <outlet property="saveButton" destination="Duh-Um-DEW" id="e8t-sb-Ttw"/>
                         <outlet property="servingsTextField" destination="a7w-d5-kRT" id="Sm7-7n-reP"/>
                     </connections>
                 </tableViewController>
@@ -603,10 +542,10 @@
             <point key="canvasLocation" x="-162.31884057971016" y="96.428571428571431"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="wand.and.stars" catalog="system" width="64" height="56"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oxn-X4-nq4"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="wand.and.stars" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

@@ -17,6 +17,8 @@ protocol AddEditEntryViewControllerDelegate: class {
 
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
+    var managedContext: NSManagedObjectContext!
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
@@ -26,8 +28,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var servingsTextField: UITextField!
     
     @IBOutlet weak var calculateCaloriesButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
     weak var delegate: AddEditEntryViewControllerDelegate?
@@ -35,6 +37,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        managedContext = appDelegate.coreData.managedContext
         isModalInPresentation = true
         calculateCaloriesButton.isHidden = true
         nameTextField.addToolbar(tagsRange: 1..<5)
@@ -47,13 +50,11 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             if !entry.macros.calories.isEqual(to: entry.calories) {
                 overrideCalories()
             }
-            deleteButton.isHidden = false
-            deleteButton.backgroundColor = deleteButton.backgroundColor?.withAlphaComponent(0.2)
+            deleteButton.isEnabled = true
         } else {
-            let managedContext = appDelegate.persistentContainer.viewContext
             entry = Entry.init(context: managedContext)
             entry!.date = .init()
-            deleteButton.isHidden = true
+            deleteButton.isEnabled = false
             nameTextField.becomeFirstResponder()
         }
         entryChanged()
@@ -98,31 +99,21 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             }
             return
         }
-        self.view.isUserInteractionEnabled = false
-        try! appDelegate.persistentContainer.viewContext.save()
         delegate?.didSaveEntry()
-//        if saveAsFavouriteSwitch.isOn {
-//            let template = EntryTemplate(name: "TODO", macros: entry.macros)
-//            appDelegate.repository?.create(template)
-//        }
-        self.view.isUserInteractionEnabled = true
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        self.view.isUserInteractionEnabled = false
-        appDelegate.persistentContainer.viewContext.delete(entry!)
-        try! appDelegate.persistentContainer.viewContext.save()
+        managedContext.delete(entry!)
         delegate?.didDeleteEntry()
-        self.view.isUserInteractionEnabled = true
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true) { [unowned self] in
             #warning("This is bad. Stackoverflow says I should use other context and merge them at the end or blow it")
-            if self.deleteButton.isHidden {
-                self.appDelegate.persistentContainer.viewContext.delete(self.entry!)
+            if !self.deleteButton.isEnabled {
+                self.managedContext.delete(self.entry!)
             }
         }
     }
@@ -158,47 +149,6 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
         default:
             return
         }
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        UIView.animate(withDuration: 0.2, animations: {
-//            textField.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-//        }, completion: { finish in
-//            UIView.animate(withDuration: 0.3, animations: {
-//                textField.superview?.backgroundColor = nil
-//            })
-//        })
-        
-        if (textField == dateTextField) {
-            let alert = UIAlertController(title: "Date",
-                                          message: "Select the day and time you ate this",
-                                          preferredStyle: .actionSheet)
-            let today = Date.init()
-            self.entry?.date = today
-            alert.addDatePicker(mode: .dateAndTime, date: today, minimumDate: nil, maximumDate: today) {  [unowned self] date in
-                self.entry?.date = date
-                self.entryChanged()
-            }
-            alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return false
-        }
-        if (textField == caloriesTextField) {
-            if textField.tag == -1 {
-                let overrideAction = UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
-                    self.overrideCalories()
-                    textField.becomeFirstResponder()
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
-                alert.addAction(overrideAction)
-                alert.addAction(cancelAction)
-                self.present(alert, animated: true)
-                return false
-            }
-            return true
-        }
-        return true
     }
     
     func overrideCalories() {
@@ -238,6 +188,47 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (textField == dateTextField) {
+            DispatchQueue.main.async() {
+               textField.resignFirstResponder()
+            }
+            let alert = UIAlertController(title: "Date",
+                                          message: "Select the day and time you ate this",
+                                          preferredStyle: .actionSheet)
+            let today = Date.init()
+            self.entry?.date = today
+            alert.addDatePicker(mode: .dateAndTime, date: today, minimumDate: nil, maximumDate: today) {  [unowned self] date in
+                self.entry?.date = date
+                self.entryChanged()
+            }
+            alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+            
+            DispatchQueue.main.async() { [unowned self] in
+               self.present(alert, animated: true)
+            }
+            
+            return
+        }
+        if (textField == caloriesTextField) {
+            if textField.tag == -1 {
+                DispatchQueue.main.async() {
+                   textField.resignFirstResponder()
+                }
+                let overrideAction = UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
+                    self.overrideCalories()
+                    textField.becomeFirstResponder()
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
+                alert.addAction(overrideAction)
+                alert.addAction(cancelAction)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [unowned self] in
+                   self.present(alert, animated: true)
+                }
+                return
+            }
+        }
+        
         textField.text = ""
     }
     func textFieldDidEndEditing(_ textField: UITextField) {

@@ -11,6 +11,8 @@ import CoreData
 
 class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
     
+    var managedContext: NSManagedObjectContext!
+    
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
@@ -22,7 +24,9 @@ class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let settings = (try! appDelegate.persistentContainer.viewContext.fetch(Settings.fetchRequest() as NSFetchRequest<Settings>)).first
+        managedContext = appDelegate.coreData.managedContext
+        let fetchRequest: NSFetchRequest<Settings> = Settings.fetchRequest()
+        let settings = (try! managedContext.fetch(fetchRequest)).first
         self.settings = settings
         settingsChanged()
     }
@@ -43,9 +47,6 @@ class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
-        self.view.isUserInteractionEnabled = false
-        try? appDelegate.persistentContainer.viewContext.save()
-        self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
     
