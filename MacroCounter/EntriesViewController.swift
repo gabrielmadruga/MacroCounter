@@ -107,8 +107,14 @@ protocol EntriesViewControllerDataSource {
 }
 
 extension EntriesViewController: EntriesViewControllerDataSource {
+    var dateSortDescriptor: NSSortDescriptor {
+        return NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)
+    }
+    
+    
     var entries: [Entry] {
         let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.sortDescriptors = [dateSortDescriptor]
         let todayEntries = try! managedContext.fetch(fetchRequest)
         return todayEntries
     }
@@ -117,11 +123,13 @@ extension EntriesViewController: EntriesViewControllerDataSource {
 extension EntriesViewController: AddEditEntryViewControllerDelegate {
     
     func didSaveEntry() {
+        #warning("Change to tableView.added")
         tableView.reloadData()
         refreshFooterView()
     }
     
     func didDeleteEntry() {
+        #warning("Change to tableView.deleteRows(at: [indexPath], with: .fade)")
         tableView.reloadData()
         refreshFooterView()
     }
@@ -156,6 +164,10 @@ extension EntriesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! EntryTableViewCell
         cell.entry = entries[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

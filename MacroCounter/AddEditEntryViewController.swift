@@ -18,6 +18,7 @@ protocol AddEditEntryViewControllerDelegate: class {
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
     var managedContext: NSManagedObjectContext!
+    var date = Date()
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -51,9 +52,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
                 overrideCalories()
             }
             deleteButton.isEnabled = true
+            date = entry.date!
         } else {
-            entry = Entry.init(context: managedContext)
-            entry!.date = .init()
+            entry = Entry(context: managedContext)
+            entry!.date = date
             deleteButton.isEnabled = false
             nameTextField.becomeFirstResponder()
         }
@@ -197,9 +199,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "Date",
                                           message: "Select the day and time you ate this",
                                           preferredStyle: .actionSheet)
-            let today = Date.init()
-            self.entry?.date = today
-            alert.addDatePicker(mode: .dateAndTime, date: today, minimumDate: nil, maximumDate: today) {  [unowned self] date in
+
+            alert.addDatePicker(mode: .dateAndTime, date: date, minimumDate: nil, maximumDate: Date()) {  [unowned self] date in
                 self.entry?.date = date
                 self.entryChanged()
             }

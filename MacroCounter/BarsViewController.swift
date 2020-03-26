@@ -12,6 +12,21 @@ import CoreData
 class BarsViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
+    lazy var todayPredicate: NSPredicate = {
+        // Get the current calendar with local time zone
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        
+        // Get today's beginning & end
+        let dateFrom = calendar.startOfDay(for: Date())
+        let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)!
+        
+        let fromPredicate = NSPredicate(format: "%K >= %@", #keyPath(Entry.date), dateFrom as NSDate)
+        let toPredicate = NSPredicate(format: "%K < %@", #keyPath(Entry.date), dateTo as NSDate)
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+        return datePredicate
+    }()
+    
     @IBOutlet weak var dailyTargetStackView: UIStackView!
     @IBOutlet weak var caloriesProgressView: UIProgressView!
     @IBOutlet weak var fatProgressView: UIProgressView!
@@ -43,8 +58,10 @@ class BarsViewController: UIViewController {
     }
     
     @objc func reloadData() {
-        let todayEntries = try! managedContext.fetch(Entry.fetchRequest() as NSFetchRequest<Entry>)
-            
+        let entryFetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        entryFetchRequest.predicate = todayPredicate
+        let todayEntries = try! managedContext.fetch(entryFetchRequest)        
+        
         guard let dailyTarget = (try? managedContext.fetch(DailyTarget.fetchRequest() as NSFetchRequest<DailyTarget>))?.first else {
             fatalError("A daily target must be set by now!")
         }
