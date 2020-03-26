@@ -13,45 +13,29 @@ import CoreData
 class EntriesViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
-    
-    @IBOutlet private weak var tableView: UITableView!
-    private var emptyTableMessageView: UIView!
-    
-    private weak var barsViewController: BarsViewController? {
-        get {
-            return self.children.first as? BarsViewController
+    var entries: [Entry] = [] {
+        didSet {
+            self.tableView.reloadData()
         }
     }
     
+    @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         managedContext = appDelegate.coreData.managedContext
-        emptyTableMessageView = tableView.tableFooterView
-    }
-    
-    deinit {
-        emptyTableMessageView = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        refreshFooterView()
-    }
-    
-    private func refreshFooterView() {
-        let hasEntries = !entries.isEmpty
-        let messageIsShowing = self.tableView.tableFooterView != nil
-        let shouldTransition = hasEntries == messageIsShowing
-        if shouldTransition {
-            UIView.transition(with: self.emptyTableMessageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                if hasEntries {
-                    self.tableView.tableFooterView = nil
-                } else {
-                    self.tableView.tableFooterView = self.emptyTableMessageView
-                }
-            })
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
+        let asyncFetchRequest = NSAsynchronousFetchRequest<Entry>(fetchRequest: fetchRequest) { [unowned self] (result: NSAsynchronousFetchResult) in
+            guard let entries = result.finalResult else {
+                return
+            }
+            self.entries = entries
         }
+        try! managedContext.execute(asyncFetchRequest)
     }
 }
 
@@ -62,9 +46,6 @@ extension EntriesViewController: UITableViewDelegate {
             let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
             managedContext.delete(cell.entry!)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            refreshFooterView()
-            barsViewController?.reloadData()
-            //            delegate?.didDeleteEntry()
         }
     }
 }
@@ -102,36 +83,16 @@ class EntryTableViewCell: UITableViewCell {
 //    }
 }
 
-protocol EntriesViewControllerDataSource {
-    var entries: [Entry] { get }
-}
-
-extension EntriesViewController: EntriesViewControllerDataSource {
-    var dateSortDescriptor: NSSortDescriptor {
-        return NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)
-    }
-    
-    
-    var entries: [Entry] {
-        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        fetchRequest.sortDescriptors = [dateSortDescriptor]
-        let todayEntries = try! managedContext.fetch(fetchRequest)
-        return todayEntries
-    }
-}
-
 extension EntriesViewController: AddEditEntryViewControllerDelegate {
     
     func didSaveEntry() {
         #warning("Change to tableView.added")
         tableView.reloadData()
-        refreshFooterView()
     }
     
     func didDeleteEntry() {
         #warning("Change to tableView.deleteRows(at: [indexPath], with: .fade)")
         tableView.reloadData()
-        refreshFooterView()
     }
 }
 
