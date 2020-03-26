@@ -11,8 +11,8 @@ import CoreData
 
 protocol AddEditEntryViewControllerDelegate: class {
 
-    func didSaveEntry()
-    func didDeleteEntry()
+    func didSaveEntry(_: Entry)
+    func didDeleteEntry(_: Entry)
 }
 
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
@@ -102,15 +102,22 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             return
         }
         appDelegate.coreData.saveContext()
-        delegate?.didSaveEntry()
+        delegate?.didSaveEntry(entry!)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        managedContext.delete(entry!)
-        appDelegate.coreData.saveContext()
-        delegate?.didDeleteEntry()
-        self.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Delete Entry", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [unowned self] (action) in
+            self.managedContext.delete(self.entry!)
+            self.appDelegate.coreData.saveContext()
+            self.delegate?.didDeleteEntry(self.entry!)
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -196,10 +203,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             DispatchQueue.main.async() {
                textField.resignFirstResponder()
             }
-            let alert = UIAlertController(title: "Date",
-                                          message: "Select the day and time you ate this",
-                                          preferredStyle: .actionSheet)
-
+            let alert = UIAlertController(title: "Date", message: "Select the day and time you ate this", preferredStyle: .actionSheet)
             alert.addDatePicker(mode: .dateAndTime, date: date, minimumDate: nil, maximumDate: Date()) {  [unowned self] date in
                 self.entry?.date = date
                 self.entryChanged()
@@ -217,14 +221,12 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
                 DispatchQueue.main.async() {
                    textField.resignFirstResponder()
                 }
-                let overrideAction = UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
+                let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
                     self.overrideCalories()
                     textField.becomeFirstResponder()
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
-                alert.addAction(overrideAction)
-                alert.addAction(cancelAction)
+                })
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [unowned self] in
                    self.present(alert, animated: true)
                 }

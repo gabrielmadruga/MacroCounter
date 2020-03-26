@@ -23,7 +23,7 @@ extension UIViewController {
         return tap
     }
     
-    func showToast(message : String, seconds: Double = 1.0, completion: (() -> Void)? = nil) {
+    func showToast(message : String, seconds: Double = 0.5, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.view.backgroundColor = UIColor.secondarySystemBackground
         alert.view.layer.cornerRadius = 15

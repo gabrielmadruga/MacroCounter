@@ -13,11 +13,7 @@ import CoreData
 class EntriesViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
-    var entries: [Entry] = [] {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var entries: [Entry] = []
     
     @IBOutlet private weak var tableView: UITableView!
     
@@ -34,6 +30,7 @@ class EntriesViewController: UIViewController {
                 return
             }
             self.entries = entries
+            self.tableView.reloadData()
         }
         try! managedContext.execute(asyncFetchRequest)
     }
@@ -45,6 +42,9 @@ extension EntriesViewController: UITableViewDelegate {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
             managedContext.delete(cell.entry!)
+            entries.removeAll { (e) -> Bool in
+                return e == cell.entry
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -85,14 +85,19 @@ class EntryTableViewCell: UITableViewCell {
 
 extension EntriesViewController: AddEditEntryViewControllerDelegate {
     
-    func didSaveEntry() {
-        #warning("Change to tableView.added")
-        tableView.reloadData()
+    func didSaveEntry(_ entry: Entry) {
+        #warning("This is actually wrong, as this may not be sorted, for now insert always at the start")
+        entries.insert(entry, at: 0)
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
     
-    func didDeleteEntry() {
-        #warning("Change to tableView.deleteRows(at: [indexPath], with: .fade)")
-        tableView.reloadData()
+    func didDeleteEntry(_ entry: Entry) {
+        if let i = entries.firstIndex(where: { (e) -> Bool in
+            return e == entry
+        }) {
+            entries.remove(at: i)
+            tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .fade)
+        }
     }
 }
 
