@@ -13,26 +13,70 @@ import CoreData
 class EntriesViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
-    var entries: [Entry] = []
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<Entry> = {
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
+        fetchRequest.fetchBatchSize = 20
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: managedContext,
+                                                                  sectionNameKeyPath: #keyPath(Entry.sectionIdentifier), cacheName: nil)
+        fetchedResultsController.delegate = self
+
+        return fetchedResultsController
+    }()
+    
     
     @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         managedContext = appDelegate.coreData.managedContext
+        try? fetchedResultsController.performFetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
-        let asyncFetchRequest = NSAsynchronousFetchRequest<Entry>(fetchRequest: fetchRequest) { [unowned self] (result: NSAsynchronousFetchResult) in
-            guard let entries = result.finalResult else {
-                return
-            }
-            self.entries = entries
-            self.tableView.reloadData()
+        super.viewWillAppear(animated)
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension EntriesViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            let cell = tableView.cellForRow(at: indexPath!) as! EntryTableViewCell
+            cell.entry = anObject as? Entry
+        case .move:
+                tableView.deleteRows(at: [indexPath!], with: .automatic)
+                tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        @unknown default:
+            fatalError()
         }
-        try! managedContext.execute(asyncFetchRequest)
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        let indexSet = IndexSet(integer: sectionIndex)
+        switch type {
+        case .insert:
+            tableView.insertSections(indexSet, with: .automatic)
+        case .delete:
+            tableView.deleteSections(indexSet, with: .automatic)
+        default: break
+        }
     }
 }
 
@@ -42,14 +86,11 @@ extension EntriesViewController: UITableViewDelegate {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
             managedContext.delete(cell.entry!)
-            entries.removeAll { (e) -> Bool in
-                return e == cell.entry
-            }
-            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
 
+// MARK: - EntryTableViewCell
 class EntryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -83,24 +124,6 @@ class EntryTableViewCell: UITableViewCell {
 //    }
 }
 
-extension EntriesViewController: AddEditEntryViewControllerDelegate {
-    
-    func didSaveEntry(_ entry: Entry) {
-        #warning("This is actually wrong, as this may not be sorted, for now insert always at the start")
-        entries.insert(entry, at: 0)
-        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-    }
-    
-    func didDeleteEntry(_ entry: Entry) {
-        if let i = entries.firstIndex(where: { (e) -> Bool in
-            return e == entry
-        }) {
-            entries.remove(at: i)
-            tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .fade)
-        }
-    }
-}
-
 extension EntriesViewController: UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,7 +131,6 @@ extension EntriesViewController: UITableViewDataSource {
         guard let addEditEntryViewController = (segue.destination as? UINavigationController)?.viewControllers.first as? AddEditEntryViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
-        addEditEntryViewController.delegate = self
         switch(segue.identifier ?? "") {
 //        case "New":
 //
@@ -122,13 +144,25 @@ extension EntriesViewController: UITableViewDataSource {
         
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = fetchedResultsController.sections?[section]
+        return sectionInfo?.name
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        entries.count
+        guard let sectionInfo = fetchedResultsController.sections?[section] else {
+            return 0
+        }
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! EntryTableViewCell
-        cell.entry = entries[indexPath.row]
+        cell.entry = fetchedResultsController.object(at: indexPath)
         return cell
     }
     

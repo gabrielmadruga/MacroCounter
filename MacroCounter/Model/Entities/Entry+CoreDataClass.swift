@@ -18,4 +18,15 @@ public class Entry: NSManagedObject {
             return Macros(fats: fats, carbs: carbs, proteins: proteins)
         }
     }
+    
+    @objc public var sectionIdentifier: String? {
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        let startOfDay = calendar.startOfDay(for: date!)
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        return formatter.string(from: startOfDay)
+    }
 }
