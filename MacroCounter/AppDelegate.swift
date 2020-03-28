@@ -69,10 +69,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+
+private var child_managedContext_objc_key: UInt8 = 0
 extension UIViewController {
     
-    var appDelegate: AppDelegate {
+    private var appDelegate: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
+    
+    var context: NSManagedObjectContext {
+        appDelegate.coreData.managedContext
+    }
+    
+    func saveContext() {
+        appDelegate.coreData.saveContext()
+    }
+    
+    var childContext: NSManagedObjectContext {
+        if let result = objc_getAssociatedObject(self, &child_managedContext_objc_key) as? NSManagedObjectContext {
+            return result
+        } else {
+            let childManagedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+            childManagedContext.parent = appDelegate.coreData.managedContext
+            objc_setAssociatedObject(self, &child_managedContext_objc_key, childManagedContext, .OBJC_ASSOCIATION_RETAIN)
+            return childManagedContext
+        }
+    }    
+    
 }
 

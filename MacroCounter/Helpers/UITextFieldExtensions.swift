@@ -37,7 +37,8 @@ extension UITextField {
         
         var items = [UIBarButtonItem(title: "Close", style: .plain, target: onCancel.target, action: onCancel.action), UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)]
         if self.tag > 1 {
-            items.append(UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(previousButtonTapped)))
+            let upButton = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(previousButtonTapped))
+            items.append(upButton)
             let someSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
             someSpace.width = 32
             items.append(someSpace)

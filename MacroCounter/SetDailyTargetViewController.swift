@@ -10,9 +10,7 @@ import UIKit
 import CoreData
 
 class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
-    
-    var managedContext: NSManagedObjectContext!
-    
+        
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
@@ -24,9 +22,8 @@ class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        managedContext = appDelegate.coreData.managedContext
         let fetchRequest: NSFetchRequest<Settings> = Settings.fetchRequest()
-        let settings = (try! managedContext.fetch(fetchRequest)).first
+        let settings = (try! context.fetch(fetchRequest)).first
         self.settings = settings
         settingsChanged()
     }

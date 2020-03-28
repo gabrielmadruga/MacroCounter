@@ -29,4 +29,9 @@ public class Entry: NSManagedObject {
         
         return formatter.string(from: startOfDay)
     }
+    
+    override public func awakeFromInsert() {
+        setPrimitiveValue("Default Name", forKey: "name")
+        setPrimitiveValue(Date(), forKey: "date")
+    }
 }

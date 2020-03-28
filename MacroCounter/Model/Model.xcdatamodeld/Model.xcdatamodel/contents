@@ -8,7 +8,7 @@
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Settings" inverseName="dailyTarget" inverseEntity="Settings"/>
     </entity>
     <entity name="Entry" representedClassName="Entry" syncable="YES">
-        <attribute name="calories" attributeType="Float" usesScalarValueType="YES"/>
+        <attribute name="calories" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="carbs" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="fats" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>

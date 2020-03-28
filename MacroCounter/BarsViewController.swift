@@ -11,8 +11,19 @@ import CoreData
 		
 class BarsViewController: UIViewController {
     
-    var managedContext: NSManagedObjectContext!
-    lazy var todayPredicate: NSPredicate = {
+    lazy var fetchedTodayEntriesResultsController: NSFetchedResultsController<Entry> = {
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.predicate = todayEntriesPredicate
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: context,
+                                                                  sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+
+        return fetchedResultsController
+    }()
+    
+    lazy var todayEntriesPredicate: NSPredicate = {
         // Get the current calendar with local time zone
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
@@ -25,6 +36,17 @@ class BarsViewController: UIViewController {
         let toPredicate = NSPredicate(format: "%K < %@", #keyPath(Entry.date), dateTo as NSDate)
         let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
         return datePredicate
+    }()
+    
+    lazy var fetchedDailyTargetResultsController: NSFetchedResultsController<DailyTarget> = {
+        let fetchRequest: NSFetchRequest<DailyTarget> = DailyTarget.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(DailyTarget.calories), ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: context,
+                                                                  sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+
+        return fetchedResultsController
     }()
     
     @IBOutlet weak var dailyTargetStackView: UIStackView!
@@ -48,21 +70,16 @@ class BarsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        managedContext = appDelegate.coreData.managedContext
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: UIApplication.didBecomeActiveNotification, object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        try! fetchedTodayEntriesResultsController.performFetch()
+        try! fetchedDailyTargetResultsController.performFetch()
         reloadData()
     }
     
-    @objc func reloadData() {
-        let entryFetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        entryFetchRequest.predicate = todayPredicate
-        let todayEntries = try! managedContext.fetch(entryFetchRequest)        
-        
-        guard let dailyTarget = (try? managedContext.fetch(DailyTarget.fetchRequest() as NSFetchRequest<DailyTarget>))?.first else {
+    func reloadData() {
+        guard let todayEntries = fetchedTodayEntriesResultsController.fetchedObjects else {
+            fatalError("Error fetching entries")
+        }
+        guard let dailyTarget = fetchedDailyTargetResultsController.fetchedObjects?.first else {
             fatalError("A daily target must be set by now!")
         }
         let fatFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
@@ -98,4 +115,20 @@ class BarsViewController: UIViewController {
 
     }
     
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension BarsViewController: NSFetchedResultsControllerDelegate {
+    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//
+//    }
+    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//
+//    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        reloadData()
+    }
 }

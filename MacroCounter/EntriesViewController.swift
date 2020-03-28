@@ -11,15 +11,13 @@ import CoreData
 
 
 class EntriesViewController: UIViewController {
-    
-    var managedContext: NSManagedObjectContext!
-    
+        
     lazy var fetchedResultsController: NSFetchedResultsController<Entry> = {
         let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
         fetchRequest.fetchBatchSize = 20
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                                  managedObjectContext: managedContext,
+                                                                  managedObjectContext: context,
                                                                   sectionNameKeyPath: #keyPath(Entry.sectionIdentifier), cacheName: nil)
         fetchedResultsController.delegate = self
 
@@ -31,8 +29,7 @@ class EntriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        managedContext = appDelegate.coreData.managedContext
-        try? fetchedResultsController.performFetch()
+        try! fetchedResultsController.performFetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,7 +82,8 @@ extension EntriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
-            managedContext.delete(cell.entry!)
+            context.delete(cell.entry!)
+            saveContext()
         }
     }
 }
