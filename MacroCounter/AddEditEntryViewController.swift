@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-protocol AddEditEntryViewControllerDelegate: class {
-
-    func didSaveEntry(_: Entry)
-    func didDeleteEntry(_: Entry)
-}
+//protocol AddEditEntryViewControllerDelegate: class {
+//
+//    func didSaveEntry(_: Entry)
+//    func didDeleteEntry(_: Entry)
+//}
 
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
 
@@ -33,12 +33,14 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
-    weak var delegate: AddEditEntryViewControllerDelegate?
+//    weak var delegate: AddEditEntryViewControllerDelegate?
     var entry: Entry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        managedContext = appDelegate.coreData.managedContext
+        let childManagedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        childManagedContext.parent = appDelegate.coreData.managedContext
+        managedContext = childManagedContext
         isModalInPresentation = true
         calculateCaloriesButton.isHidden = true
         nameTextField.addToolbar(tagsRange: 1..<5)
@@ -101,8 +103,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             }
             return
         }
+        try? managedContext.save()
         appDelegate.coreData.saveContext()
-        delegate?.didSaveEntry(entry!)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -112,21 +114,15 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate {
             alert.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [unowned self] (action) in
-            self.managedContext.delete(self.entry!)
+            self.appDelegate.coreData.managedContext.delete(self.entry!)
             self.appDelegate.coreData.saveContext()
-            self.delegate?.didDeleteEntry(self.entry!)
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true) { [unowned self] in
-            #warning("This is bad. Stackoverflow says I should use other context and merge them at the end or blow it")
-            if !self.deleteButton.isEnabled {
-                self.managedContext.delete(self.entry!)
-            }
-        }
+        self.dismiss(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
