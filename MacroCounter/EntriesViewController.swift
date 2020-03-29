@@ -32,13 +32,33 @@ class EntriesViewController: UIViewController {
         try! fetchedResultsController.performFetch()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard let addEditEntryViewController = (segue.destination as? UINavigationController)?.viewControllers.first as? AddEditEntryViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        switch(segue.identifier ?? "") {
+            //        case "New":
+            //
+        //            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
+        case "Edit":
+            let cell = sender as! EntryTableViewCell
+            addEditEntryViewController.entry = cell.entry
+        default:
+            break
+        }
+        
     }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
 extension EntriesViewController: NSFetchedResultsControllerDelegate {
+    
+    #warning("TODO")
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+//
+//    }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
@@ -123,24 +143,6 @@ class EntryTableViewCell: UITableViewCell {
 }
 
 extension EntriesViewController: UITableViewDataSource {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        guard let addEditEntryViewController = (segue.destination as? UINavigationController)?.viewControllers.first as? AddEditEntryViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        switch(segue.identifier ?? "") {
-//        case "New":
-//
-//            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
-        case "Edit":
-            let cell = sender as! EntryTableViewCell
-            addEditEntryViewController.entry = cell.entry
-        default:
-            break
-        }
-        
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0

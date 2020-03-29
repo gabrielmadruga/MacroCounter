@@ -100,6 +100,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
             }
             return
         }
+        try! grandChildContext?.save()
         try! childContext.save()
         saveContext()
         self.dismiss(animated: true)
@@ -111,7 +112,8 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
             alert.dismiss(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [unowned self] (action) in
-            self.context.delete(self.entry!)
+            self.childContext.delete(self.entry!)
+            try! self.childContext.save()
             self.saveContext()
             self.dismiss(animated: true)
         }))

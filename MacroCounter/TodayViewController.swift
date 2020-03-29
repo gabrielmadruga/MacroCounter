@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 		
-class BarsViewController: UIViewController {
+class TodayViewController: UIViewController {
     
     lazy var fetchedTodayEntriesResultsController: NSFetchedResultsController<Entry> = {
         let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
@@ -112,13 +112,12 @@ class BarsViewController: UIViewController {
         carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, dailyTarget.carbs), animated: false)
         proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, dailyTarget.proteins), animated: false)
         caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, dailyTarget.calories), animated: false)
-
     }
     
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
-extension BarsViewController: NSFetchedResultsControllerDelegate {
+extension TodayViewController: NSFetchedResultsControllerDelegate {
     
 //    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 //
