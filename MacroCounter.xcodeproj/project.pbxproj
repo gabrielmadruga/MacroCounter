@@ -40,7 +40,6 @@
 		EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */; };
 		EED94F5924280D360094BCBB /* DailyTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */; };
 		EED94F5D24283EAA0094BCBB /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED94F5C24283EAA0094BCBB /* Entry.storyboard */; };
-		EED94F5F24283EE50094BCBB /* EntryTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */; };
 		EED94F61242841F60094BCBB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED94F60242841F60094BCBB /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -158,20 +157,11 @@
 		C090635E211A503E005FBAF5 /* MacroCounter */ = {
 			isa = PBXGroup;
 			children = (
-				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
-				C0906363211A503E005FBAF5 /* Main.storyboard */,
-				EE13D8F224305564000EDFF7 /* ProgressView.xib */,
-				EED94F5C24283EAA0094BCBB /* Entry.storyboard */,
-				EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */,
-				EED94F60242841F60094BCBB /* Settings.storyboard */,
 				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
-				C0906361211A503E005FBAF5 /* MainViewController.swift */,
-				EE4225DE23E663630089E881 /* TodayViewController.swift */,
-				EE13D8F024304E2A000EDFF7 /* ProgressView.swift */,
-				EEB522AC23E504E90077640F /* EntriesViewController.swift */,
-				C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */,
-				EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */,
-				EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */,
+				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
+				EE7004482430FB060005A425 /* Main */,
+				EE7004492430FB340005A425 /* Entry */,
+				EED94F60242841F60094BCBB /* Settings.storyboard */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
 				C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */,
 				EEC3605123E63FEB00F1DA3C /* Model */,
@@ -207,6 +197,31 @@
 				C0D0E11E2129D76900AE49AF /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE7004482430FB060005A425 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C0906363211A503E005FBAF5 /* Main.storyboard */,
+				C0906361211A503E005FBAF5 /* MainViewController.swift */,
+				EE4225DE23E663630089E881 /* TodayViewController.swift */,
+				EE13D8F224305564000EDFF7 /* ProgressView.xib */,
+				EE13D8F024304E2A000EDFF7 /* ProgressView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		EE7004492430FB340005A425 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				EED94F5C24283EAA0094BCBB /* Entry.storyboard */,
+				EEB522AC23E504E90077640F /* EntriesViewController.swift */,
+				C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */,
+				EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */,
+				EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */,
+				EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */,
+			);
+			path = Entry;
 			sourceTree = "<group>";
 		};
 		EEC3605123E63FEB00F1DA3C /* Model */ = {
@@ -356,7 +371,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE13D8F324305564000EDFF7 /* ProgressView.xib in Resources */,
-				EED94F5F24283EE50094BCBB /* EntryTemplate.storyboard in Resources */,
 				C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */,
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
 				EED94F61242841F60094BCBB /* Settings.storyboard in Resources */,

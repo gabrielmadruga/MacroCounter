@@ -33,7 +33,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WR-cU-z7H">
-                                                    <rect key="frame" x="150" y="0.0" width="232" height="44"/>
+                                                    <rect key="frame" x="150" y="0.0" width="244" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
@@ -46,9 +46,9 @@
                                                 <constraint firstItem="4WR-cU-z7H" firstAttribute="leading" secondItem="uNz-ZA-yHz" secondAttribute="leading" constant="150" id="EOJ-ic-Xlz"/>
                                                 <constraint firstItem="4WR-cU-z7H" firstAttribute="top" secondItem="uNz-ZA-yHz" secondAttribute="top" id="O6P-gV-wNO"/>
                                                 <constraint firstAttribute="bottom" secondItem="4WR-cU-z7H" secondAttribute="bottom" id="RRS-Kv-jCF"/>
-                                                <constraint firstAttribute="trailing" secondItem="4WR-cU-z7H" secondAttribute="trailing" constant="32" id="Uck-rz-wfa"/>
                                                 <constraint firstItem="0fW-SL-PJx" firstAttribute="leading" secondItem="uNz-ZA-yHz" secondAttribute="leadingMargin" constant="16" id="Wzd-gH-oJL"/>
                                                 <constraint firstItem="4WR-cU-z7H" firstAttribute="firstBaseline" secondItem="0fW-SL-PJx" secondAttribute="firstBaseline" id="qb4-he-cz9"/>
+                                                <constraint firstAttribute="trailing" secondItem="4WR-cU-z7H" secondAttribute="trailing" constant="20" symbolic="YES" id="tJx-CE-pbv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -67,7 +67,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lnw-lc-XLA">
-                                                    <rect key="frame" x="150" y="0.0" width="232" height="44"/>
+                                                    <rect key="frame" x="150" y="0.0" width="244" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
@@ -78,7 +78,7 @@
                                             <constraints>
                                                 <constraint firstItem="Lnw-lc-XLA" firstAttribute="firstBaseline" secondItem="kiI-54-RtW" secondAttribute="firstBaseline" id="CMb-jN-JDS"/>
                                                 <constraint firstItem="Lnw-lc-XLA" firstAttribute="leading" secondItem="Nyj-P1-mzU" secondAttribute="leading" constant="150" id="P2a-Dy-ND7"/>
-                                                <constraint firstAttribute="trailing" secondItem="Lnw-lc-XLA" secondAttribute="trailing" constant="32" id="hPt-2J-cVv"/>
+                                                <constraint firstAttribute="trailing" secondItem="Lnw-lc-XLA" secondAttribute="trailing" constant="20" symbolic="YES" id="Pjf-hu-LcF"/>
                                                 <constraint firstAttribute="bottom" secondItem="Lnw-lc-XLA" secondAttribute="bottom" id="jPG-eH-v4h"/>
                                                 <constraint firstItem="kiI-54-RtW" firstAttribute="leading" secondItem="Nyj-P1-mzU" secondAttribute="leadingMargin" constant="16" id="jqC-IN-Yun"/>
                                                 <constraint firstItem="Lnw-lc-XLA" firstAttribute="top" secondItem="Nyj-P1-mzU" secondAttribute="top" id="yIR-z8-dUU"/>
@@ -552,7 +552,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oxn-X4-nq4"/>
+        <segue reference="IOr-aQ-Bn7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>

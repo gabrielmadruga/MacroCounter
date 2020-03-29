@@ -72,7 +72,10 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        dateTextField.text = dateFormatter.string(from: entry.date!)
+        let dateString = dateFormatter.string(from: entry.date!)
+        if dateTextField.text != dateString {
+            dateTextField.text = dateString
+        }
         if (!nameTextField.isEditing) {
             nameTextField.text = entry.name
         }

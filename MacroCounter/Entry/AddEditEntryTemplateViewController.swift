@@ -54,18 +54,12 @@ class AddEditEntryTemplateViewController: UITableViewController, UITextFieldDele
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        if entryTemplate.id != nil {
-            appDelegate.repository?.update(entryTemplate)
-        } else {
-            appDelegate.repository?.create(entryTemplate)
-        }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         self.view.isUserInteractionEnabled = false
-        appDelegate.repository?.delete(entryTemplate)
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popViewController(animated: true)
     }
