@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
         dateLabel.text = formatter.string(from: .init())
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
         
-        let entriesButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(showEntries))
+        let entriesButton = UIBarButtonItem(title: "All Entries", style: .plain, target: self, action: #selector(showEntries))
         let targetButton = UIBarButtonItem(title: "Daily Target", style: .plain, target: self, action: #selector(showDailyTarget))
         let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let addEntryButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 44)))
@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
         addEntryButton.imageEdgeInsets = .init(top: 0, left: -10, bottom: 0, right: 0)
         addEntryButton.addTarget(self, action: #selector(presentAddEditEntry), for: .touchUpInside)
         let addEntryBarButton = UIBarButtonItem(customView: addEntryButton)
-        setToolbarItems([entriesButton, targetButton, someSpace, addEntryBarButton], animated: true)
+        setToolbarItems([targetButton, someSpace, entriesButton, someSpace, addEntryBarButton], animated: true)
     }
     
     @objc private func showEntries() {

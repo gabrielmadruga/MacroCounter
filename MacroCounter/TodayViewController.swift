@@ -49,23 +49,11 @@ class TodayViewController: UIViewController {
         return fetchedResultsController
     }()
     
-    @IBOutlet weak var dailyTargetStackView: UIStackView!
-    @IBOutlet weak var caloriesProgressView: UIProgressView!
-    @IBOutlet weak var fatProgressView: UIProgressView!
-    @IBOutlet weak var carbsProgressView: UIProgressView!
-    @IBOutlet weak var proteinProgressView: UIProgressView!
+    @IBOutlet weak var caloriesProgressView: ProgressView!
+    @IBOutlet weak var fatProgressView: ProgressView!
+    @IBOutlet weak var carbsProgressView: ProgressView!
+    @IBOutlet weak var proteinProgressView: ProgressView!
     
-//    @IBOutlet weak var caloriesCurrentLabel: UILabel!
-//    @IBOutlet weak var caloriesGoalLabel: UILabel!
-//
-//    @IBOutlet weak var fatCurrentLabel: UILabel!
-//    @IBOutlet weak var fatGoalLabel: UILabel!
-//
-//    @IBOutlet weak var carbsCurrentLabel: UILabel!
-//    @IBOutlet weak var carbsGoalLabel: UILabel!
-//
-//    @IBOutlet weak var proteinCurrentLabel: UILabel!
-//    @IBOutlet weak var proteinGoalLabel: UILabel!
        
     
     override func viewDidLoad() {
@@ -94,24 +82,12 @@ class TodayViewController: UIViewController {
         let caloriesFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in
             current = current + entry.calories * entry.servings
         }
-        // Update labels
-//        fatCurrentLabel.text = "\(Int(fatFromEntries).description)"
-//        fatGoalLabel.text = "\(Int(dailyTarget.fats).description)"
-//        carbsCurrentLabel.text = "\(Int(carbsFromEntries).description)"
-//        carbsGoalLabel.text = "\(Int(dailyTarget.carbs).description)"
-//        proteinCurrentLabel.text = "\(Int(proteinFromEntries).description)"
-//        proteinGoalLabel.text = "\(Int(dailyTarget.proteins).description)"
-//        caloriesCurrentLabel.text = "\(Int(caloriesFromEntries).description)"
-//        caloriesGoalLabel.text = "\(Int(dailyTarget.calories).description)"
-        // Update progress views
-        func capedRatioTo1(_ value: Float, _ goalValue: Float) -> Float {
-            let ratio = value / goalValue
-            return ratio > 1 ? 1 : ratio
-        }
-        fatProgressView.setProgress(capedRatioTo1(fatFromEntries, dailyTarget.fats), animated: false)
-        carbsProgressView.setProgress(capedRatioTo1(carbsFromEntries, dailyTarget.carbs), animated: false)
-        proteinProgressView.setProgress(capedRatioTo1(proteinFromEntries, dailyTarget.proteins), animated: false)
-        caloriesProgressView.setProgress(capedRatioTo1(caloriesFromEntries, dailyTarget.calories), animated: false)
+        
+        caloriesProgressView.setup(name: "Calories", current: caloriesFromEntries, target: dailyTarget.calories, unit: "CAL", color: .systemBlue)
+        fatProgressView.setup(name: "Fats", current: fatFromEntries, target: dailyTarget.fats, unit: "G", color: .systemYellow)
+        carbsProgressView.setup(name: "Carbs", current: carbsFromEntries, target: dailyTarget.carbs, unit: "G", color: .systemGreen)
+        proteinProgressView.setup(name: "Proteins", current: proteinFromEntries, target: dailyTarget.proteins, unit: "G", color: .systemRed)
+        
     }
     
 }

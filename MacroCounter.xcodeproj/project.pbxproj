@@ -22,6 +22,8 @@
 		C0D0E129212A2EAC00AE49AF /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E128212A2EAC00AE49AF /* UIViewControllerExtensions.swift */; };
 		C0D0E12D212D04ED00AE49AF /* SetDailyTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */; };
 		C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */; };
+		EE13D8F124304E2A000EDFF7 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13D8F024304E2A000EDFF7 /* ProgressView.swift */; };
+		EE13D8F324305564000EDFF7 /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE13D8F224305564000EDFF7 /* ProgressView.xib */; };
 		EE4225DF23E663630089E881 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4225DE23E663630089E881 /* TodayViewController.swift */; };
 		EE53C19E242D7ECF00BE645B /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE53C19D242D7ECF00BE645B /* Entry+CoreDataProperties.swift */; };
 		EE63EC33242BFE8500D05FA5 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63EC32242BFE8500D05FA5 /* UIViewExtensions.swift */; };
@@ -82,6 +84,8 @@
 		C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDailyTargetViewController.swift; sourceTree = "<group>"; };
 		C0D0E12E212D05C100AE49AF /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditEntryTemplateViewController.swift; sourceTree = "<group>"; };
+		EE13D8F024304E2A000EDFF7 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		EE13D8F224305564000EDFF7 /* ProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		EE4225DE23E663630089E881 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EE53C19D242D7ECF00BE645B /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EE63EC32242BFE8500D05FA5 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
@@ -156,12 +160,14 @@
 			children = (
 				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
 				C0906363211A503E005FBAF5 /* Main.storyboard */,
+				EE13D8F224305564000EDFF7 /* ProgressView.xib */,
 				EED94F5C24283EAA0094BCBB /* Entry.storyboard */,
 				EED94F5E24283EE50094BCBB /* EntryTemplate.storyboard */,
 				EED94F60242841F60094BCBB /* Settings.storyboard */,
 				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
 				C0906361211A503E005FBAF5 /* MainViewController.swift */,
 				EE4225DE23E663630089E881 /* TodayViewController.swift */,
+				EE13D8F024304E2A000EDFF7 /* ProgressView.swift */,
 				EEB522AC23E504E90077640F /* EntriesViewController.swift */,
 				C0D0E1192129D2CE00AE49AF /* AddEditEntryViewController.swift */,
 				EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */,
@@ -349,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE13D8F324305564000EDFF7 /* ProgressView.xib in Resources */,
 				EED94F5F24283EE50094BCBB /* EntryTemplate.storyboard in Resources */,
 				C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */,
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
@@ -391,6 +398,7 @@
 				EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */,
 				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
+				EE13D8F124304E2A000EDFF7 /* ProgressView.swift in Sources */,
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,
 				EED94F5524280D360094BCBB /* Settings+CoreDataProperties.swift in Sources */,
 				EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */,

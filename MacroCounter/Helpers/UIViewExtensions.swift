@@ -1,12 +1,34 @@
-////
-////  UIViewExtensions.swift
-////  MacroCounter
-////
-////  Created by Gabriel Madruga on 3/25/20.
-////  Copyright © 2020 Gabriel Madruga. All rights reserved.
-////
 //
-//import UIKit
+//  UIViewExtensions.swift
+//  MacroCounter
+//
+//  Created by Gabriel Madruga on 3/25/20.
+//  Copyright © 2020 Gabriel Madruga. All rights reserved.
+//
+
+import UIKit
+
+extension UIView {
+    
+    @discardableResult
+    func loadFromNib<T: UIView>() -> T? {
+        let bundle = Bundle(for: type(of: self))
+        guard let view = bundle.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?[0] as? T else {
+            return nil
+        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(view)
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            view.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        return view
+    }
+}
+
+//
 //
 //@IBDesignable
 //class DesignableView: UIView {
@@ -21,7 +43,7 @@
 //}
 //
 //extension UIView {
-//    
+//
 //    @IBInspectable
 //    var cornerRadius: CGFloat {
 //        get {
@@ -41,7 +63,7 @@
 //            layer.borderWidth = newValue
 //        }
 //    }
-//    
+//
 //    @IBInspectable
 //    var borderColor: UIColor? {
 //        get {
@@ -58,7 +80,7 @@
 //            }
 //        }
 //    }
-//    
+//
 //    @IBInspectable
 //    var shadowRadius: CGFloat {
 //        get {
@@ -68,7 +90,7 @@
 //            layer.shadowRadius = newValue
 //        }
 //    }
-//    
+//
 //    @IBInspectable
 //    var shadowOpacity: Float {
 //        get {
@@ -78,7 +100,7 @@
 //            layer.shadowOpacity = newValue
 //        }
 //    }
-//    
+//
 //    @IBInspectable
 //    var shadowOffset: CGSize {
 //        get {
@@ -88,7 +110,7 @@
 //            layer.shadowOffset = newValue
 //        }
 //    }
-//    
+//
 //    @IBInspectable
 //    var shadowColor: UIColor? {
 //        get {
