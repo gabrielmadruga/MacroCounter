@@ -324,29 +324,8 @@
                             <outlet property="delegate" destination="ulx-2G-5VL" id="j9m-oO-PRy"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ac0-Hi-baF"/>
-                        <barButtonItem systemItem="trash" id="BHj-vp-z3a">
-                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="2" maxY="0.0"/>
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="deleteButtonPressed:" destination="ulx-2G-5VL" id="H8q-HZ-KXB"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="LCt-Ow-pp5"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Add Entry" id="LXt-rg-CBu">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="84q-vC-Ipb">
-                            <connections>
-                                <action selector="cancelButtonPressed:" destination="ulx-2G-5VL" id="qFx-0o-Qor"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Duh-Um-DEW">
-                            <connections>
-                                <action selector="saveButtonPressed:" destination="ulx-2G-5VL" id="FxZ-Tu-ss6"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add Entry" id="LXt-rg-CBu"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -354,11 +333,9 @@
                         <outlet property="caloriesTextField" destination="RQv-EP-agg" id="zhf-fh-7aJ"/>
                         <outlet property="carbsTextField" destination="ui1-WB-GpB" id="3rm-1J-4aC"/>
                         <outlet property="dateTextField" destination="Lnw-lc-XLA" id="BUa-q8-AZ3"/>
-                        <outlet property="deleteButton" destination="BHj-vp-z3a" id="J7j-o8-RHK"/>
                         <outlet property="fatTextField" destination="Pms-Nb-ck1" id="LXg-X0-v8b"/>
                         <outlet property="nameTextField" destination="4WR-cU-z7H" id="09x-J6-KvY"/>
                         <outlet property="proteinTextField" destination="wsN-0Q-C3G" id="GcL-5d-QEC"/>
-                        <outlet property="saveButton" destination="Duh-Um-DEW" id="e8t-sb-Ttw"/>
                         <outlet property="servingsTextField" destination="a7w-d5-kRT" id="Sm7-7n-reP"/>
                     </connections>
                 </tableViewController>

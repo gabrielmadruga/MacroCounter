@@ -17,7 +17,7 @@ import CoreData
 
 class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
 
-    var date = Date()
+    
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -29,15 +29,17 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
     
     @IBOutlet weak var calculateCaloriesButton: UIButton!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    
-//    weak var delegate: AddEditEntryViewControllerDelegate?
+
+    var date = Date()
     var entry: Entry?
+    /// We want to be able to save so that we don't have to check for changes and instead use the context hasChanges
+    /// This is used so that saving does not reach the root context, avoiding unesesary updates on the rest of the app.
     var grandChildContext: NSManagedObjectContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addButtons()
         isModalInPresentation = true
         self.navigationController?.presentationController?.delegate = self
         calculateCaloriesButton.isHidden = true
@@ -52,19 +54,64 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
             if !entry.macros.calories.isEqual(to: entry.calories) {
                 overrideCalories()
             }
-            deleteButton.isEnabled = true
             date = entry.date!
         } else {
             grandChildContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
             grandChildContext!.parent = childContext
             entry = Entry(context: grandChildContext!)
             try! grandChildContext!.save()
-            deleteButton.isEnabled = false
             nameTextField.becomeFirstResponder()
         }
         reloadData()
     }
 
+    private func addButtons() {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed(_:)))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonPressed(_:)))
+        deleteButton.tintColor = .systemRed
+        deleteButton.isEnabled = entry != nil // Edit mode
+        let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = saveButton
+        self.toolbarItems = [someSpace, deleteButton, someSpace]
+    }
+    
+    @objc
+    private func saveButtonPressed(_ sender: Any) {
+        guard let name = entry?.name, !name.isEmpty else {
+            showToast(message: "A name is required") { [unowned self] in
+                self.nameTextField.becomeFirstResponder()
+            }
+            return
+        }
+        try! grandChildContext?.save()
+        try! childContext.save()
+        saveContext()
+        self.dismiss(animated: true)
+    }
+    
+    @objc
+    private func deleteButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete Entry", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            alert.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [unowned self] (action) in
+            self.childContext.delete(self.entry!)
+            try! self.childContext.save()
+            self.saveContext()
+            self.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    @objc
+    private func cancelButtonPressed(_ sender: Any) {
+        self.view.endEditing(true)
+        self.dismiss(animated: true)
+    }
+    
     private func reloadData() {
         guard let entry = self.entry else {
             return
@@ -94,38 +141,6 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
         if (!servingsTextField.isEditing) {
             servingsTextField.text = entry.servings.description
         }
-    }
-
-    @IBAction func saveButtonPressed(_ sender: Any) {
-        guard let name = entry?.name, !name.isEmpty else {
-            showToast(message: "A name is required") { [unowned self] in
-                self.nameTextField.becomeFirstResponder()
-            }
-            return
-        }
-        try! grandChildContext?.save()
-        try! childContext.save()
-        saveContext()
-        self.dismiss(animated: true)
-    }
-    
-    @IBAction func deleteButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Delete Entry", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-            alert.dismiss(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [unowned self] (action) in
-            self.childContext.delete(self.entry!)
-            try! self.childContext.save()
-            self.saveContext()
-            self.dismiss(animated: true)
-        }))
-        self.present(alert, animated: true)
-    }
-    
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.view.endEditing(true)
-        self.dismiss(animated: true)
     }
     
     private func userDidChanges() -> Bool {

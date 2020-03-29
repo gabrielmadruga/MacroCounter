@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-		
+import Combine
+
 class TodayViewController: UIViewController {
     
     var todayEntriesFetchedResultsController: NSFetchedResultsController<Entry>!
@@ -19,11 +20,15 @@ class TodayViewController: UIViewController {
     @IBOutlet weak var carbsProgressView: ProgressView!
     @IBOutlet weak var proteinProgressView: ProgressView!    
        
+    var dayChangeStream: AnyCancellable!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupResultControllersAndPerformFetch()
-        NotificationCenter.default.addObserver(self, selector: #selector(onDayChange), name: .NSCalendarDayChanged, object: nil)
+        dayChangeStream = NotificationCenter.default.publisher(for: .NSCalendarDayChanged).receive(on: RunLoop.main).sink { notification in
+            self.setupResultControllersAndPerformFetch()
+            self.reloadData()
+        }
         reloadData()
     }
     
@@ -34,14 +39,6 @@ class TodayViewController: UIViewController {
         dailyTargetFetchedResultsController.delegate = self
         try! todayEntriesFetchedResultsController.performFetch()
         try! dailyTargetFetchedResultsController.performFetch()
-    }
-    
-    @objc
-    private func onDayChange() {
-        DispatchQueue.main.async {
-            self.setupResultControllersAndPerformFetch()
-            self.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -7,22 +7,19 @@
 //
 
 import UIKit
-
+import Combine
 
 class MainViewController: UIViewController {
     
+    var dayChangeStream: AnyCancellable!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(onDayChange), name: .NSCalendarDayChanged, object: nil)
-        setupLeftBarDateButton()
-        setupToolbar()        
-    }
-    
-    @objc
-    private func onDayChange() {
-        DispatchQueue.main.async {
+        dayChangeStream = NotificationCenter.default.publisher(for: .NSCalendarDayChanged).receive(on: RunLoop.main).sink { notification in
             self.setupLeftBarDateButton()
         }
+        setupLeftBarDateButton()
+        setupToolbar()        
     }
     
     private func setupLeftBarDateButton() {
