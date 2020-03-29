@@ -11,7 +11,8 @@
             <connections>
                 <outlet property="currentAndTargetLabel" destination="lQD-zL-b3u" id="BO4-cv-hoB"/>
                 <outlet property="nameLabel" destination="KrD-ut-J2A" id="FPb-Yt-GeC"/>
-                <outlet property="progressView" destination="jOd-hY-eDU" id="Ebm-0K-kKw"/>
+                <outlet property="progressView" destination="n6u-Hx-Oha" id="xqN-eB-WWy"/>
+                <outlet property="progressViewTrailingSpaceToContainer" destination="pGa-cq-r2H" id="4dQ-8s-Fvs"/>
                 <outlet property="unitLabel" destination="1YW-xJ-10F" id="070-5X-krW"/>
             </connections>
         </placeholder>
@@ -52,15 +53,28 @@
                                 <constraint firstAttribute="height" constant="32" id="YWd-tg-Gtg"/>
                             </constraints>
                         </stackView>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="jOd-hY-eDU">
-                            <rect key="frame" x="0.0" y="48" width="414" height="81"/>
-                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWM-Sg-xax">
+                            <rect key="frame" x="0.0" y="48" width="414" height="80"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6u-Hx-Oha">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="80" id="zgt-WB-1Ap"/>
+                                <constraint firstAttribute="height" constant="80" id="77G-zf-IEu"/>
+                                <constraint firstItem="n6u-Hx-Oha" firstAttribute="leading" secondItem="gWM-Sg-xax" secondAttribute="leading" id="N9S-Sm-07V"/>
+                                <constraint firstItem="n6u-Hx-Oha" firstAttribute="top" secondItem="gWM-Sg-xax" secondAttribute="top" id="d15-nL-eiO"/>
+                                <constraint firstAttribute="leading" secondItem="n6u-Hx-Oha" secondAttribute="trailing" id="pGa-cq-r2H"/>
+                                <constraint firstAttribute="bottom" secondItem="n6u-Hx-Oha" secondAttribute="bottom" id="zXq-Yc-bbi"/>
                             </constraints>
-                            <color key="trackTintColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </progressView>
+                        </view>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="gWM-Sg-xax" firstAttribute="leading" secondItem="KfF-HK-iY3" secondAttribute="leading" id="KlI-Lq-RTJ"/>
+                        <constraint firstAttribute="trailing" secondItem="gWM-Sg-xax" secondAttribute="trailing" id="UKb-rV-eSb"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

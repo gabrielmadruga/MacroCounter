@@ -63,6 +63,19 @@ class TodayViewController: UIViewController {
         reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchedTodayEntriesResultsController.delegate = self
+        fetchedDailyTargetResultsController.delegate = self
+        reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        fetchedTodayEntriesResultsController.delegate = nil
+        fetchedDailyTargetResultsController.delegate = nil
+    }
+    
     func reloadData() {
         guard let todayEntries = fetchedTodayEntriesResultsController.fetchedObjects else {
             fatalError("Error fetching entries")
@@ -83,11 +96,10 @@ class TodayViewController: UIViewController {
             current = current + entry.calories * entry.servings
         }
         
-        caloriesProgressView.setup(name: "Calories", current: caloriesFromEntries, target: dailyTarget.calories, unit: "CAL", color: .systemBlue)
-        fatProgressView.setup(name: "Fats", current: fatFromEntries, target: dailyTarget.fats, unit: "G", color: .systemYellow)
-        carbsProgressView.setup(name: "Carbs", current: carbsFromEntries, target: dailyTarget.carbs, unit: "G", color: .systemGreen)
-        proteinProgressView.setup(name: "Proteins", current: proteinFromEntries, target: dailyTarget.proteins, unit: "G", color: .systemRed)
-        
+        self.caloriesProgressView.setup(name: "Calories", current: caloriesFromEntries, target: dailyTarget.calories, unit: "CAL", color: .systemBlue)
+        self.fatProgressView.setup(name: "Fats", current: fatFromEntries, target: dailyTarget.fats, unit: "G", color: .systemYellow)
+        self.carbsProgressView.setup(name: "Carbs", current: carbsFromEntries, target: dailyTarget.carbs, unit: "G", color: .systemGreen)
+        self.proteinProgressView.setup(name: "Proteins", current: proteinFromEntries, target: dailyTarget.proteins, unit: "G", color: .systemRed)
     }
     
 }

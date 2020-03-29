@@ -14,7 +14,8 @@ class ProgressView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var currentAndTargetLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var progressView: UIView!
+    @IBOutlet weak var progressViewTrailingSpaceToContainer: NSLayoutConstraint!
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,14 +31,14 @@ class ProgressView: UIView {
         nameLabel.text = name
         currentAndTargetLabel.text = "\(Int(round(current)))/\(Int(round(target)))"
         unitLabel.text = unit
-        func capedRatioTo1(_ value: Float, _ goalValue: Float) -> Float {
-            let ratio = value / goalValue
-            return ratio > 1 ? 1 : ratio
+        self.currentAndTargetLabel.textColor = color
+        self.unitLabel.textColor = color
+        self.progressView.backgroundColor = color
+        let progress = CGFloat(current/target)
+        UIView.animate(withDuration: 1) {
+            self.progressViewTrailingSpaceToContainer.constant = -self.progressView.superview!.bounds.size.width * progress
+            self.progressView.superview!.layoutIfNeeded()
         }
-        progressView.setProgress(capedRatioTo1(current, target), animated: true)
         
-        currentAndTargetLabel.textColor = color
-        unitLabel.textColor = color
-        progressView.tintColor = color
     }
 }
