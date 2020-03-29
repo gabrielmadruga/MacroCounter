@@ -54,12 +54,7 @@ class EntriesViewController: UIViewController {
 
 // MARK: - NSFetchedResultsControllerDelegate
 extension EntriesViewController: NSFetchedResultsControllerDelegate {
-    
-    #warning("TODO")
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
-//
-//    }
-    
+        
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -99,12 +94,58 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
 
 extension EntriesViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let cell = tableView.cellForRow(at: indexPath) as! EntryTableViewCell
-            context.delete(cell.entry!)
-            saveContext()
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] (action, view, completionHandler) in
+            let entry = self.fetchedResultsController.object(at: indexPath)
+            self.context.delete(entry)
+            self.saveContext()
+            completionHandler(true)
         }
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        let sectionInfo = fetchedResultsController.sections?[section]
+        label.text = sectionInfo?.name
+        label.textAlignment = .center
+        label.backgroundColor = .secondarySystemBackground
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 32
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let nav = UIStoryboard.init(.entry).instantiateViewController(identifier: "AddEditEntry") as UINavigationController
+        let addEditEntryVC = nav.viewControllers.first as! AddEditEntryViewController
+        addEditEntryVC.entry = fetchedResultsController.object(at: indexPath)
+        self.present(nav, animated: true, completion: nil)
+    }
+
+}
+
+extension EntriesViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sectionInfo = fetchedResultsController.sections?[section] else {
+            return 0
+        }
+        return sectionInfo.numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! EntryTableViewCell
+        cell.entry = fetchedResultsController.object(at: indexPath)
+        return cell
     }
 }
 
@@ -140,35 +181,4 @@ class EntryTableViewCell: UITableViewCell {
 //        bgColorView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
 //        self.selectedBackgroundView = bgColorView
 //    }
-}
-
-extension EntriesViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionInfo = fetchedResultsController.sections?[section]
-        return sectionInfo?.name
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionInfo = fetchedResultsController.sections?[section] else {
-            return 0
-        }
-        return sectionInfo.numberOfObjects
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as! EntryTableViewCell
-        cell.entry = fetchedResultsController.object(at: indexPath)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    
 }

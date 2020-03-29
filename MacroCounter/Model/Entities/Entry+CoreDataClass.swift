@@ -24,7 +24,8 @@ public class Entry: NSManagedObject {
         calendar.timeZone = NSTimeZone.local
         let startOfDay = calendar.startOfDay(for: date!)
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+//        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
+        formatter.dateStyle = .long
         formatter.timeStyle = .none
         
         return formatter.string(from: startOfDay)
