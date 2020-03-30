@@ -13,6 +13,19 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(onDayChange), name: .NSCalendarDayChanged, object: nil)
+        setupLeftBarDateButton()
+        setupToolbar()        
+    }
+    
+    @objc
+    private func onDayChange() {
+        DispatchQueue.main.async {
+            self.setupLeftBarDateButton()
+        }
+    }
+    
+    private func setupLeftBarDateButton() {
         let formatter = DateFormatter()
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
 //        formatter.dateStyle = .medium
@@ -22,7 +35,9 @@ class MainViewController: UIViewController {
         dateLabel.font = .preferredFont(forTextStyle: .title3)
         dateLabel.text = formatter.string(from: .init())
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
-        
+    }
+    
+    private func setupToolbar() {
         let entriesButton = UIBarButtonItem(title: "Entries", style: .plain, target: self, action: #selector(showEntries))
         let targetButton = UIBarButtonItem(title: "Daily Target", style: .plain, target: self, action: #selector(showDailyTarget))
         let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -56,40 +71,5 @@ class MainViewController: UIViewController {
         self.present(nav, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        switch(segue.identifier ?? "") {
-        case "New":
-            break
-            // os_log("Adding a new entry.", log: OSLog.default, type: .debug)
-        case "Favorites":
-//            guard let entriesViewController = segue.destination as? EntriesViewController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
-            break
-        // os_log("Adding a new entry.", log: OSLog.default, type: .debug)
-        default:
-            break
-        }
-        
-    }
     
 }
-
-//    func setHeight(hasEntries: Bool) {
-//        DispatchQueue.main.async {
-//            let tableFooterViewFrame = self.quickViewTableView.tableFooterView!.frame
-//            let rowCount = self.quickViewTableView.numberOfRows(inSection: 0)
-//            let tableHeaderViewFrame = self.quickViewTableView.tableHeaderView!.frame
-//            var height = self.quickViewTableView.frame.minY + CGFloat(rowCount) * self.quickViewTableView.rowHeight + tableHeaderViewFrame.maxY
-//            if (rowCount == 0) {
-//                height += tableFooterViewFrame.height
-//            }
-//            self.scrollViewContentHeightConstraint.constant = height
-//            if (rowCount > 0) {
-//                UIView.animate(withDuration: 0.5) {
-//                    self.view.layoutIfNeeded()
-//                }
-//            }
-//        }
-//    }

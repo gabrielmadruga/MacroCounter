@@ -11,76 +11,57 @@ import CoreData
 		
 class TodayViewController: UIViewController {
     
-    lazy var fetchedTodayEntriesResultsController: NSFetchedResultsController<Entry> = {
-        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        fetchRequest.predicate = todayEntriesPredicate
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                                  managedObjectContext: context,
-                                                                  sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController.delegate = self
-
-        return fetchedResultsController
-    }()
-    
-    lazy var todayEntriesPredicate: NSPredicate = {
-        // Get the current calendar with local time zone
-        var calendar = Calendar.current
-        calendar.timeZone = NSTimeZone.local
-        
-        // Get today's beginning & end
-        let dateFrom = calendar.startOfDay(for: Date())
-        let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)!
-        
-        let fromPredicate = NSPredicate(format: "%K >= %@", #keyPath(Entry.date), dateFrom as NSDate)
-        let toPredicate = NSPredicate(format: "%K < %@", #keyPath(Entry.date), dateTo as NSDate)
-        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-        return datePredicate
-    }()
-    
-    lazy var fetchedDailyTargetResultsController: NSFetchedResultsController<DailyTarget> = {
-        let fetchRequest: NSFetchRequest<DailyTarget> = DailyTarget.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(DailyTarget.calories), ascending: false)]
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                                  managedObjectContext: context,
-                                                                  sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController.delegate = self
-
-        return fetchedResultsController
-    }()
+    var todayEntriesFetchedResultsController: NSFetchedResultsController<Entry>!
+    var dailyTargetFetchedResultsController: NSFetchedResultsController<DailyTarget>!
     
     @IBOutlet weak var caloriesProgressView: ProgressView!
     @IBOutlet weak var fatProgressView: ProgressView!
     @IBOutlet weak var carbsProgressView: ProgressView!
-    @IBOutlet weak var proteinProgressView: ProgressView!
-    
+    @IBOutlet weak var proteinProgressView: ProgressView!    
        
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        try! fetchedTodayEntriesResultsController.performFetch()
-        try! fetchedDailyTargetResultsController.performFetch()
+        setupResultControllersAndPerformFetch()
+        NotificationCenter.default.addObserver(self, selector: #selector(onDayChange), name: .NSCalendarDayChanged, object: nil)
         reloadData()
+    }
+    
+    private func setupResultControllersAndPerformFetch() {
+        todayEntriesFetchedResultsController = Entry.todayEntriesFetchedResultsController(context: context)
+        todayEntriesFetchedResultsController.delegate = self
+        dailyTargetFetchedResultsController = DailyTarget.dailyTargetFetchedResultsController(context: context)
+        dailyTargetFetchedResultsController.delegate = self
+        try! todayEntriesFetchedResultsController.performFetch()
+        try! dailyTargetFetchedResultsController.performFetch()
+    }
+    
+    @objc
+    private func onDayChange() {
+        DispatchQueue.main.async {
+            self.setupResultControllersAndPerformFetch()
+            self.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchedTodayEntriesResultsController.delegate = self
-        fetchedDailyTargetResultsController.delegate = self
+        todayEntriesFetchedResultsController.delegate = self
+        dailyTargetFetchedResultsController.delegate = self
         reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        fetchedTodayEntriesResultsController.delegate = nil
-        fetchedDailyTargetResultsController.delegate = nil
+        todayEntriesFetchedResultsController.delegate = nil
+        dailyTargetFetchedResultsController.delegate = nil
     }
     
     func reloadData() {
-        guard let todayEntries = fetchedTodayEntriesResultsController.fetchedObjects else {
+        guard let todayEntries = todayEntriesFetchedResultsController.fetchedObjects else {
             fatalError("Error fetching entries")
         }
-        guard let dailyTarget = fetchedDailyTargetResultsController.fetchedObjects?.first else {
+        guard let dailyTarget = dailyTargetFetchedResultsController.fetchedObjects?.first else {
             fatalError("A daily target must be set by now!")
         }
         let fatFromEntries = todayEntries.reduce(into: 0.0) { (current, entry) in

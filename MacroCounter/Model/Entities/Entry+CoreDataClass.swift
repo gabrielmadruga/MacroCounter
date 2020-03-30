@@ -35,4 +35,29 @@ public class Entry: NSManagedObject {
         setPrimitiveValue("Default Name", forKey: "name")
         setPrimitiveValue(Date(), forKey: "date")
     }
+    
+    class func todayEntriesFetchedResultsController(context: NSManagedObjectContext) -> NSFetchedResultsController<Entry> {
+        func todayEntriesPredicate() -> NSPredicate {
+            // Get the current calendar with local time zone
+            var calendar = Calendar.current
+            calendar.timeZone = NSTimeZone.local
+            
+            // Get today's beginning & end
+            let dateFrom = calendar.startOfDay(for: Date())
+            let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)!
+            
+            let fromPredicate = NSPredicate(format: "%K >= %@", #keyPath(Entry.date), dateFrom as NSDate)
+            let toPredicate = NSPredicate(format: "%K < %@", #keyPath(Entry.date), dateTo as NSDate)
+            let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+            return datePredicate
+        }
+        
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.predicate = todayEntriesPredicate()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Entry.date), ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: context,
+                                                                  sectionNameKeyPath: nil, cacheName: nil)
+        return fetchedResultsController
+    }
 }
