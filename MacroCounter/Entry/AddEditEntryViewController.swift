@@ -52,7 +52,9 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         calculateCaloriesButton.isHidden = true
-        if mode == .create {
+        if entry == nil {
+            self.navigationController?.isToolbarHidden = true
+            setupGrandChildContext()
             entry = Entry(context: grandChildContext!)
             try! grandChildContext!.save()
         } else if let entry = childContext.object(with: self.entry!.objectID) as? Entry {
@@ -67,7 +69,7 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if mode == .create {
+        if grandChildContext != nil {
             nameTextField.becomeFirstResponder()
         }
     }

@@ -23,21 +23,12 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
         case create
         case edit
     }
-    var mode: FormMode = .create
-    
-    /// We want to be able to save so that we don't have to check for changes and instead use the context hasChanges
-    /// This is used so that saving does not reach the root context, avoiding unesesary updates on the rest of the app.
-    var grandChildContext: NSManagedObjectContext?
     private var barButtonsSubscription: AnyCancellable!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if delegate == nil {
             fatalError("The delegate of FormViewController must ve set before calling super.viewDidLoad()")
-        }
-        if mode == .create {
-            grandChildContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-            grandChildContext!.parent = childContext
         }
         isModalInPresentation = true
         self.navigationController?.presentationController?.delegate = self
@@ -102,13 +93,8 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
         let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = saveButton
-        if mode == .edit {
-            self.navigationController?.isToolbarHidden = false
-            self.toolbarItems = [someSpace, deleteButton, someSpace]
-        } else {
-            self.navigationController?.isToolbarHidden = true
-        }
-        
+        self.navigationController?.isToolbarHidden = false
+        self.toolbarItems = [someSpace, deleteButton, someSpace]
     }
     
     @objc

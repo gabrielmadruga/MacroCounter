@@ -16,6 +16,9 @@ extension SetDailyTargetViewController: FormViewControllerDelegate {
     }
     
     func delete() {
+//        self.childContext.delete(self.dailyTarget!)
+//        try! self.childContext.save()
+//        self.saveContext()
     }
     
 }
@@ -35,6 +38,7 @@ class SetDailyTargetViewController: FormViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         self.delegate = self
         super.viewDidLoad()
+        self.navigationController?.isToolbarHidden = true
         
         calculateCaloriesButton.isHidden = true        
         

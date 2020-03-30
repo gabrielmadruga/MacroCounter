@@ -6,7 +6,7 @@
 //  Copyright © 2020 Gabriel Madruga. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 class CoreDataStack {
@@ -55,4 +55,44 @@ class CoreDataStack {
             print("Unresolved error \(error), \(error.userInfo)")
         }
     }
+}
+
+private var child_managedContext_objc_key: UInt8 = 0
+private var grand_child_managedContext_objc_key: UInt8 = 0
+extension UIViewController {
+    
+    private var appDelegate: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    var context: NSManagedObjectContext {
+        appDelegate.coreData.managedContext
+    }
+    
+    func saveContext() {
+        appDelegate.coreData.saveContext()
+    }
+    
+    var childContext: NSManagedObjectContext {
+        if let result = objc_getAssociatedObject(self, &child_managedContext_objc_key) as? NSManagedObjectContext {
+            return result
+        } else {
+            let childManagedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+            childManagedContext.parent = appDelegate.coreData.managedContext
+            objc_setAssociatedObject(self, &child_managedContext_objc_key, childManagedContext, .OBJC_ASSOCIATION_RETAIN)
+            return childManagedContext
+        }
+    }
+    
+    func setupGrandChildContext() {
+        let grandChildManagedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        grandChildManagedContext.parent = childContext
+        objc_setAssociatedObject(self, &grand_child_managedContext_objc_key, grandChildManagedContext, .OBJC_ASSOCIATION_RETAIN)
+    }
+    /// We want to be able to save so that we don't have to check for changes and instead use the context hasChanges
+    /// This is used so that saving does not reach the root context, avoiding unesesary updates on the rest of the app.
+    var grandChildContext: NSManagedObjectContext? {
+        return objc_getAssociatedObject(self, &grand_child_managedContext_objc_key) as? NSManagedObjectContext
+    }
+    
 }

@@ -123,7 +123,6 @@ extension EntriesViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let nav = UIStoryboard.init(.entry).instantiateViewController(identifier: "AddEditEntry") as UINavigationController
         let addEditEntryVC = nav.viewControllers.first as! AddEditEntryViewController
-        addEditEntryVC.mode = .edit
         addEditEntryVC.title = "Edit Entry"
         addEditEntryVC.entry = fetchedResultsController.object(at: indexPath)
         self.present(nav, animated: true, completion: nil)
