@@ -31,25 +31,6 @@ class EntriesViewController: UIViewController {
         super.viewDidLoad()
         try! fetchedResultsController.performFetch()
     }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        guard let addEditEntryViewController = (segue.destination as? UINavigationController)?.viewControllers.first as? AddEditEntryViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        switch(segue.identifier ?? "") {
-            //        case "New":
-            //
-        //            os_log("Adding a new entry.", log: OSLog.default, type: .debug)
-        case "Edit":
-            let cell = sender as! EntryTableViewCell
-            addEditEntryViewController.entry = cell.entry
-        default:
-            break
-        }
-        
-    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate

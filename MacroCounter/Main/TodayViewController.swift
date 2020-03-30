@@ -24,34 +24,31 @@ class TodayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupResultControllersAndPerformFetch()
+        setupResultControllersAndPerformFetchAndReloadData()
         dayChangeStream = NotificationCenter.default.publisher(for: .NSCalendarDayChanged).receive(on: RunLoop.main).sink { notification in
-            self.setupResultControllersAndPerformFetch()
-            self.reloadData()
+            self.setupResultControllersAndPerformFetchAndReloadData()
         }
-        reloadData()
     }
     
-    private func setupResultControllersAndPerformFetch() {
+    private func setupResultControllersAndPerformFetchAndReloadData() {
         todayEntriesFetchedResultsController = Entry.todayEntriesFetchedResultsController(context: context)
         todayEntriesFetchedResultsController.delegate = self
         dailyTargetFetchedResultsController = DailyTarget.dailyTargetFetchedResultsController(context: context)
         dailyTargetFetchedResultsController.delegate = self
         try! todayEntriesFetchedResultsController.performFetch()
         try! dailyTargetFetchedResultsController.performFetch()
+        reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todayEntriesFetchedResultsController.delegate = self
-        dailyTargetFetchedResultsController.delegate = self
-        reloadData()
+        setupResultControllersAndPerformFetchAndReloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        todayEntriesFetchedResultsController.delegate = nil
-        dailyTargetFetchedResultsController.delegate = nil
+        todayEntriesFetchedResultsController = nil
+        dailyTargetFetchedResultsController = nil
     }
     
     func reloadData() {
