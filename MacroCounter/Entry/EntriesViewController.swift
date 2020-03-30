@@ -69,8 +69,8 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
             let cell = tableView.cellForRow(at: indexPath!) as! EntryTableViewCell
             cell.entry = anObject as? Entry
         case .move:
-                tableView.deleteRows(at: [indexPath!], with: .automatic)
-                tableView.insertRows(at: [newIndexPath!], with: .automatic)
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
         @unknown default:
             fatalError()
         }
@@ -123,6 +123,8 @@ extension EntriesViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let nav = UIStoryboard.init(.entry).instantiateViewController(identifier: "AddEditEntry") as UINavigationController
         let addEditEntryVC = nav.viewControllers.first as! AddEditEntryViewController
+        addEditEntryVC.mode = .edit
+        addEditEntryVC.title = "Edit Entry"
         addEditEntryVC.entry = fetchedResultsController.object(at: indexPath)
         self.present(nav, animated: true, completion: nil)
     }

@@ -8,16 +8,30 @@
 
 import UIKit
 import CoreData
+import Combine
 
-//protocol AddEditEntryViewControllerDelegate: class {
-//
-//    func didSaveEntry(_: Entry)
-//    func didDeleteEntry(_: Entry)
-//}
-
-class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
-
+extension AddEditEntryViewController: FormViewControllerDelegate {
+        
+    func validate() -> Bool {
+        guard let name = entry?.name, !name.isEmpty else {
+            showToast(message: "A name is required") { [unowned self] in
+                self.nameTextField.becomeFirstResponder()
+            }
+            return false
+        }
+        return true
+    }
     
+    func delete() {
+        self.childContext.delete(self.entry!)
+        try! self.childContext.save()
+        self.saveContext()
+    }
+    
+    
+}
+
+class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -28,88 +42,34 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
     @IBOutlet weak var servingsTextField: UITextField!
     
     @IBOutlet weak var calculateCaloriesButton: UIButton!
-    @IBOutlet weak var deleteButton: UIBarButtonItem!
     
-
+    
     var date = Date()
     var entry: Entry?
-    /// We want to be able to save so that we don't have to check for changes and instead use the context hasChanges
-    /// This is used so that saving does not reach the root context, avoiding unesesary updates on the rest of the app.
-    var grandChildContext: NSManagedObjectContext?
     
     override func viewDidLoad() {
+        self.delegate = self
         super.viewDidLoad()
-        addButtons()
-        isModalInPresentation = true
-        self.navigationController?.presentationController?.delegate = self
+        
         calculateCaloriesButton.isHidden = true
-        nameTextField.addToolbar(tagsRange: 1..<5)
-        fatTextField.addToolbar(tagsRange: 1..<5)
-        carbsTextField.addToolbar(tagsRange: 1..<5)
-        proteinTextField.addToolbar(tagsRange: 1..<5)
-        servingsTextField.addToolbar(tagsRange: 1..<5, onDone: (target: self, action: #selector(saveButtonPressed(_:))))
-        if entry != nil, let entry = childContext.object(with: self.entry!.objectID) as? Entry {
-            self.title = "Edit Entry"
+        if mode == .create {
+            entry = Entry(context: grandChildContext!)
+            try! grandChildContext!.save()
+        } else if let entry = childContext.object(with: self.entry!.objectID) as? Entry {
             self.entry = entry
             if !entry.macros.calories.isEqual(to: entry.calories) {
                 overrideCalories()
             }
             date = entry.date!
-        } else {
-            grandChildContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-            grandChildContext!.parent = childContext
-            entry = Entry(context: grandChildContext!)
-            try! grandChildContext!.save()
-            nameTextField.becomeFirstResponder()
         }
         reloadData()
     }
-
-    private func addButtons() {
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed(_:)))
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonPressed(_:)))
-        deleteButton.tintColor = .systemRed
-        deleteButton.isEnabled = entry != nil // Edit mode
-        let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem = cancelButton
-        self.navigationItem.rightBarButtonItem = saveButton
-        self.toolbarItems = [someSpace, deleteButton, someSpace]
-    }
     
-    @objc
-    private func saveButtonPressed(_ sender: Any) {
-        guard let name = entry?.name, !name.isEmpty else {
-            showToast(message: "A name is required") { [unowned self] in
-                self.nameTextField.becomeFirstResponder()
-            }
-            return
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if mode == .create {
+            nameTextField.becomeFirstResponder()
         }
-        try! grandChildContext?.save()
-        try! childContext.save()
-        saveContext()
-        self.dismiss(animated: true)
-    }
-    
-    @objc
-    private func deleteButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Delete Entry", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-            alert.dismiss(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [unowned self] (action) in
-            self.childContext.delete(self.entry!)
-            try! self.childContext.save()
-            self.saveContext()
-            self.dismiss(animated: true)
-        }))
-        self.present(alert, animated: true)
-    }
-    
-    @objc
-    private func cancelButtonPressed(_ sender: Any) {
-        self.view.endEditing(true)
-        self.dismiss(animated: true)
     }
     
     private func reloadData() {
@@ -143,31 +103,6 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
         }
     }
     
-    private func userDidChanges() -> Bool {
-        if let grandChildContext = self.grandChildContext {
-            return grandChildContext.hasChanges
-        } else {
-            return childContext.hasChanges
-        }
-    }
-    
-    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-        self.view.endEditing(true)
-        
-        if userDidChanges() {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-                alert.dismiss(animated: true)
-            }))
-            alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive, handler: { [unowned self] (action) in
-                self.dismiss(animated: true)
-            }))
-            self.present(alert, animated: true)
-        } else {
-            self.dismiss(animated: true)
-        }
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.setSelected(false, animated: false)
@@ -207,12 +142,6 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
         self.carbsTextField.tag += 1
         self.proteinTextField.tag += 1
         self.servingsTextField.tag += 1
-        self.nameTextField.addToolbar(tagsRange: 1..<6)
-        self.caloriesTextField.addToolbar(tagsRange: 1..<6)
-        self.fatTextField.addToolbar(tagsRange: 1..<6)
-        self.carbsTextField.addToolbar(tagsRange: 1..<6)
-        self.proteinTextField.addToolbar(tagsRange: 1..<6)
-        self.servingsTextField.addToolbar(tagsRange: 1..<6, onDone: (target: self, action: #selector(self.saveButtonPressed(_:))))
         self.calculateCaloriesButton.isHidden = false
     }
     
@@ -222,16 +151,11 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
         carbsTextField.tag -= 1
         proteinTextField.tag -= 1
         servingsTextField.tag -= 1
-        nameTextField.addToolbar(tagsRange: 1..<5)
-        fatTextField.addToolbar(tagsRange: 1..<5)
-        carbsTextField.addToolbar(tagsRange: 1..<5)
-        proteinTextField.addToolbar(tagsRange: 1..<5)
-        servingsTextField.addToolbar(tagsRange: 1..<5, onDone: (target: self, action: #selector(saveButtonPressed(_:))))
         self.calculateCaloriesButton.isHidden = true
         caloriesTextField.resignFirstResponder()
-        if caloriesTextField.tag == -1 {
-            self.entry!.calories = entry!.macros.calories
-        }
+        
+        self.entry!.calories = entry!.macros.calories
+        reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -242,7 +166,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if (textField == dateTextField) {
             DispatchQueue.main.async() {
-               textField.resignFirstResponder()
+                textField.resignFirstResponder()
             }
             let alert = UIAlertController(title: "Date", message: "Select the day and time you ate this", preferredStyle: .actionSheet)
             alert.addDatePicker(mode: .dateAndTime, date: date, minimumDate: nil, maximumDate: Date()) {  [unowned self] date in
@@ -252,7 +176,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
             alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
             
             DispatchQueue.main.async() { [unowned self] in
-               self.present(alert, animated: true)
+                self.present(alert, animated: true)
             }
             
             return
@@ -260,7 +184,7 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
         if (textField == caloriesTextField) {
             if textField.tag == -1 {
                 DispatchQueue.main.async() {
-                   textField.resignFirstResponder()
+                    textField.resignFirstResponder()
                 }
                 let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
@@ -269,12 +193,12 @@ class AddEditEntryViewController: UITableViewController, UITextFieldDelegate, UI
                 })
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [unowned self] in
-                   self.present(alert, animated: true)
+                    self.present(alert, animated: true)
                 }
                 return
             }
         }
-        
+        setupKeyboardToolbar(for: textField)
         textField.text = ""
     }
     

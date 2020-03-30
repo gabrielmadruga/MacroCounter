@@ -59,8 +59,9 @@ class MainViewController: UIViewController {
     
     @objc private func showDailyTarget() {
         let vc = UIStoryboard.init(.settings).instantiateViewController(identifier: "SetDailyTarget")
-        self.navigationController?.pushViewController(vc, animated: true)
-//        self.present(vc, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(vc, animated: true)
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
     }
     
     @objc private func presentAddEditEntry() {

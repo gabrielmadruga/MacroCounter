@@ -9,56 +9,77 @@
 import UIKit
 import CoreData
 
-class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
+extension SetDailyTargetViewController: FormViewControllerDelegate {
         
+    func validate() -> Bool {
+        return true
+    }
+    
+    func delete() {
+    }
+    
+}
+
+class SetDailyTargetViewController: FormViewController, UITextFieldDelegate {
+    
+
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var caloriesTextField: UITextField!
     
+    @IBOutlet weak var calculateCaloriesButton: UIButton!
     
-    private var settings: Settings!
-    
+    private var dailyTarget: DailyTarget!
     
     override func viewDidLoad() {
+        self.delegate = self
         super.viewDidLoad()
-        let fetchRequest: NSFetchRequest<Settings> = Settings.fetchRequest()
-        let settings = (try! context.fetch(fetchRequest)).first
-        self.settings = settings
-        settingsChanged()
+        
+        calculateCaloriesButton.isHidden = true        
+        
+        let fetchRequest: NSFetchRequest<DailyTarget> = DailyTarget.fetchRequest()
+        if let dailyTarget = try? childContext.fetch(fetchRequest).first {
+            self.dailyTarget = dailyTarget
+            if !dailyTarget.macros.calories.isEqual(to: dailyTarget.calories) {
+                overrideCalories()
+            }
+        }
+        reloadData()
     }
     
-    private func settingsChanged() {
+    private func reloadData() {
+        guard let dailyTarget = self.dailyTarget else {
+            return
+        }
         if (!fatTextField.isEditing) {
-            fatTextField.text = settings.dailyTarget?.fats.description
+            fatTextField.text = dailyTarget.fats.description
         }
         if (!carbsTextField.isEditing) {
-             carbsTextField.text = settings.dailyTarget?.carbs.description
+            carbsTextField.text = dailyTarget.carbs.description
         }
         if (!proteinTextField.isEditing) {
-             proteinTextField.text = settings.dailyTarget?.proteins.description
+            proteinTextField.text = dailyTarget.proteins.description
         }
         if (!caloriesTextField.isEditing) {
-            caloriesTextField.text = settings.dailyTarget?.calories.description
+            caloriesTextField.text = dailyTarget.calories.description
         }
-    }
-    
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setSelected(false, animated: false)
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                fatTextField.becomeFirstResponder()
-            case 1:
-                carbsTextField.becomeFirstResponder()
-            case 2:
-                proteinTextField.becomeFirstResponder()
-            case 3:
                 caloriesTextField.becomeFirstResponder()
+            case 1:
+                fatTextField.becomeFirstResponder()
+            case 2:
+                carbsTextField.becomeFirstResponder()
+            case 3:
+                proteinTextField.becomeFirstResponder()
             default:
                 return
             }
@@ -67,71 +88,94 @@ class SetDailyTargetViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        UIView.animate(withDuration: 0.2, animations: {
-            textField.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        }, completion: { finish in
-            UIView.animate(withDuration: 0.3, animations: {
-                textField.superview?.backgroundColor = nil
-            })
-        })
+    func overrideCalories() {
+        self.caloriesTextField.tag = 1
+        self.calculateCaloriesButton.isHidden = false
+    }
+    
+    @IBAction func undoOverrideCalories(_ sender: Any) {
+        caloriesTextField.tag = -1
+        self.calculateCaloriesButton.isHidden = true
+        caloriesTextField.resignFirstResponder()
         
-        if (textField == caloriesTextField) {
-            self.view.endEditing(true)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                self.showToast(message: "Calories are calculated automatically")
-            }
-            return false
-        }
-        
-        return true
+        self.dailyTarget!.calories = dailyTarget!.macros.calories
+        reloadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.nextButtonTapped()
+        return false
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (textField == caloriesTextField) {
+            if textField.tag == -1 {
+                DispatchQueue.main.async() {
+                    textField.resignFirstResponder()
+                }
+                let alert = UIAlertController(title: nil, message: "Calories should be calculated from macros, do you want to override it with a custom value?", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Override", style: .destructive) { [unowned self] (action) in
+                    self.overrideCalories()
+                    textField.becomeFirstResponder()
+                })
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [unowned self] in
+                    self.present(alert, animated: true)
+                }
+                return
+            }
+        }
+        setupKeyboardToolbar(for: textField)
         textField.text = ""
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        settingsChanged()
+        self.reloadData()
     }
     
     @IBAction func onFatEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.dailyTarget?.fats = value
+            self.dailyTarget?.fats = value
         } else {
-            settings.dailyTarget?.fats = 0
+            self.dailyTarget?.fats = 0
         }
+        if caloriesTextField.tag == -1 {
+            self.dailyTarget!.calories = dailyTarget!.macros.calories
+        }
+        reloadData()
     }
     
     @IBAction func onCarbsEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.dailyTarget?.carbs = value
+            self.dailyTarget?.carbs = value
         } else {
-            settings.dailyTarget?.carbs = 0
+            self.dailyTarget?.carbs = 0
         }
+        if caloriesTextField.tag == -1 {
+            self.dailyTarget!.calories = dailyTarget!.macros.calories
+        }
+        reloadData()
     }
     
     @IBAction func onProteinEditingChanged(_ textField: UITextField) {
         if let value = textField.parseFloatAndAdjust() {
-            settings.dailyTarget?.proteins = value
+            self.dailyTarget?.proteins = value
         } else {
-            settings.dailyTarget?.proteins = 0
+            self.dailyTarget?.proteins = 0
         }
+        if caloriesTextField.tag == -1 {
+            self.dailyTarget!.calories = dailyTarget!.macros.calories
+        }
+        reloadData()
     }
     
     @IBAction func onCaloriesEditingChanged(_ textField: UITextField) {
-        
+        if let value = textField.parseFloatAndAdjust() {
+            self.dailyTarget?.calories = value
+        } else {
+            self.dailyTarget?.calories = 0
+        }
+        reloadData()
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
-
-

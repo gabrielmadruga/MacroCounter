@@ -8,6 +8,23 @@
 
 import UIKit
 
+extension UIResponder {
+
+    private struct Static {
+        static weak var responder: UIResponder?
+    }
+
+    static func currentFirst() -> UIResponder? {
+        Static.responder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
+        return Static.responder
+    }
+
+    @objc private func _trap() {
+        Static.responder = self
+    }
+}
+
 extension UITextField {
     
     func parseFloatAndAdjust() -> Float? {
@@ -34,41 +51,6 @@ extension UITextField {
         }
     }
     
-
-    func addToolbar(tagsRange: Range<Int>, onCancel: (target: Any, action: Selector)? = nil, onDone: (target: Any, action: Selector)? = nil) {
-        let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
-        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
-        
-        var items = [UIBarButtonItem(title: "Close", style: .plain, target: onCancel.target, action: onCancel.action), UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)]
-        if self.tag > 1 {
-            let upButton = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(previousButtonTapped))
-            items.append(upButton)
-            let someSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
-            someSpace.width = 32
-            items.append(someSpace)
-        }
-        if tagsRange.contains(self.tag) {
-            items.append(UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(nextButtonTapped)))
-        } else {
-            items.append(UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action))
-        }
-        
-        let toolbar: UIToolbar = UIToolbar()
-        toolbar.barStyle = .default
-        toolbar.items = items
-        toolbar.sizeToFit()
-
-        self.inputAccessoryView = toolbar
-    }
-
-    // Default actions:
-    @objc func doneButtonTapped() {
-        self.resignFirstResponder()
-    }
-    @objc func cancelButtonTapped() {
-        self.resignFirstResponder()
-    }
-    
     func smartViewWithTag(_ tag: Int) -> UIView? {
         var currentView = self.superview
         while currentView != nil {
@@ -82,7 +64,7 @@ extension UITextField {
         return nil
     }
     
-    @objc func nextButtonTapped() {
+    func nextButtonTapped() {
         let nextTag = self.tag + 1
         let nextResponder = smartViewWithTag(nextTag)
         if nextResponder != nil {
@@ -91,7 +73,7 @@ extension UITextField {
             self.resignFirstResponder()
         }
     }
-    @objc func previousButtonTapped() {
+    func previousButtonTapped() {
         let nextTag = self.tag - 1
         let nextResponder = smartViewWithTag(nextTag)
         if nextResponder != nil {
@@ -100,5 +82,4 @@ extension UITextField {
             self.resignFirstResponder()
         }
     }
-
 }

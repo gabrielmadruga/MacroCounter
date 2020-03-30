@@ -30,6 +30,8 @@
 		EE63EC37242C03E600D05FA5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63EC36242C03E600D05FA5 /* CoreDataStack.swift */; };
 		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
 		EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */; };
+		EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D54243173CC006BEE15 /* FormViewController.swift */; };
+		EE979D572431864D006BEE15 /* UIBarButtonItem+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
 		EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EED94EE52427E5460094BCBB /* Model.xcdatamodeld */; };
 		EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2B2427ECA70094BCBB /* Macros.swift */; };
@@ -92,6 +94,8 @@
 		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
+		EE979D54243173CC006BEE15 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Closures.swift"; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacroCounter.entitlements; sourceTree = "<group>"; };
 		EED94EE62427E5460094BCBB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 				EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */,
 				EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */,
 				EE63EC32242BFE8500D05FA5 /* UIViewExtensions.swift */,
+				EE979D54243173CC006BEE15 /* FormViewController.swift */,
+				EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -406,9 +412,11 @@
 				EE63EC33242BFE8500D05FA5 /* UIViewExtensions.swift in Sources */,
 				C0D0E129212A2EAC00AE49AF /* UIViewControllerExtensions.swift in Sources */,
 				C0D0E127212A080A00AE49AF /* DatePickerViewController.swift in Sources */,
+				EE979D572431864D006BEE15 /* UIBarButtonItem+Closures.swift in Sources */,
 				C0D0E12D212D04ED00AE49AF /* SetDailyTargetViewController.swift in Sources */,
 				EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */,
 				EE53C19E242D7ECF00BE645B /* Entry+CoreDataProperties.swift in Sources */,
+				EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */,
 				EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */,
 				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
