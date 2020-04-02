@@ -31,7 +31,7 @@ class SetDailyTargetViewController: FormViewController, UITextFieldDelegate {
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var caloriesTextField: UITextField!
     
-    @IBOutlet weak var calculateCaloriesButton: UIButton!
+    @IBOutlet weak var proteinCaloriesButton: UIButton!
     
     private var dailyTarget: DailyTarget!
     
@@ -40,7 +40,7 @@ class SetDailyTargetViewController: FormViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.navigationController?.isToolbarHidden = true
         
-        calculateCaloriesButton.isHidden = true        
+        proteinCaloriesButton.isHidden = true
         
         let fetchRequest: NSFetchRequest<DailyTarget> = DailyTarget.fetchRequest()
         if let dailyTarget = try? childContext.fetch(fetchRequest).first {
@@ -94,12 +94,12 @@ class SetDailyTargetViewController: FormViewController, UITextFieldDelegate {
     
     func overrideCalories() {
         self.caloriesTextField.tag = 1
-        self.calculateCaloriesButton.isHidden = false
+        self.proteinCaloriesButton.isHidden = false
     }
     
     @IBAction func undoOverrideCalories(_ sender: Any) {
         caloriesTextField.tag = -1
-        self.calculateCaloriesButton.isHidden = true
+        self.proteinCaloriesButton.isHidden = true
         caloriesTextField.resignFirstResponder()
         
         self.dailyTarget!.calories = dailyTarget!.macros.calories

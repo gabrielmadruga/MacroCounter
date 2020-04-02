@@ -174,9 +174,7 @@
 				EEAE9AED24353D1A00E220D1 /* Onboarding */,
 				EE7004482430FB060005A425 /* Main */,
 				EE7004492430FB340005A425 /* Entry */,
-				EED94F60242841F60094BCBB /* Settings.storyboard */,
-				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
-				C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */,
+				EEAE9AF82435691000E220D1 /* Settings */,
 				EEC3605123E63FEB00F1DA3C /* Model */,
 				EEC3605223E6401900F1DA3C /* Helpers */,
 				C0906366211A5048005FBAF5 /* Assets.xcassets */,
@@ -246,6 +244,16 @@
 				EEAE9AF1243541D400E220D1 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EEAE9AF82435691000E220D1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EED94F60242841F60094BCBB /* Settings.storyboard */,
+				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
+				C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EEC3605123E63FEB00F1DA3C /* Model */ = {
