@@ -35,6 +35,7 @@ class ProgressView: UIView {
         self.unitLabel.textColor = color
         self.progressView.backgroundColor = color
         let progress = CGFloat(current/target)
+        self.progressView.superview!.layoutIfNeeded()
         UIView.animate(withDuration: 1) {
             self.progressViewTrailingSpaceToContainer.constant = -self.progressView.superview!.bounds.size.width * progress
             self.progressView.superview!.layoutIfNeeded()

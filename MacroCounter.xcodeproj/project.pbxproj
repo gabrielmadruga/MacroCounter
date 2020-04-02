@@ -32,6 +32,10 @@
 		EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */; };
 		EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D54243173CC006BEE15 /* FormViewController.swift */; };
 		EE979D572431864D006BEE15 /* UIBarButtonItem+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */; };
+		EEAE9AF4243541D400E220D1 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAE9AF0243541D400E220D1 /* OnboardingCardView.swift */; };
+		EEAE9AF5243541D400E220D1 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAE9AF1243541D400E220D1 /* OnboardingViewController.swift */; };
+		EEAE9AF6243541D400E220D1 /* OnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAE9AF2243541D400E220D1 /* OnboardingCardView.xib */; };
+		EEAE9AF7243541D400E220D1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAE9AF3243541D400E220D1 /* Onboarding.storyboard */; };
 		EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB522AC23E504E90077640F /* EntriesViewController.swift */; };
 		EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EED94EE52427E5460094BCBB /* Model.xcdatamodeld */; };
 		EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2B2427ECA70094BCBB /* Macros.swift */; };
@@ -96,6 +100,10 @@
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
 		EE979D54243173CC006BEE15 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Closures.swift"; sourceTree = "<group>"; };
+		EEAE9AF0243541D400E220D1 /* OnboardingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
+		EEAE9AF1243541D400E220D1 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		EEAE9AF2243541D400E220D1 /* OnboardingCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingCardView.xib; sourceTree = "<group>"; };
+		EEAE9AF3243541D400E220D1 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		EEB522AC23E504E90077640F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		EED90DF523DE32A9002190B0 /* MacroCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacroCounter.entitlements; sourceTree = "<group>"; };
 		EED94EE62427E5460094BCBB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 			children = (
 				C090635F211A503E005FBAF5 /* AppDelegate.swift */,
 				C0906368211A5048005FBAF5 /* LaunchScreen.storyboard */,
+				EEAE9AED24353D1A00E220D1 /* Onboarding */,
 				EE7004482430FB060005A425 /* Main */,
 				EE7004492430FB340005A425 /* Entry */,
 				EED94F60242841F60094BCBB /* Settings.storyboard */,
@@ -226,6 +235,17 @@
 				EE06F09E23EFA12B001608E8 /* AddEditEntryTemplateViewController.swift */,
 			);
 			path = Entry;
+			sourceTree = "<group>";
+		};
+		EEAE9AED24353D1A00E220D1 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EEAE9AF3243541D400E220D1 /* Onboarding.storyboard */,
+				EEAE9AF0243541D400E220D1 /* OnboardingCardView.swift */,
+				EEAE9AF2243541D400E220D1 /* OnboardingCardView.xib */,
+				EEAE9AF1243541D400E220D1 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		EEC3605123E63FEB00F1DA3C /* Model */ = {
@@ -377,11 +397,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE13D8F324305564000EDFF7 /* ProgressView.xib in Resources */,
+				EEAE9AF6243541D400E220D1 /* OnboardingCardView.xib in Resources */,
 				C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */,
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
 				EED94F61242841F60094BCBB /* Settings.storyboard in Resources */,
 				C0906365211A503E005FBAF5 /* Main.storyboard in Resources */,
 				EED94F5D24283EAA0094BCBB /* Entry.storyboard in Resources */,
+				EEAE9AF7243541D400E220D1 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,8 +441,10 @@
 				EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */,
 				EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */,
 				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
+				EEAE9AF5243541D400E220D1 /* OnboardingViewController.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
 				EE13D8F124304E2A000EDFF7 /* ProgressView.swift in Sources */,
+				EEAE9AF4243541D400E220D1 /* OnboardingCardView.swift in Sources */,
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,
 				EED94F5524280D360094BCBB /* Settings+CoreDataProperties.swift in Sources */,
 				EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */,

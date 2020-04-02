@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow()
         self.window = window
         
-        let mainNavViewController = UIStoryboard(.main).instantiateInitialViewController()
-        window.rootViewController = mainNavViewController
+//        let onboardingViewController = OnboardingViewController.instantiate(fromStoryboard: .onboarding)
+        window.rootViewController = UIStoryboard(.main).instantiateInitialViewController()
         window.makeKeyAndVisible()
         
         let managedContext = coreData.managedContext

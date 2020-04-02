@@ -11,7 +11,7 @@
         <!--Add Entry-->
         <scene sceneID="cv8-Oi-gV7">
             <objects>
-                <tableViewController id="ulx-2G-5VL" customClass="AddEditEntryViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddEditEntryViewController" id="ulx-2G-5VL" customClass="AddEditEntryViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8TP-Tt-EEB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -346,7 +346,7 @@
         <!--Entries-->
         <scene sceneID="28h-JW-R0m">
             <objects>
-                <viewController storyboardIdentifier="Entries" id="N3Z-Oq-ai0" customClass="EntriesViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EntriesViewController" id="N3Z-Oq-ai0" customClass="EntriesViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S51-jk-eJf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

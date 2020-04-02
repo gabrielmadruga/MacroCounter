@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding View Controller-->
+        <scene sceneID="Ybo-zU-W2t">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingViewController" id="GK5-Ki-v7m" customClass="OnboardingViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e4k-8Y-QQC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gZK-Vs-0gq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-Qi-t4K">
+                                <rect key="frame" x="168" y="563" width="39" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="fIp-aN-QgX"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTf-bC-qEl">
+                                <rect key="frame" x="22" y="585" width="331" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="j3Q-xT-N3g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Comenzar!">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="onFinishButtonTouch:" destination="GK5-Ki-v7m" eventType="touchUpInside" id="yXa-De-TME"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="E4T-hh-TY8" firstAttribute="bottom" secondItem="JTf-bC-qEl" secondAttribute="bottom" constant="22" id="0rs-B9-WUq"/>
+                            <constraint firstItem="JTf-bC-qEl" firstAttribute="leading" secondItem="E4T-hh-TY8" secondAttribute="leading" constant="22" id="SOU-Bb-Z9f"/>
+                            <constraint firstItem="E4T-hh-TY8" firstAttribute="trailing" secondItem="JTf-bC-qEl" secondAttribute="trailing" constant="22" id="SVU-gQ-3mM"/>
+                            <constraint firstItem="3gb-Qi-t4K" firstAttribute="centerX" secondItem="e4k-8Y-QQC" secondAttribute="centerX" id="Y1a-vK-lRZ"/>
+                            <constraint firstItem="JTf-bC-qEl" firstAttribute="top" secondItem="3gb-Qi-t4K" secondAttribute="bottom" constant="22" id="vaI-mK-ch9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E4T-hh-TY8"/>
+                    </view>
+                    <connections>
+                        <outlet property="finishButton" destination="JTf-bC-qEl" id="yNw-aT-g3r"/>
+                        <outlet property="pageControl" destination="3gb-Qi-t4K" id="Aqw-6M-VMX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pbg-2R-mSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1153" y="-527"/>
+        </scene>
+    </scenes>
+</document>

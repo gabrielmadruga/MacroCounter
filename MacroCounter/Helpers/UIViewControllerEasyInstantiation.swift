@@ -8,6 +8,7 @@ import UIKit
 extension UIStoryboard {
     
     enum Storyboard: String {
+        case onboarding
         case main
         case entry
         case settings
