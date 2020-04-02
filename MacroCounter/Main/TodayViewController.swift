@@ -71,10 +71,10 @@ class TodayViewController: UIViewController {
             current = current + entry.calories * entry.servings
         }
         
-        self.caloriesProgressView.setup(name: "Calories", current: caloriesFromEntries, target: dailyTarget.calories, unit: "CAL", color: .systemBlue)
-        self.fatProgressView.setup(name: "Fats", current: fatFromEntries, target: dailyTarget.fats, unit: "G", color: .systemYellow)
-        self.carbsProgressView.setup(name: "Carbs", current: carbsFromEntries, target: dailyTarget.carbs, unit: "G", color: .systemGreen)
-        self.proteinProgressView.setup(name: "Proteins", current: proteinFromEntries, target: dailyTarget.proteins, unit: "G", color: .systemRed)
+        self.caloriesProgressView.setup(name: "Calories".uppercased(), current: caloriesFromEntries, target: dailyTarget.calories, unit: "cal", color: .systemBlue)
+        self.fatProgressView.setup(name: "Fats".uppercased(), current: fatFromEntries, target: dailyTarget.fats, unit: "g", color: .systemYellow)
+        self.carbsProgressView.setup(name: "Carbs".uppercased(), current: carbsFromEntries, target: dailyTarget.carbs, unit: "g", color: .systemGreen)
+        self.proteinProgressView.setup(name: "Proteins".uppercased(), current: proteinFromEntries, target: dailyTarget.proteins, unit: "g", color: .systemRed)
     }
     
 }

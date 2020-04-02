@@ -25,18 +25,19 @@ class MainViewController: UIViewController {
     private func setupLeftBarDateButton() {
         let formatter = DateFormatter()
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
-//        formatter.dateStyle = .medium
-//        formatter.timeStyle = .none
+        //        formatter.dateStyle = .medium
+        //        formatter.timeStyle = .none
         let dateLabel = UILabel()
         dateLabel.textColor = .secondaryLabel
-        dateLabel.font = .preferredFont(forTextStyle: .title3)
+        dateLabel.font = .preferredFont(forTextStyle: .headline)
         dateLabel.text = formatter.string(from: .init())
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
     }
     
     private func setupToolbar() {
-        let entriesButton = UIBarButtonItem(title: "Entries", style: .plain, target: self, action: #selector(showEntries))
+        let profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
         let targetButton = UIBarButtonItem(title: "Daily Target", style: .plain, target: self, action: #selector(showDailyTarget))
+        let entriesButton = UIBarButtonItem(title: "Entries", style: .plain, target: self, action: #selector(showEntries))
         let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let addEntryButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 44)))
         addEntryButton.setTitle("Add Entry", for: .normal)
@@ -48,20 +49,27 @@ class MainViewController: UIViewController {
         addEntryButton.imageEdgeInsets = .init(top: 0, left: -10, bottom: 0, right: 0)
         addEntryButton.addTarget(self, action: #selector(presentAddEditEntry), for: .touchUpInside)
         let addEntryBarButton = UIBarButtonItem(customView: addEntryButton)
-        setToolbarItems([targetButton, someSpace, entriesButton, someSpace, addEntryBarButton], animated: true)
+        setToolbarItems([profileButton, targetButton, entriesButton, someSpace, addEntryBarButton], animated: true)
+    }
+    
+    @objc private func showDailyTarget() {
+        let vc = SetDailyTargetViewController.instantiate(fromStoryboard: .settings)
+        //        self.navigationController?.pushViewController(vc, animated: true)
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+    }
+    
+    @objc private func showProfile() {
+        let vc = UIStoryboard(.settings).instantiateViewController(withIdentifier: "ProfileViewController")
+        //        self.navigationController?.pushViewController(vc, animated: true)
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
     }
     
     @objc private func showEntries() {
         let vc = EntriesViewController.instantiate(fromStoryboard: .entry)
         self.navigationController?.pushViewController(vc, animated: true)
-//        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @objc private func showDailyTarget() {
-        let vc = SetDailyTargetViewController.instantiate(fromStoryboard: .settings)
-//        self.navigationController?.pushViewController(vc, animated: true)
-        let nav = UINavigationController(rootViewController: vc)
-        self.present(nav, animated: true, completion: nil)
+        //        self.present(vc, animated: true, completion: nil)
     }
     
     @objc private func presentAddEditEntry() {

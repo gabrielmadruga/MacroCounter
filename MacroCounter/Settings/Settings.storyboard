@@ -166,13 +166,12 @@
         <scene sceneID="OLk-Xp-Tiy">
             <objects>
                 <tableViewController storyboardIdentifier="SetDailyTargetViewController" id="LXe-iV-JA5" customClass="SetDailyTargetViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eMR-Xq-PJf">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eMR-Xq-PJf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Your Total Daily Energy Expenditure (TDEE) is" id="KAk-LO-hdO">
-                                <string key="footerTitle">This is an estimation of how many calories you burn per day. It is calculated by first figuring out your Basal Metabolic Rate (BMR), then multiplying that value by the Physical Activity Level (PAL)</string>
+                            <tableViewSection headerTitle="Your Total Energy Expenditure is" footerTitle="As calculated in your profile" id="KAk-LO-hdO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6Qo-bq-yhF">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
@@ -193,14 +192,14 @@
                                                 <constraint firstItem="pcc-fN-GKN" firstAttribute="centerY" secondItem="SFW-r3-TZ8" secondAttribute="centerY" id="a3M-cU-znL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="What is your objective?" footerTitle="This are the extra calories you need acording to your objective" id="yvM-Li-Gvf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="vKR-iY-jZX">
-                                        <rect key="frame" x="0.0" y="223" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="175" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vKR-iY-jZX" id="rCD-sX-7zO">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -221,10 +220,10 @@
                                                 <constraint firstItem="9wO-ei-1N8" firstAttribute="leading" secondItem="rCD-sX-7zO" secondAttribute="leadingMargin" id="j6J-LF-PZc"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oW6-lW-bQ3">
-                                        <rect key="frame" x="0.0" y="267" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="219" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oW6-lW-bQ3" id="cgc-Qf-QEu">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -247,14 +246,14 @@
                                                 <constraint firstItem="1bR-8w-Uzb" firstAttribute="centerY" secondItem="cgc-Qf-QEu" secondAttribute="centerY" id="ZrN-YZ-Do7"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="What diet do you want?" footerTitle="This will set the selected macronutrient to 50 g" id="xTb-xc-9ZO">
+                            <tableViewSection headerTitle="What diet do you want to follow?" footerTitle="This will set the selected macronutrient to 50 g" id="xTb-xc-9ZO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="55" id="kTs-2D-nGd">
-                                        <rect key="frame" x="0.0" y="402.5" width="414" height="55"/>
+                                        <rect key="frame" x="0.0" y="354.5" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kTs-2D-nGd" id="X3j-xe-mKc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
@@ -275,14 +274,14 @@
                                                 <constraint firstItem="7jF-WP-YHH" firstAttribute="leading" secondItem="X3j-xe-mKc" secondAttribute="leadingMargin" id="w6b-J2-eB0"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="This is your calculated Daily Target" footerTitle="We suggest you set your protein intake to be 1.8 times your weight in kg, but feel free to adjust any value" id="MMA-cR-8GP">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zjm-gA-JMm">
-                                        <rect key="frame" x="0.0" y="533" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="485" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zjm-gA-JMm" id="etA-CC-JYa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -309,10 +308,26 @@
                                                         <outlet property="delegate" destination="LXe-iV-JA5" id="A8U-jw-BdY"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-yx-gwZ">
+                                                    <rect key="frame" x="350" y="-1" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="RMt-1L-DK5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" image="wand.and.rays" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="regular"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="undoOverrideCalories:" destination="LXe-iV-JA5" eventType="touchUpInside" id="XOd-lU-Udp"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="duk-pa-pug" firstAttribute="leading" secondItem="qIU-ba-dJ0" secondAttribute="trailing" constant="32" id="6Ta-cz-REG"/>
+                                                <constraint firstItem="2bp-yx-gwZ" firstAttribute="top" secondItem="etA-CC-JYa" secondAttribute="top" constant="-1" id="CbX-Nf-a5e"/>
                                                 <constraint firstAttribute="trailing" secondItem="qIU-ba-dJ0" secondAttribute="trailing" constant="175" id="D1s-Pa-3Jw"/>
+                                                <constraint firstAttribute="bottom" secondItem="2bp-yx-gwZ" secondAttribute="bottom" constant="1" id="D2e-RS-WBQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="2bp-yx-gwZ" secondAttribute="trailing" constant="20" id="D5R-db-s0G"/>
                                                 <constraint firstAttribute="bottom" secondItem="qIU-ba-dJ0" secondAttribute="bottom" id="JrJ-wm-Eom"/>
                                                 <constraint firstAttribute="trailing" secondItem="duk-pa-pug" secondAttribute="trailing" constant="16" id="NJr-Xt-vtx"/>
                                                 <constraint firstItem="O2z-iv-SkD" firstAttribute="leading" secondItem="etA-CC-JYa" secondAttribute="leadingMargin" constant="16" id="QVN-vg-O6S"/>
@@ -325,7 +340,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="iyS-SV-qmB">
-                                        <rect key="frame" x="0.0" y="577" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="529" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iyS-SV-qmB" id="bGH-tF-PlF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -368,7 +383,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="UTq-TM-eFw">
-                                        <rect key="frame" x="0.0" y="621" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="573" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UTq-TM-eFw" id="khC-LZ-Mlj">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -411,7 +426,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hwj-Dt-zJJ">
-                                        <rect key="frame" x="0.0" y="665" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="617" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwj-Dt-zJJ" id="1HJ-en-N6l">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -438,24 +453,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-yx-gwZ">
-                                                    <rect key="frame" x="354" y="0.0" width="44" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="RMt-1L-DK5"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <state key="normal" image="wand.and.stars" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="regular"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="undoOverrideCalories:" destination="LXe-iV-JA5" eventType="touchUpInside" id="XOd-lU-Udp"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="2bp-yx-gwZ" secondAttribute="bottom" id="Diz-FV-aFv"/>
                                                 <constraint firstItem="QzK-Yg-gTx" firstAttribute="leading" secondItem="08n-Jw-9tp" secondAttribute="trailing" constant="32" id="Fng-As-N2L"/>
-                                                <constraint firstAttribute="trailing" secondItem="2bp-yx-gwZ" secondAttribute="trailing" constant="16" id="M0U-9G-XTZ"/>
                                                 <constraint firstItem="08n-Jw-9tp" firstAttribute="firstBaseline" secondItem="weA-uH-LfZ" secondAttribute="firstBaseline" id="VtB-Dl-NZC"/>
                                                 <constraint firstAttribute="trailing" secondItem="weA-uH-LfZ" secondAttribute="trailing" constant="16" id="Vyu-VW-ae3"/>
                                                 <constraint firstAttribute="trailing" secondItem="QzK-Yg-gTx" secondAttribute="trailing" constant="175" id="fgE-wS-tiC"/>
@@ -464,7 +464,6 @@
                                                 <constraint firstItem="QzK-Yg-gTx" firstAttribute="top" secondItem="1HJ-en-N6l" secondAttribute="top" id="ovd-9Q-zY6"/>
                                                 <constraint firstItem="QzK-Yg-gTx" firstAttribute="firstBaseline" secondItem="08n-Jw-9tp" secondAttribute="firstBaseline" id="pVd-Ad-kbO"/>
                                                 <constraint firstItem="weA-uH-LfZ" firstAttribute="leading" secondItem="QzK-Yg-gTx" secondAttribute="trailing" constant="32" id="vd0-Hc-giS"/>
-                                                <constraint firstItem="2bp-yx-gwZ" firstAttribute="top" secondItem="1HJ-en-N6l" secondAttribute="top" id="ztb-Hi-Km9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -485,7 +484,7 @@
                         <outlet property="caloriesTextField" destination="qIU-ba-dJ0" id="vzg-aA-Tzq"/>
                         <outlet property="carbsTextField" destination="sGe-Nb-fGI" id="oBO-J4-UGu"/>
                         <outlet property="fatTextField" destination="B2g-tb-FfY" id="9t3-Mk-p9W"/>
-                        <outlet property="proteinCaloriesButton" destination="2bp-yx-gwZ" id="Qbd-zc-n1k"/>
+                        <outlet property="overrideCaloriesButton" destination="2bp-yx-gwZ" id="6QF-Y8-JoR"/>
                         <outlet property="proteinTextField" destination="QzK-Yg-gTx" id="nEr-nf-my5"/>
                     </connections>
                 </tableViewController>
@@ -496,16 +495,16 @@
         <!--Your Profile-->
         <scene sceneID="lip-hm-OvS">
             <objects>
-                <tableViewController id="sYn-9S-N4e" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HH2-QD-s1Z">
+                <tableViewController storyboardIdentifier="ProfileViewController" id="sYn-9S-N4e" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HH2-QD-s1Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection footerTitle="Set this information so we can calculate your Total Daily Energy Expenditure" id="7gd-fJ-Jk8">
+                            <tableViewSection headerTitle="Information required to calculate your Total Daily Energy Expenditure" footerTitle="" id="7gd-fJ-Jk8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="AsG-e1-9lj">
-                                        <rect key="frame" x="0.0" y="18" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="73.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AsG-e1-9lj" id="9wC-Vr-iUn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -521,10 +520,6 @@
                                                     <rect key="frame" x="139" y="0.0" width="100" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onCaloriesEditingChanged:" destination="sYn-9S-N4e" eventType="editingChanged" id="l2Q-xg-VQp"/>
-                                                        <outlet property="delegate" destination="sYn-9S-N4e" id="anI-Br-dTv"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -539,7 +534,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="KbQ-Jx-0yT">
-                                        <rect key="frame" x="0.0" y="62" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="117.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KbQ-Jx-0yT" id="455-7X-NgJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -555,10 +550,6 @@
                                                     <rect key="frame" x="96" y="0.0" width="143" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onFatEditingChanged:" destination="sYn-9S-N4e" eventType="editingChanged" id="64d-ZS-h4S"/>
-                                                        <outlet property="delegate" destination="sYn-9S-N4e" id="mZo-yk-8hP"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -573,7 +564,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oz2-y7-Amr">
-                                        <rect key="frame" x="0.0" y="106" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="161.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oz2-y7-Amr" id="md9-Ds-2bt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -589,10 +580,6 @@
                                                     <rect key="frame" x="119" y="0.0" width="120" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onCarbsEditingChanged:" destination="sYn-9S-N4e" eventType="editingChanged" id="cCU-Ob-1Ne"/>
-                                                        <outlet property="delegate" destination="sYn-9S-N4e" id="glZ-SS-Bd1"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -607,7 +594,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6l3-tA-Fka">
-                                        <rect key="frame" x="0.0" y="150" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6l3-tA-Fka" id="IIi-Wl-86x">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -623,10 +610,6 @@
                                                     <rect key="frame" x="122" y="0.0" width="117" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onProteinEditingChanged:" destination="sYn-9S-N4e" eventType="editingChanged" id="Z4z-lj-nGt"/>
-                                                        <outlet property="delegate" destination="sYn-9S-N4e" id="Fbo-z4-V3G"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -640,35 +623,83 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Zkv-SB-iTa">
-                                        <rect key="frame" x="0.0" y="194" width="414" height="44"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Your Basal Metabolic Rate (BMR) is" footerTitle="This is an estimation of how many calories you burn per day if you do not move or eat." id="TyV-lT-1Ac">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="NYm-Eo-hsB">
+                                        <rect key="frame" x="0.0" y="317" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zkv-SB-iTa" id="iUq-5F-AVu">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NYm-Eo-hsB" id="WWV-wR-353">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlm-Yc-70p">
-                                                    <rect key="frame" x="36" y="11.5" width="101" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1600" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-td-2Tf">
+                                                    <rect key="frame" x="167.5" y="1.5" width="79" height="41"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhS-Ul-gWm">
-                                                    <rect key="frame" x="228" y="0.0" width="11" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onProteinEditingChanged:" destination="sYn-9S-N4e" eventType="editingChanged" id="NjT-9p-C8g"/>
-                                                        <outlet property="delegate" destination="sYn-9S-N4e" id="M0T-k3-2kW"/>
-                                                    </connections>
-                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="zhS-Ul-gWm" secondAttribute="trailing" constant="175" id="G5u-8A-Inz"/>
-                                                <constraint firstAttribute="bottom" secondItem="zhS-Ul-gWm" secondAttribute="bottom" id="NxT-KL-FUN"/>
-                                                <constraint firstItem="zhS-Ul-gWm" firstAttribute="top" secondItem="iUq-5F-AVu" secondAttribute="top" id="P33-AT-V2y"/>
-                                                <constraint firstItem="zhS-Ul-gWm" firstAttribute="firstBaseline" secondItem="Rlm-Yc-70p" secondAttribute="firstBaseline" id="c4E-WL-fb7"/>
-                                                <constraint firstItem="Rlm-Yc-70p" firstAttribute="leading" secondItem="iUq-5F-AVu" secondAttribute="leadingMargin" constant="16" id="fuJ-UN-PKB"/>
+                                                <constraint firstItem="L8v-td-2Tf" firstAttribute="centerX" secondItem="WWV-wR-353" secondAttribute="centerX" id="Zia-sn-kUt"/>
+                                                <constraint firstItem="L8v-td-2Tf" firstAttribute="centerY" secondItem="WWV-wR-353" secondAttribute="centerY" id="oQL-3J-hB8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Physical Activity Level (PAL)" footerTitle="" id="TgY-WP-Uml">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="MRc-N6-rs3">
+                                        <rect key="frame" x="0.0" y="452.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MRc-N6-rs3" id="BCQ-5B-hXp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="w0Y-qX-xcQ">
+                                                    <rect key="frame" x="20" y="6.5" width="374" height="32"/>
+                                                    <segments>
+                                                        <segment title="Sedentary"/>
+                                                        <segment title="Light"/>
+                                                        <segment title="Moderate"/>
+                                                        <segment title="Heavy"/>
+                                                        <segment title="Athlete"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="w0Y-qX-xcQ" secondAttribute="trailing" id="5Vr-jR-FXK"/>
+                                                <constraint firstItem="w0Y-qX-xcQ" firstAttribute="centerY" secondItem="BCQ-5B-hXp" secondAttribute="centerY" id="V1q-3a-NLO"/>
+                                                <constraint firstItem="w0Y-qX-xcQ" firstAttribute="leading" secondItem="BCQ-5B-hXp" secondAttribute="leadingMargin" id="tln-Pg-ygh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Your Total Energy Expenditure (TEE) is" id="EoC-Vd-2VR">
+                                <string key="footerTitle">This is an estimation of how many calories you burn per day. It is calculated by multiplying your BMR by a multiplier that depends of your PAL</string>
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="IHw-Di-uRk">
+                                        <rect key="frame" x="0.0" y="564" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IHw-Di-uRk" id="78T-Ls-nYc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2V-Os-hwX">
+                                                    <rect key="frame" x="165.5" y="1.5" width="83" height="41"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="g2V-Os-hwX" firstAttribute="centerX" secondItem="78T-Ls-nYc" secondAttribute="centerX" id="R9h-bx-gyS"/>
+                                                <constraint firstItem="g2V-Os-hwX" firstAttribute="centerY" secondItem="78T-Ls-nYc" secondAttribute="centerY" id="iqh-11-Fuj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -676,21 +707,11 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="sYn-9S-N4e" id="1kX-Bi-eaM"/>
-                            <outlet property="delegate" destination="sYn-9S-N4e" id="EkL-yO-trY"/>
-                        </connections>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Your Profile" id="EX7-8c-Lu7"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="caloriesTextField" destination="CA8-Tv-vjk" id="v7f-9P-TKN"/>
-                        <outlet property="carbsTextField" destination="ILg-PU-CTX" id="4BR-Ce-9Zj"/>
-                        <outlet property="fatTextField" destination="b8c-Mp-H61" id="zLF-NW-4HU"/>
-                        <outlet property="proteinTextField" destination="N3M-2u-ZbP" id="kcD-S6-hnk"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9z-CJ-sIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -698,6 +719,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wand.and.stars" catalog="system" width="128" height="113"/>
+        <image name="wand.and.rays" catalog="system" width="128" height="121"/>
     </resources>
 </document>
