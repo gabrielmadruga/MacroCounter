@@ -12,20 +12,30 @@ extension UIView {
     
     @discardableResult
     func loadFromNib<T: UIView>() -> T? {
+        func thisView() -> UIView {
+            if let cell = self as? UITableViewCell {
+                return cell.contentView
+            } else {
+                return self
+            }
+        }
+        
         let bundle = Bundle(for: type(of: self))
         guard let view = bundle.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?[0] as? T else {
             return nil
         }
+        let _view = thisView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(view)
+        _view.addSubview(view)
         NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            view.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            view.topAnchor.constraint(equalTo: _view.layoutMarginsGuide.topAnchor),
+            view.leadingAnchor.constraint(equalTo: _view.layoutMarginsGuide.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: _view.layoutMarginsGuide.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: _view.layoutMarginsGuide.bottomAnchor)
         ])
         return view
     }
+    
 }
 
 //

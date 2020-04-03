@@ -58,8 +58,8 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
         let downButton = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain)  {
             next?.becomeFirstResponder()
         }
-        let doneButton = UIBarButtonItem(title: "Done", style: .done)  { [unowned self] in
-            self.saveButtonPressed()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done)  {
+            textField.resignFirstResponder()
         }
         upButton.width = 88
         downButton.width = 88

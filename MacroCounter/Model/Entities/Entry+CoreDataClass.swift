@@ -11,14 +11,8 @@ import Foundation
 import CoreData
 
 @objc(Entry)
-public class Entry: NSManagedObject {
-    
-    var macros: Macros {
-        get {
-            return Macros(fats: fats, carbs: carbs, proteins: proteins)
-        }
-    }
-    
+public class Entry: NSManagedObject, HasMacros {
+       
     @objc public var sectionIdentifier: String? {
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local

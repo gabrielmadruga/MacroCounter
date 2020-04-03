@@ -280,191 +280,39 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="This is your calculated Daily Target" footerTitle="We suggest you set your protein intake to be 1.8 times your weight in kg, but feel free to adjust any value" id="MMA-cR-8GP">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zjm-gA-JMm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zjm-gA-JMm" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="485" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zjm-gA-JMm" id="etA-CC-JYa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2z-iv-SkD">
-                                                    <rect key="frame" x="36" y="11.5" width="62.5" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kCal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duk-pa-pug">
-                                                    <rect key="frame" x="271" y="11.5" width="127" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIU-ba-dJ0">
-                                                    <rect key="frame" x="130.5" y="0.0" width="108.5" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onCaloriesEditingChanged:" destination="LXe-iV-JA5" eventType="editingChanged" id="Mz0-hj-PdT"/>
-                                                        <outlet property="delegate" destination="LXe-iV-JA5" id="A8U-jw-BdY"/>
-                                                    </connections>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-yx-gwZ">
-                                                    <rect key="frame" x="350" y="-1" width="44" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="RMt-1L-DK5"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <state key="normal" image="wand.and.rays" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="regular"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="undoOverrideCalories:" destination="LXe-iV-JA5" eventType="touchUpInside" id="XOd-lU-Udp"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="duk-pa-pug" firstAttribute="leading" secondItem="qIU-ba-dJ0" secondAttribute="trailing" constant="32" id="6Ta-cz-REG"/>
-                                                <constraint firstItem="2bp-yx-gwZ" firstAttribute="top" secondItem="etA-CC-JYa" secondAttribute="top" constant="-1" id="CbX-Nf-a5e"/>
-                                                <constraint firstAttribute="trailing" secondItem="qIU-ba-dJ0" secondAttribute="trailing" constant="175" id="D1s-Pa-3Jw"/>
-                                                <constraint firstAttribute="bottom" secondItem="2bp-yx-gwZ" secondAttribute="bottom" constant="1" id="D2e-RS-WBQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="2bp-yx-gwZ" secondAttribute="trailing" constant="20" id="D5R-db-s0G"/>
-                                                <constraint firstAttribute="bottom" secondItem="qIU-ba-dJ0" secondAttribute="bottom" id="JrJ-wm-Eom"/>
-                                                <constraint firstAttribute="trailing" secondItem="duk-pa-pug" secondAttribute="trailing" constant="16" id="NJr-Xt-vtx"/>
-                                                <constraint firstItem="O2z-iv-SkD" firstAttribute="leading" secondItem="etA-CC-JYa" secondAttribute="leadingMargin" constant="16" id="QVN-vg-O6S"/>
-                                                <constraint firstItem="qIU-ba-dJ0" firstAttribute="firstBaseline" secondItem="O2z-iv-SkD" secondAttribute="firstBaseline" id="bEg-fa-79V"/>
-                                                <constraint firstItem="duk-pa-pug" firstAttribute="firstBaseline" secondItem="O2z-iv-SkD" secondAttribute="firstBaseline" id="ez1-NA-sGr"/>
-                                                <constraint firstItem="qIU-ba-dJ0" firstAttribute="leading" secondItem="O2z-iv-SkD" secondAttribute="trailing" constant="32" id="qQO-3m-NgQ"/>
-                                                <constraint firstItem="qIU-ba-dJ0" firstAttribute="top" secondItem="etA-CC-JYa" secondAttribute="top" id="y2h-rN-I2e"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="iyS-SV-qmB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="iyS-SV-qmB" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="529" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iyS-SV-qmB" id="bGH-tF-PlF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieM-uf-JyX">
-                                                    <rect key="frame" x="36" y="11.5" width="24" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B2g-tb-FfY">
-                                                    <rect key="frame" x="92" y="0.0" width="147" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onFatEditingChanged:" destination="LXe-iV-JA5" eventType="editingChanged" id="Mse-3w-zhx"/>
-                                                        <outlet property="delegate" destination="LXe-iV-JA5" id="9sn-Sf-mRs"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFa-v6-Jr6">
-                                                    <rect key="frame" x="271" y="11.5" width="127" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="B2g-tb-FfY" firstAttribute="firstBaseline" secondItem="ieM-uf-JyX" secondAttribute="firstBaseline" id="1Fz-iy-oMP"/>
-                                                <constraint firstAttribute="bottom" secondItem="B2g-tb-FfY" secondAttribute="bottom" id="Pts-ih-9vF"/>
-                                                <constraint firstAttribute="trailing" secondItem="B2g-tb-FfY" secondAttribute="trailing" constant="175" id="g2P-5T-oOu"/>
-                                                <constraint firstItem="B2g-tb-FfY" firstAttribute="top" secondItem="bGH-tF-PlF" secondAttribute="top" id="hIj-Op-A7D"/>
-                                                <constraint firstItem="ieM-uf-JyX" firstAttribute="leading" secondItem="bGH-tF-PlF" secondAttribute="leadingMargin" constant="16" id="iXY-Sd-d3V"/>
-                                                <constraint firstItem="B2g-tb-FfY" firstAttribute="leading" secondItem="ieM-uf-JyX" secondAttribute="trailing" constant="32" id="pdg-Cn-kzG"/>
-                                                <constraint firstAttribute="trailing" secondItem="pFa-v6-Jr6" secondAttribute="trailing" constant="16" id="tWn-nG-K74"/>
-                                                <constraint firstItem="pFa-v6-Jr6" firstAttribute="leading" secondItem="B2g-tb-FfY" secondAttribute="trailing" constant="32" id="uUh-gQ-iti"/>
-                                                <constraint firstItem="pFa-v6-Jr6" firstAttribute="firstBaseline" secondItem="ieM-uf-JyX" secondAttribute="firstBaseline" id="xP9-8w-KhZ"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="UTq-TM-eFw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="UTq-TM-eFw" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="573" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UTq-TM-eFw" id="khC-LZ-Mlj">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8w-9r-Ot1">
-                                                    <rect key="frame" x="36" y="11.5" width="45.5" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sGe-Nb-fGI">
-                                                    <rect key="frame" x="113.5" y="0.0" width="125.5" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onCarbsEditingChanged:" destination="LXe-iV-JA5" eventType="editingChanged" id="XWm-Ro-jF6"/>
-                                                        <outlet property="delegate" destination="LXe-iV-JA5" id="SWI-Ic-dg4"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kD-PS-PJ9">
-                                                    <rect key="frame" x="271" y="11.5" width="127" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="4kD-PS-PJ9" secondAttribute="trailing" constant="16" id="2RI-LZ-0hg"/>
-                                                <constraint firstItem="sGe-Nb-fGI" firstAttribute="top" secondItem="khC-LZ-Mlj" secondAttribute="top" id="4VB-Ri-iOz"/>
-                                                <constraint firstItem="sGe-Nb-fGI" firstAttribute="leading" secondItem="F8w-9r-Ot1" secondAttribute="trailing" constant="32" id="YUR-Nc-eVZ"/>
-                                                <constraint firstItem="4kD-PS-PJ9" firstAttribute="firstBaseline" secondItem="F8w-9r-Ot1" secondAttribute="firstBaseline" id="gZ0-UE-IQP"/>
-                                                <constraint firstAttribute="bottom" secondItem="sGe-Nb-fGI" secondAttribute="bottom" id="iim-ac-4NG"/>
-                                                <constraint firstItem="4kD-PS-PJ9" firstAttribute="leading" secondItem="sGe-Nb-fGI" secondAttribute="trailing" constant="32" id="oKv-jb-AFK"/>
-                                                <constraint firstItem="sGe-Nb-fGI" firstAttribute="firstBaseline" secondItem="F8w-9r-Ot1" secondAttribute="firstBaseline" id="s1N-SM-Kbj"/>
-                                                <constraint firstItem="F8w-9r-Ot1" firstAttribute="leading" secondItem="khC-LZ-Mlj" secondAttribute="leadingMargin" constant="16" id="tX2-67-8II"/>
-                                                <constraint firstAttribute="trailing" secondItem="sGe-Nb-fGI" secondAttribute="trailing" constant="175" id="wyX-tt-IXt"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hwj-Dt-zJJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hwj-Dt-zJJ" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="617" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwj-Dt-zJJ" id="1HJ-en-N6l">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08n-Jw-9tp">
-                                                    <rect key="frame" x="36" y="11.5" width="54.5" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QzK-Yg-gTx">
-                                                    <rect key="frame" x="122.5" y="0.0" width="116.5" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="onProteinEditingChanged:" destination="LXe-iV-JA5" eventType="editingChanged" id="gjb-IW-fTp"/>
-                                                        <outlet property="delegate" destination="LXe-iV-JA5" id="kPp-SX-O3r"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weA-uH-LfZ">
-                                                    <rect key="frame" x="271" y="11.5" width="127" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="QzK-Yg-gTx" firstAttribute="leading" secondItem="08n-Jw-9tp" secondAttribute="trailing" constant="32" id="Fng-As-N2L"/>
-                                                <constraint firstItem="08n-Jw-9tp" firstAttribute="firstBaseline" secondItem="weA-uH-LfZ" secondAttribute="firstBaseline" id="VtB-Dl-NZC"/>
-                                                <constraint firstAttribute="trailing" secondItem="weA-uH-LfZ" secondAttribute="trailing" constant="16" id="Vyu-VW-ae3"/>
-                                                <constraint firstAttribute="trailing" secondItem="QzK-Yg-gTx" secondAttribute="trailing" constant="175" id="fgE-wS-tiC"/>
-                                                <constraint firstAttribute="bottom" secondItem="QzK-Yg-gTx" secondAttribute="bottom" id="kio-w1-jqS"/>
-                                                <constraint firstItem="08n-Jw-9tp" firstAttribute="leading" secondItem="1HJ-en-N6l" secondAttribute="leadingMargin" constant="16" id="oWO-Fg-Gi8"/>
-                                                <constraint firstItem="QzK-Yg-gTx" firstAttribute="top" secondItem="1HJ-en-N6l" secondAttribute="top" id="ovd-9Q-zY6"/>
-                                                <constraint firstItem="QzK-Yg-gTx" firstAttribute="firstBaseline" secondItem="08n-Jw-9tp" secondAttribute="firstBaseline" id="pVd-Ad-kbO"/>
-                                                <constraint firstItem="weA-uH-LfZ" firstAttribute="leading" secondItem="QzK-Yg-gTx" secondAttribute="trailing" constant="32" id="vd0-Hc-giS"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
@@ -481,11 +329,10 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="caloriesTextField" destination="qIU-ba-dJ0" id="vzg-aA-Tzq"/>
-                        <outlet property="carbsTextField" destination="sGe-Nb-fGI" id="oBO-J4-UGu"/>
-                        <outlet property="fatTextField" destination="B2g-tb-FfY" id="9t3-Mk-p9W"/>
-                        <outlet property="overrideCaloriesButton" destination="2bp-yx-gwZ" id="6QF-Y8-JoR"/>
-                        <outlet property="proteinTextField" destination="QzK-Yg-gTx" id="nEr-nf-my5"/>
+                        <outlet property="caloriesTableViewCell" destination="zjm-gA-JMm" id="8Cd-5o-kbc"/>
+                        <outlet property="carbsTableViewCell" destination="UTq-TM-eFw" id="0RW-69-W1O"/>
+                        <outlet property="fatTableViewCell" destination="iyS-SV-qmB" id="ZKY-U4-euc"/>
+                        <outlet property="proteinTableViewCell" destination="hwj-Dt-zJJ" id="4xK-3D-Dl1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Xw-6V-EXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -680,7 +527,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Your Total Energy Expenditure (TEE) is" id="EoC-Vd-2VR">
+                            <tableViewSection headerTitle="Your Total Energy Expenditure is" id="EoC-Vd-2VR">
                                 <string key="footerTitle">This is an estimation of how many calories you burn per day. It is calculated by multiplying your BMR by a multiplier that depends of your PAL</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="IHw-Di-uRk">
@@ -718,7 +565,4 @@
             <point key="canvasLocation" x="262" y="504"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="wand.and.rays" catalog="system" width="128" height="121"/>
-    </resources>
 </document>

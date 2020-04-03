@@ -28,6 +28,8 @@
 		EE53C19E242D7ECF00BE645B /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE53C19D242D7ECF00BE645B /* Entry+CoreDataProperties.swift */; };
 		EE63EC33242BFE8500D05FA5 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63EC32242BFE8500D05FA5 /* UIViewExtensions.swift */; };
 		EE63EC37242C03E600D05FA5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63EC36242C03E600D05FA5 /* CoreDataStack.swift */; };
+		EE7316C2243693EB0048788A /* MacroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE7316C1243693EB0048788A /* MacroTableViewCell.xib */; };
+		EE7316C4243693F70048788A /* MacroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7316C3243693F70048788A /* MacroTableViewCell.swift */; };
 		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
 		EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */; };
 		EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D54243173CC006BEE15 /* FormViewController.swift */; };
@@ -95,6 +97,8 @@
 		EE53C19D242D7ECF00BE645B /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EE63EC32242BFE8500D05FA5 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		EE63EC36242C03E600D05FA5 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		EE7316C1243693EB0048788A /* MacroTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MacroTableViewCell.xib; sourceTree = "<group>"; };
+		EE7316C3243693F70048788A /* MacroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroTableViewCell.swift; sourceTree = "<group>"; };
 		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 				EED94F60242841F60094BCBB /* Settings.storyboard */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
 				C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */,
+				EE7316C1243693EB0048788A /* MacroTableViewCell.xib */,
+				EE7316C3243693F70048788A /* MacroTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 			files = (
 				EE13D8F324305564000EDFF7 /* ProgressView.xib in Resources */,
 				EEAE9AF6243541D400E220D1 /* OnboardingCardView.xib in Resources */,
+				EE7316C2243693EB0048788A /* MacroTableViewCell.xib in Resources */,
 				C090636A211A5048005FBAF5 /* LaunchScreen.storyboard in Resources */,
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
 				EED94F61242841F60094BCBB /* Settings.storyboard in Resources */,
@@ -448,6 +455,7 @@
 				EE53C19E242D7ECF00BE645B /* Entry+CoreDataProperties.swift in Sources */,
 				EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */,
 				EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */,
+				EE7316C4243693F70048788A /* MacroTableViewCell.swift in Sources */,
 				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
 				EEAE9AF5243541D400E220D1 /* OnboardingViewController.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,

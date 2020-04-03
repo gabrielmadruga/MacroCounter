@@ -8,6 +8,11 @@
 
 import Foundation
 
+
+enum MacroType {
+    case calories, fats, carbs, proteins
+}
+
 struct Macros: Codable {
     var fats: Float
     var carbs: Float
@@ -17,8 +22,23 @@ struct Macros: Codable {
     }
 }
 
+protocol HasMacros {
+    var fats: Float { get set }
+    var carbs: Float { get set }
+    var proteins: Float { get set }
+    var calories: Float { get set }
+}
+
 protocol Macroable {
     var macros: Macros { get set }
+}
+
+extension HasMacros {
+    var macros: Macros {
+        get {
+            return Macros(fats: fats, carbs: carbs, proteins: proteins)
+        }
+    }
 }
 
 extension Macroable {
