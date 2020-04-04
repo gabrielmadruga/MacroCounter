@@ -14,12 +14,22 @@ class ProgressView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var currentAndTargetLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
+    @IBOutlet weak var progressBackgroundView: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var progressViewTrailingSpaceToContainer: NSLayoutConstraint!
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromNib()
+        self.layer.cornerRadius = 4.0;
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowOpacity = 0.20
+//        progressBackgroundView.layer.shadowRadius = 4.0
+//        progressBackgroundView.layer.shadowColor = UIColor.black.cgColor
+//        progressBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 4)
+//        progressBackgroundView.layer.shadowOpacity = 0.20
     }
     
     override init(frame: CGRect) {
