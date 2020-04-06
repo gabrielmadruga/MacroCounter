@@ -89,7 +89,6 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
         let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash) { [unowned self] in
             self.deleteButtonPressed()
         }
-        deleteButton.tintColor = .systemRed
         let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = saveButton

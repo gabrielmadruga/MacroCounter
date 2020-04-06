@@ -21,6 +21,6 @@ extension DailyTarget {
     @NSManaged public var carbs: Float
     @NSManaged public var proteins: Float
     @NSManaged public var calories: Float
-    @NSManaged public var settings: Settings?
+    @NSManaged public var profile: Profile?
 
 }

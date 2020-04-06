@@ -5,7 +5,7 @@
         <attribute name="carbs" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fats" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="proteins" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Settings" inverseName="dailyTarget" inverseEntity="Settings"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="dailyTarget" inverseEntity="Profile"/>
     </entity>
     <entity name="Entry" representedClassName="Entry" syncable="YES">
         <attribute name="calories" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
@@ -16,12 +16,21 @@
         <attribute name="proteins" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="servings" attributeType="Float" defaultValueString="1" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Settings" representedClassName="Settings" syncable="YES">
-        <relationship name="dailyTarget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyTarget" inverseName="settings" inverseEntity="DailyTarget"/>
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
+        <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isMale" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="physicalActivityLevel" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="dailyTarget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyTarget" inverseName="profile" inverseEntity="DailyTarget"/>
+        <relationship name="weightLog" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeightSample" inverseName="profile" inverseEntity="WeightSample"/>
+    </entity>
+    <entity name="WeightSample" representedClassName="WeightSample" syncable="YES">
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="weightLog" inverseEntity="Profile"/>
     </entity>
     <elements>
         <element name="DailyTarget" positionX="-23976.5078125" positionY="-6226.9375" width="128" height="118"/>
-        <element name="Entry" positionX="-24337.921875" positionY="-6322.8671875" width="110.5625" height="148"/>
-        <element name="Settings" positionX="-24137.05859375" positionY="-6225.1484375" width="87.359375" height="58"/>
+        <element name="Entry" positionX="-24039" positionY="-6210" width="128" height="148"/>
+        <element name="Profile" positionX="-24021" positionY="-6129" width="128" height="133"/>
+        <element name="WeightSample" positionX="-24057" positionY="-6147" width="128" height="28"/>
     </elements>
 </model>

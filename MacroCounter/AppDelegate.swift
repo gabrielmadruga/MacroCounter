@@ -25,14 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         
         let managedContext = coreData.managedContext
-        if (try! managedContext.fetch(Settings.fetchRequest() as NSFetchRequest<Settings>)).first == nil {
-            let settings = Settings.init(context: managedContext)
+        if (try! managedContext.fetch(Profile.fetchRequest() as NSFetchRequest<Profile>)).first == nil {
+            let profile = Profile.init(context: managedContext)
             let dailyTarget = DailyTarget.init(context: managedContext)
             dailyTarget.calories = 2000
             dailyTarget.fats = 40
             dailyTarget.carbs = 100
             dailyTarget.proteins = 100
-            settings.dailyTarget = dailyTarget
+            dailyTarget.profile = profile
             try! managedContext.save()
         }
         UserDefaults.standard.userInterfaceStyle = .unspecified

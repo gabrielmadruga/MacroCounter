@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
+            <connections>
+                <outlet property="nameLabel" destination="LzS-c7-c9c" id="s5a-lv-uRT"/>
+                <outlet property="textField" destination="jp7-rN-F3k" id="0re-ci-WEd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="xkf-5g-awJ">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="152"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <textField opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jp7-rN-F3k">
+                    <rect key="frame" x="61" y="65" width="353" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Lpn-9p-Xv5"/>
+                    </connections>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LzS-c7-c9c">
+                    <rect key="frame" x="0.0" y="65.5" width="45" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="jp7-rN-F3k" firstAttribute="firstBaseline" secondItem="LzS-c7-c9c" secondAttribute="firstBaseline" id="5Xv-cW-9nb"/>
+                <constraint firstItem="LzS-c7-c9c" firstAttribute="centerY" secondItem="xkf-5g-awJ" secondAttribute="centerY" id="7dY-eq-mXf"/>
+                <constraint firstItem="LzS-c7-c9c" firstAttribute="leading" secondItem="xkf-5g-awJ" secondAttribute="leading" id="EHb-Ow-VNJ"/>
+                <constraint firstAttribute="trailing" secondItem="jp7-rN-F3k" secondAttribute="trailing" id="NX9-ZD-TAL"/>
+                <constraint firstItem="jp7-rN-F3k" firstAttribute="leading" secondItem="LzS-c7-c9c" secondAttribute="trailing" constant="16" id="sqV-o5-Hhk"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="feX-Zf-OQU"/>
+            <point key="canvasLocation" x="34.782608695652179" y="125.89285714285714"/>
+        </view>
+    </objects>
+</document>

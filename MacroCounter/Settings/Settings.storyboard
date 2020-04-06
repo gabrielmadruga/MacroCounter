@@ -337,12 +337,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Xw-6V-EXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468.11594202898556" y="508.92857142857139"/>
+            <point key="canvasLocation" x="12" y="509"/>
         </scene>
         <!--Your Profile-->
         <scene sceneID="lip-hm-OvS">
             <objects>
-                <tableViewController storyboardIdentifier="ProfileViewController" id="sYn-9S-N4e" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileViewController" id="sYn-9S-N4e" customClass="ProfileViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="static" style="grouped" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HH2-QD-s1Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,7 +350,7 @@
                         <sections>
                             <tableViewSection headerTitle="Information required to calculate your Total Daily Energy Expenditure" footerTitle="" id="7gd-fJ-Jk8">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="AsG-e1-9lj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="AsG-e1-9lj" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="73.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AsG-e1-9lj" id="9wC-Vr-iUn">
@@ -380,7 +380,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="KbQ-Jx-0yT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="KbQ-Jx-0yT" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="117.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KbQ-Jx-0yT" id="455-7X-NgJ">
@@ -410,7 +410,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oz2-y7-Amr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oz2-y7-Amr" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="161.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oz2-y7-Amr" id="md9-Ds-2bt">
@@ -440,7 +440,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6l3-tA-Fka">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6l3-tA-Fka" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="205.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6l3-tA-Fka" id="IIi-Wl-86x">
@@ -515,6 +515,9 @@
                                                         <segment title="Heavy"/>
                                                         <segment title="Athlete"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="onPalChange:" destination="sYn-9S-N4e" eventType="valueChanged" id="etd-l9-H1U"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -559,10 +562,19 @@
                     <navigationItem key="navigationItem" title="Your Profile" id="EX7-8c-Lu7"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="birthdateTableViewCell" destination="AsG-e1-9lj" id="GGg-rf-f4a"/>
+                        <outlet property="bmrLabel" destination="L8v-td-2Tf" id="qfQ-wh-bs1"/>
+                        <outlet property="heightTableViewCell" destination="oz2-y7-Amr" id="zay-CJ-B0p"/>
+                        <outlet property="palSegmentedControl" destination="w0Y-qX-xcQ" id="Ewg-gQ-yKE"/>
+                        <outlet property="sexTableViewCell" destination="KbQ-Jx-0yT" id="Uu4-IT-QRr"/>
+                        <outlet property="teeLabel" destination="g2V-Os-hwX" id="A0m-g3-Oa7"/>
+                        <outlet property="weightTableViewCell" destination="6l3-tA-Fka" id="grR-I1-9f4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9z-CJ-sIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="504"/>
+            <point key="canvasLocation" x="-636" y="509"/>
         </scene>
     </scenes>
 </document>

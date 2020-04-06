@@ -32,6 +32,13 @@
 		EE7316C4243693F70048788A /* MacroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7316C3243693F70048788A /* MacroTableViewCell.swift */; };
 		EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */; };
 		EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */; };
+		EE8FF5E5243965F900844EBC /* WeightSample+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF5E1243965F900844EBC /* WeightSample+CoreDataClass.swift */; };
+		EE8FF5E6243965F900844EBC /* WeightSample+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF5E2243965F900844EBC /* WeightSample+CoreDataProperties.swift */; };
+		EE8FF5E7243965F900844EBC /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF5E3243965F900844EBC /* Profile+CoreDataClass.swift */; };
+		EE8FF5E8243965F900844EBC /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF5E4243965F900844EBC /* Profile+CoreDataProperties.swift */; };
+		EE8FF5EA2439682F00844EBC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF5E92439682F00844EBC /* ProfileViewController.swift */; };
+		EE8FF5ED24396B2A00844EBC /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF5EB24396B2A00844EBC /* FormTableViewCell.swift */; };
+		EE8FF5EE24396B2A00844EBC /* FormTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE8FF5EC24396B2A00844EBC /* FormTableViewCell.xib */; };
 		EE979D55243173CC006BEE15 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D54243173CC006BEE15 /* FormViewController.swift */; };
 		EE979D572431864D006BEE15 /* UIBarButtonItem+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */; };
 		EEAE9AF4243541D400E220D1 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAE9AF0243541D400E220D1 /* OnboardingCardView.swift */; };
@@ -42,8 +49,6 @@
 		EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EED94EE52427E5460094BCBB /* Model.xcdatamodeld */; };
 		EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2B2427ECA70094BCBB /* Macros.swift */; };
 		EED94F2E2427ED500094BCBB /* EntryTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F2D2427ED500094BCBB /* EntryTemplate.swift */; };
-		EED94F5424280D360094BCBB /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F4E24280D360094BCBB /* Settings+CoreDataClass.swift */; };
-		EED94F5524280D360094BCBB /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F4F24280D360094BCBB /* Settings+CoreDataProperties.swift */; };
 		EED94F5624280D360094BCBB /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5024280D360094BCBB /* Entry+CoreDataClass.swift */; };
 		EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */; };
 		EED94F5924280D360094BCBB /* DailyTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */; };
@@ -101,6 +106,13 @@
 		EE7316C3243693F70048788A /* MacroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroTableViewCell.swift; sourceTree = "<group>"; };
 		EE7C26AB23F60A0B006BE4C8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EE81498D242AAD12008E5052 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		EE8FF5E1243965F900844EBC /* WeightSample+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeightSample+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE8FF5E2243965F900844EBC /* WeightSample+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeightSample+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE8FF5E3243965F900844EBC /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE8FF5E4243965F900844EBC /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE8FF5E92439682F00844EBC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EE8FF5EB24396B2A00844EBC /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
+		EE8FF5EC24396B2A00844EBC /* FormTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormTableViewCell.xib; sourceTree = "<group>"; };
 		EE91332C23E72B68002D2F23 /* EntryTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplatesViewController.swift; sourceTree = "<group>"; };
 		EE979D54243173CC006BEE15 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		EE979D562431864D006BEE15 /* UIBarButtonItem+Closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Closures.swift"; sourceTree = "<group>"; };
@@ -113,8 +125,6 @@
 		EED94EE62427E5460094BCBB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		EED94F2B2427ECA70094BCBB /* Macros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
 		EED94F2D2427ED500094BCBB /* EntryTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTemplate.swift; sourceTree = "<group>"; };
-		EED94F4E24280D360094BCBB /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
-		EED94F4F24280D360094BCBB /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EED94F5024280D360094BCBB /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTarget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -256,8 +266,11 @@
 				EED94F60242841F60094BCBB /* Settings.storyboard */,
 				C0D0E11B2129D2E100AE49AF /* SettingsViewController.swift */,
 				C0D0E12C212D04ED00AE49AF /* SetDailyTargetViewController.swift */,
+				EE8FF5E92439682F00844EBC /* ProfileViewController.swift */,
 				EE7316C1243693EB0048788A /* MacroTableViewCell.xib */,
 				EE7316C3243693F70048788A /* MacroTableViewCell.swift */,
+				EE8FF5EC24396B2A00844EBC /* FormTableViewCell.xib */,
+				EE8FF5EB24396B2A00844EBC /* FormTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -293,12 +306,14 @@
 		EED94F4D24280BAD0094BCBB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				EED94F4E24280D360094BCBB /* Settings+CoreDataClass.swift */,
-				EED94F4F24280D360094BCBB /* Settings+CoreDataProperties.swift */,
 				EED94F5024280D360094BCBB /* Entry+CoreDataClass.swift */,
 				EE53C19D242D7ECF00BE645B /* Entry+CoreDataProperties.swift */,
 				EED94F5224280D360094BCBB /* DailyTarget+CoreDataClass.swift */,
 				EED94F5324280D360094BCBB /* DailyTarget+CoreDataProperties.swift */,
+				EE8FF5E1243965F900844EBC /* WeightSample+CoreDataClass.swift */,
+				EE8FF5E2243965F900844EBC /* WeightSample+CoreDataProperties.swift */,
+				EE8FF5E3243965F900844EBC /* Profile+CoreDataClass.swift */,
+				EE8FF5E4243965F900844EBC /* Profile+CoreDataProperties.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -417,6 +432,7 @@
 				C0906367211A5048005FBAF5 /* Assets.xcassets in Resources */,
 				EED94F61242841F60094BCBB /* Settings.storyboard in Resources */,
 				C0906365211A503E005FBAF5 /* Main.storyboard in Resources */,
+				EE8FF5EE24396B2A00844EBC /* FormTableViewCell.xib in Resources */,
 				EED94F5D24283EAA0094BCBB /* Entry.storyboard in Resources */,
 				EEAE9AF7243541D400E220D1 /* Onboarding.storyboard in Resources */,
 			);
@@ -449,6 +465,7 @@
 				EE63EC33242BFE8500D05FA5 /* UIViewExtensions.swift in Sources */,
 				C0D0E129212A2EAC00AE49AF /* UIViewControllerExtensions.swift in Sources */,
 				C0D0E127212A080A00AE49AF /* DatePickerViewController.swift in Sources */,
+				EE8FF5EA2439682F00844EBC /* ProfileViewController.swift in Sources */,
 				EE979D572431864D006BEE15 /* UIBarButtonItem+Closures.swift in Sources */,
 				C0D0E12D212D04ED00AE49AF /* SetDailyTargetViewController.swift in Sources */,
 				EED94F2C2427ECA70094BCBB /* Macros.swift in Sources */,
@@ -457,22 +474,25 @@
 				EE81498E242AAD12008E5052 /* UserDefaultsExtensions.swift in Sources */,
 				EE7316C4243693F70048788A /* MacroTableViewCell.swift in Sources */,
 				EED94F5824280D360094BCBB /* DailyTarget+CoreDataClass.swift in Sources */,
+				EE8FF5E8243965F900844EBC /* Profile+CoreDataProperties.swift in Sources */,
 				EEAE9AF5243541D400E220D1 /* OnboardingViewController.swift in Sources */,
 				C0D0E11A2129D2CE00AE49AF /* AddEditEntryViewController.swift in Sources */,
 				EE13D8F124304E2A000EDFF7 /* ProgressView.swift in Sources */,
 				EEAE9AF4243541D400E220D1 /* OnboardingCardView.swift in Sources */,
 				C0D0E11C2129D2E100AE49AF /* SettingsViewController.swift in Sources */,
-				EED94F5524280D360094BCBB /* Settings+CoreDataProperties.swift in Sources */,
+				EE8FF5ED24396B2A00844EBC /* FormTableViewCell.swift in Sources */,
 				EED94EE72427E5460094BCBB /* Model.xcdatamodeld in Sources */,
 				EE63EC37242C03E600D05FA5 /* CoreDataStack.swift in Sources */,
 				EEB522AD23E504E90077640F /* EntriesViewController.swift in Sources */,
+				EE8FF5E7243965F900844EBC /* Profile+CoreDataClass.swift in Sources */,
 				C0906360211A503E005FBAF5 /* AppDelegate.swift in Sources */,
 				EE4225DF23E663630089E881 /* TodayViewController.swift in Sources */,
 				C0D0E1252129F54A00AE49AF /* UIViewControllerEasyInstantiation.swift in Sources */,
 				EED94F5924280D360094BCBB /* DailyTarget+CoreDataProperties.swift in Sources */,
 				EE7C26AC23F60A0B006BE4C8 /* UIColorExtensions.swift in Sources */,
-				EED94F5424280D360094BCBB /* Settings+CoreDataClass.swift in Sources */,
+				EE8FF5E5243965F900844EBC /* WeightSample+CoreDataClass.swift in Sources */,
 				C0D0E12F212D05C100AE49AF /* UITextFieldExtensions.swift in Sources */,
+				EE8FF5E6243965F900844EBC /* WeightSample+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
