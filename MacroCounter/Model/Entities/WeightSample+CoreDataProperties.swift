@@ -17,6 +17,8 @@ extension WeightSample {
         return NSFetchRequest<WeightSample>(entityName: "WeightSample")
     }
 
+    @NSManaged public var value: Float
+    @NSManaged public var date: Date?
     @NSManaged public var profile: Profile?
 
 }

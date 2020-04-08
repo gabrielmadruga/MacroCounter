@@ -27,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let managedContext = coreData.managedContext
         if (try! managedContext.fetch(Profile.fetchRequest() as NSFetchRequest<Profile>)).first == nil {
             let profile = Profile.init(context: managedContext)
+            profile.birthday = Date()
+            profile.isMale = true
+            profile.height = 170
+            profile.physicalActivityLevel = 1.2
+            let weightSample = WeightSample(context: managedContext)
+            weightSample.date = Date()
+            weightSample.value = 60
+            profile.currentWeight = weightSample
             let dailyTarget = DailyTarget.init(context: managedContext)
             dailyTarget.calories = 2000
             dailyTarget.fats = 40

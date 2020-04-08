@@ -472,7 +472,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Your Basal Metabolic Rate (BMR) is" footerTitle="This is an estimation of how many calories you burn per day if you do not move or eat." id="TyV-lT-1Ac">
+                            <tableViewSection headerTitle="Your Basal Metabolic Rate (BMR) is" footerTitle="This is an estimation of how many calories you burn per day if you do not move or eat" id="TyV-lT-1Ac">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="NYm-Eo-hsB">
                                         <rect key="frame" x="0.0" y="317" width="414" height="44"/>
@@ -487,8 +487,16 @@
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7j-gi-vnK">
+                                                    <rect key="frame" x="246.5" y="18" width="24" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="m7j-gi-vnK" firstAttribute="firstBaseline" secondItem="L8v-td-2Tf" secondAttribute="firstBaseline" id="Lgn-d9-GOy"/>
+                                                <constraint firstItem="m7j-gi-vnK" firstAttribute="leading" secondItem="L8v-td-2Tf" secondAttribute="trailing" id="PeG-Ut-thg"/>
                                                 <constraint firstItem="L8v-td-2Tf" firstAttribute="centerX" secondItem="WWV-wR-353" secondAttribute="centerX" id="Zia-sn-kUt"/>
                                                 <constraint firstItem="L8v-td-2Tf" firstAttribute="centerY" secondItem="WWV-wR-353" secondAttribute="centerY" id="oQL-3J-hB8"/>
                                             </constraints>
@@ -546,9 +554,17 @@
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGF-Lm-C1r">
+                                                    <rect key="frame" x="248.5" y="18" width="24" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="UGF-Lm-C1r" firstAttribute="firstBaseline" secondItem="g2V-Os-hwX" secondAttribute="firstBaseline" id="Qqe-CF-RWw"/>
                                                 <constraint firstItem="g2V-Os-hwX" firstAttribute="centerX" secondItem="78T-Ls-nYc" secondAttribute="centerX" id="R9h-bx-gyS"/>
+                                                <constraint firstItem="UGF-Lm-C1r" firstAttribute="leading" secondItem="g2V-Os-hwX" secondAttribute="trailing" id="S8V-4X-l0J"/>
                                                 <constraint firstItem="g2V-Os-hwX" firstAttribute="centerY" secondItem="78T-Ls-nYc" secondAttribute="centerY" id="iqh-11-Fuj"/>
                                             </constraints>
                                         </tableViewCellContentView>

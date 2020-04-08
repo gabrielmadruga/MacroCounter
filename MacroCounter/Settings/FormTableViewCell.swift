@@ -11,6 +11,8 @@ import UIKit
 enum FormTableViewCellType {
     case birthdate
     case selection
+    case integer
+    case float
 }
 
 class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -26,40 +28,58 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDeleg
         loadFromNib()
     }
 
-    func setupForBirthdate() {
+    private var onBirthdateChange: ((Date) -> ())?
+    func setupForBirthdate(initWith: Date, onChange: ((Date) -> ())?) {
         nameLabel.text = "Birthdate"
         self.type = .birthdate
+        self.onBirthdateChange = onChange
         
         let ninetyYearsAgo = Calendar.current.date(byAdding: .year, value: -90, to: Date())
         let twelveYearsAgo = Calendar.current.date(byAdding: .year, value: -12, to: Date())
-        let thirtyYearsAgo = Calendar.current.date(byAdding: .year, value: -30, to: Date())
         let datePicker = UIDatePicker()
         datePicker.minimumDate = ninetyYearsAgo
         datePicker.maximumDate = twelveYearsAgo
-        datePicker.date = thirtyYearsAgo!
+        datePicker.date = initWith
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(onDatePickerChange(_:)), for: .valueChanged)
         textField.tintColor = .clear
         textField.inputView = datePicker
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        textField.text = formatter.string(from: datePicker.date)
     }
 
-    func setupForSelection(label: String, options: [String]) {
+    private var onSelectionChange: ((Int) -> ())?
+    func setupForSelection(label: String, options: [String], initWith: Int, onChange: ((Int) -> ())?) {
         nameLabel.text = label
         self.type = .selection
         self.options = [options]
+        self.onSelectionChange = onChange
         
         let picker = UIPickerView()
         picker.dataSource = self
         picker.delegate = self
         textField.tintColor = .clear
         textField.inputView = picker
+        textField.text = options[initWith]
+        picker.selectRow(initWith, inComponent: 0, animated: true)
+        pickerView(picker, didSelectRow: initWith, inComponent: 0)
     }
     
-    func setupForInteger(label: String, from: Int, to: Int, unit: String) {
+    private var onIntegerChange: ((Int) -> ())?
+    private var integerOptions: [Int]?
+    func setupForInteger(label: String, from: Int, to: Int, unit: String, initWith: Int, onChange: ((Int) -> ())?) {
         nameLabel.text = label
-        self.type = .selection
+        self.type = .integer
+        self.onIntegerChange = onChange
         
-        options = [[Int](from...to).map({ (i) -> String in
+        var initialIntegerOptionIndex: Int = 0
+        integerOptions = [Int](from...to)
+        options = [integerOptions!.enumerated().map({ (index, i) -> String in
+            if i == initWith {
+               initialIntegerOptionIndex = index
+            }
             return "\(i) \(unit)"
         })]
         
@@ -68,17 +88,33 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDeleg
         picker.delegate = self
         textField.tintColor = .clear
         textField.inputView = picker
+        textField.text = "\(initWith) \(unit)"
+        picker.selectRow(initialIntegerOptionIndex, inComponent: 0, animated: true)
+        pickerView(picker, didSelectRow: initialIntegerOptionIndex, inComponent: 0)
     }
     
-    func setupForFloat(label: String, from: Int, to: Int, unit: String) {
+    private var onFloatChange: ((Float) -> ())?
+    private var floatOptions: [[Int]]?
+    func setupForFloat(label: String, from: Int, to: Int, unit: String, initWith: Float, onChange: ((Float) -> ())?) {
         nameLabel.text = label
-        self.type = .selection
+        self.type = .float
+        self.onFloatChange = onChange
         
+        var initialFloatOptionIndexes: [Int] = [0, 0]
         options = []
-        options.append([Int](from...to).map({ (i) -> String in
+        floatOptions = []
+        floatOptions!.append([Int](from...to))
+        options.append(floatOptions![0].enumerated().map({ (index, i) -> String in
+            if i == Int(initWith) {
+               initialFloatOptionIndexes[0] = index
+            }
             return "\(i)"
         }))
-        options.append([Int](0...9).map({ (i) -> String in
+        floatOptions!.append([Int](0...9))
+        options.append(floatOptions![1].enumerated().map({ (index, i) -> String in
+            if i == Int(round((initWith - Float(Int(initWith)))*10)) {
+               initialFloatOptionIndexes[1] = index
+            }
             return ".\(i)"
         }))
         options.append(["kg"])
@@ -88,6 +124,12 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDeleg
         picker.delegate = self
         textField.tintColor = .clear
         textField.inputView = picker
+        textField.text = "\(initWith) \(unit)"
+        
+        picker.selectRow(initialFloatOptionIndexes[0], inComponent: 0, animated: true)
+        picker.selectRow(initialFloatOptionIndexes[1], inComponent: 1, animated: true)
+        pickerView(picker, didSelectRow: initialFloatOptionIndexes[0], inComponent: 0)
+        pickerView(picker, didSelectRow: initialFloatOptionIndexes[1], inComponent: 1)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -104,13 +146,30 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDeleg
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var text = ""
+        
         for i in 0..<options.count {
-            if i == options.count - 1 {
+            if options.count > 1 && i == options.count - 1 {
                 text += " "
             }
             text += options[i][pickerView.selectedRow(inComponent: i)]
         }
+        
         textField.text = text
+        
+        switch type {
+        case .selection:
+            onSelectionChange?(row)
+        case .integer:
+            onIntegerChange?(integerOptions![row])
+        case .float:
+            let intComponent = floatOptions![0][pickerView.selectedRow(inComponent: 0)]
+            let decimalComponent = floatOptions![1][pickerView.selectedRow(inComponent: 1)]
+            let float = Float(intComponent) + Float(decimalComponent)*0.1
+            onFloatChange?(float)
+        default:
+            break
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
@@ -126,12 +185,14 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDeleg
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         textField.text = formatter.string(from: sender.date)
+        onBirthdateChange?(sender.date)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if let picker = textField.inputView as? UIPickerView {
-//            Placeholder
-            picker.selectRow(80, inComponent: 0, animated: true)
-        }
+        textField.textColor = .systemBlue
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.textColor = .label
     }
 }
