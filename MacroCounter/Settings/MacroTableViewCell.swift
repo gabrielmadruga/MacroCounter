@@ -26,14 +26,16 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
         numberTextField.addTarget(self, action: #selector(onTextEditingChanged), for: .editingChanged)
     }
 
-    func setup(type: MacroType, macroOwner: HasMacros, calsCell: MacroTableViewCell) {
+    private var onChange: (() -> ())?
+    func setup(type: MacroType, macroOwner: HasMacros, calsCell: MacroTableViewCell, onChange: (() -> ())? = nil) {
         self.type = type
         self.macroOwner = macroOwner
         self.caloriesTableViewCell = calsCell
+        self.onChange = onChange
         setup()
         reloadData()
         if type == .calories {
-            if !macroOwner.macros.calories.isEqual(to: macroOwner.calories) {
+            if macroOwner.macros.calories != macroOwner.calories {
                 overrideButton.isHidden = false
             }
         }
@@ -48,30 +50,36 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    private func setValue(_ value: Float) {
+    func setValue(_ value: Float) {
         switch type {
         case .calories:
             macroOwner.calories = value
-            overrideButton.isHidden = false
-            return
+            if macroOwner.macros.calories != value {
+                overrideButton.isHidden = false                
+            }
         case .fats:
             macroOwner.fats = value
+            reCalcCalsAndReloadIfNeeded()
         case .carbs:
             macroOwner.carbs = value
+            reCalcCalsAndReloadIfNeeded()
         case .proteins:
             macroOwner.proteins = value
+            reCalcCalsAndReloadIfNeeded()
         default:
             fatalError()
         }
-        reCalcCalsAndReloadIfNeeded()
+        DispatchQueue.main.async {
+            self.onChange?()
+        }
     }
     private func reCalcCalsAndReloadIfNeeded() {
         if caloriesTableViewCell.overrideButton.isHidden {
-            macroOwner.calories = macroOwner.macros.calories
+            caloriesTableViewCell.setValue(macroOwner.macros.calories)
             caloriesTableViewCell.reloadData()
         }
     }
-    private func reloadData() {
+    func reloadData() {
         switch type {
         case .calories:
             numberTextField.text = Int(round(macroOwner.calories)).description
@@ -121,6 +129,7 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func undoOverrideCalories(_ sender: Any) {
         overrideButton.isHidden = true
         numberTextField.resignFirstResponder()        
-        reCalcCalsAndReloadIfNeeded()
+        caloriesTableViewCell.setValue(macroOwner.macros.calories)
+        caloriesTableViewCell.reloadData()
     }
 }

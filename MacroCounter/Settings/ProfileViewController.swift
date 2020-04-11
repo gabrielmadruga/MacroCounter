@@ -78,6 +78,14 @@ class ProfileViewController: FormViewController {
         
         reloadData()
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section > 0 {
+//           return 30
+//        } else {
+//            return super.tableView(tableView, heightForHeaderInSection: section)
+//        }
+//    }
 
     @IBAction func onPalChange(_ sender: UISegmentedControl) {
         profile.physicalActivityLevel = 1 + (Float(sender.selectedSegmentIndex+1)*0.2)
@@ -94,28 +102,9 @@ class ProfileViewController: FormViewController {
         }
     }
     
-    
-    private func calculateBMR() -> Float {
-//        Nowadays, the Mifflin-St Jeor equation is believed to give the most accurate result and, is therefore what we use in this app. This BMR formula is as follows:
-        //BMR (kcal / day) = 10 * weight (kg) + 6.25 * height (cm) – 5 * age (y) + s (kcal / day),
-        //where s is +5 for males and -161 for females.
-
-        let s: Float = profile.isMale ? 5.0 : -161.0
-        let age = Float(Calendar.current.dateComponents([.year], from: profile.birthday!, to: Date()).year!)
-        let weight = profile.currentWeight!.value
-        let weightComponent = Float(10.0 * weight)
-        let heightComponent = 6.25 * Float(profile.height)
-        let ageComponent = 5.0 * age
-        return weightComponent + heightComponent - ageComponent + s
-    }
-    
-    private func calculateTEE() -> Float {
-        return calculateBMR() * profile.physicalActivityLevel
-    }
-    
     private func reloadData() {
         palSegmentedControl.selectedSegmentIndex = Int(round((profile.physicalActivityLevel-1)/0.2 - 1))
-        bmrLabel.text = "\(Int(round(calculateBMR())))"
-        teeLabel.text = "\(Int(round(calculateTEE())))"
+        bmrLabel.text = "\(Int(round(profile.bmr)))"
+        teeLabel.text = "\(Int(round(profile.tee)))"
     }
 }

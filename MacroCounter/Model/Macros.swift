@@ -14,11 +14,15 @@ enum MacroType {
 }
 
 struct Macros: Codable {
+    static let calsPerFat: Float = 9
+    static let calsPerCarb: Float = 4
+    static let calsPerProt: Float = 4
+    
     var fats: Float
     var carbs: Float
     var proteins: Float
     var calories: Float {
-        return fats * 9 + carbs * 4 + proteins * 4
+        return fats * Macros.calsPerFat + carbs * Macros.calsPerCarb + proteins * Macros.calsPerProt
     }
 }
 

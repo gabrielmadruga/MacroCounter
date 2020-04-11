@@ -186,17 +186,25 @@
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0Y-XE-cKe">
+                                                    <rect key="frame" x="248.5" y="18" width="24" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="pcc-fN-GKN" firstAttribute="centerX" secondItem="SFW-r3-TZ8" secondAttribute="centerX" id="NAH-An-5Bn"/>
                                                 <constraint firstItem="pcc-fN-GKN" firstAttribute="centerY" secondItem="SFW-r3-TZ8" secondAttribute="centerY" id="a3M-cU-znL"/>
+                                                <constraint firstItem="L0Y-XE-cKe" firstAttribute="firstBaseline" secondItem="pcc-fN-GKN" secondAttribute="firstBaseline" id="v3f-Rb-wlr"/>
+                                                <constraint firstItem="L0Y-XE-cKe" firstAttribute="leading" secondItem="pcc-fN-GKN" secondAttribute="trailing" id="yzH-qw-TmZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="What is your objective?" footerTitle="This are the extra calories you need acording to your objective" id="yvM-Li-Gvf">
+                            <tableViewSection headerTitle="Your objective is" footerTitle="" id="yvM-Li-Gvf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="vKR-iY-jZX">
                                         <rect key="frame" x="0.0" y="175" width="414" height="44"/>
@@ -212,6 +220,9 @@
                                                         <segment title="Mantain"/>
                                                         <segment title="Bulk"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="onObjectiveChange:" destination="LXe-iV-JA5" eventType="valueChanged" id="Mzp-Dc-fax"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -235,41 +246,78 @@
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ukU-1o-Irw">
-                                                    <rect key="frame" x="248" y="5" width="94" height="32"/>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1000" maximumValue="3000" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="ukU-1o-Irw">
+                                                    <rect key="frame" x="300" y="6" width="94" height="32"/>
+                                                    <connections>
+                                                        <action selector="onOffsetChange:" destination="LXe-iV-JA5" eventType="valueChanged" id="VOr-6u-HcJ"/>
+                                                    </connections>
                                                 </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzG-YQ-YDb">
+                                                    <rect key="frame" x="218" y="18" width="24" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="1bR-8w-Uzb" firstAttribute="centerX" secondItem="cgc-Qf-QEu" secondAttribute="centerX" id="31h-FB-fKM"/>
-                                                <constraint firstItem="ukU-1o-Irw" firstAttribute="leading" secondItem="1bR-8w-Uzb" secondAttribute="trailing" constant="30" id="Bpn-wn-xZW"/>
-                                                <constraint firstItem="ukU-1o-Irw" firstAttribute="centerY" secondItem="cgc-Qf-QEu" secondAttribute="centerY" constant="-1" id="Inn-h7-AIM"/>
+                                                <constraint firstItem="ukU-1o-Irw" firstAttribute="centerY" secondItem="cgc-Qf-QEu" secondAttribute="centerY" id="Inn-h7-AIM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ukU-1o-Irw" secondAttribute="trailing" id="SZc-3D-w87"/>
+                                                <constraint firstItem="BzG-YQ-YDb" firstAttribute="firstBaseline" secondItem="1bR-8w-Uzb" secondAttribute="firstBaseline" id="Yee-lR-6bd"/>
                                                 <constraint firstItem="1bR-8w-Uzb" firstAttribute="centerY" secondItem="cgc-Qf-QEu" secondAttribute="centerY" id="ZrN-YZ-Do7"/>
+                                                <constraint firstItem="BzG-YQ-YDb" firstAttribute="leading" secondItem="1bR-8w-Uzb" secondAttribute="trailing" id="ldd-Bx-Ly4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="What diet do you want to follow?" footerTitle="This will set the selected macronutrient to 50 g" id="xTb-xc-9ZO">
+                            <tableViewSection headerTitle="Your diet is" footerTitle="" id="xTb-xc-9ZO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="55" id="kTs-2D-nGd">
-                                        <rect key="frame" x="0.0" y="354.5" width="414" height="55"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="110" id="kTs-2D-nGd">
+                                        <rect key="frame" x="0.0" y="330.5" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kTs-2D-nGd" id="X3j-xe-mKc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jF-WP-YHH">
-                                                    <rect key="frame" x="20" y="11" width="374" height="34"/>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jF-WP-YHH">
+                                                    <rect key="frame" x="20" y="11" width="374" height="32"/>
                                                     <segments>
                                                         <segment title="Low Fat"/>
+                                                        <segment title="Balanced"/>
                                                         <segment title="Low Carb"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="onDietChange:" destination="LXe-iV-JA5" eventType="valueChanged" id="GFr-ws-qaC"/>
+                                                    </connections>
                                                 </segmentedControl>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kEH-lt-XtB">
+                                                    <rect key="frame" x="20" y="68" width="374" height="32"/>
+                                                    <segments>
+                                                        <segment title="Minimum"/>
+                                                        <segment title="Recommended"/>
+                                                        <segment title="Extra"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="onDietChange:" destination="LXe-iV-JA5" eventType="valueChanged" id="AQG-s4-VpW"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROTEIN AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc6-4u-ZHd">
+                                                    <rect key="frame" x="20" y="52" width="374" height="16"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kEH-lt-XtB" secondAttribute="bottom" id="6xd-sa-knS"/>
+                                                <constraint firstItem="kEH-lt-XtB" firstAttribute="leading" secondItem="X3j-xe-mKc" secondAttribute="leadingMargin" id="Rpd-1e-GLe"/>
+                                                <constraint firstItem="kEH-lt-XtB" firstAttribute="trailing" secondItem="X3j-xe-mKc" secondAttribute="trailingMargin" id="SnP-i5-aqD"/>
                                                 <constraint firstItem="7jF-WP-YHH" firstAttribute="top" secondItem="X3j-xe-mKc" secondAttribute="topMargin" id="VXF-ad-3Oc"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7jF-WP-YHH" secondAttribute="bottom" id="qyE-QE-Tg6"/>
+                                                <constraint firstItem="hc6-4u-ZHd" firstAttribute="leading" secondItem="X3j-xe-mKc" secondAttribute="leadingMargin" id="gZa-8H-Fdf"/>
+                                                <constraint firstItem="kEH-lt-XtB" firstAttribute="top" secondItem="hc6-4u-ZHd" secondAttribute="bottom" id="iAx-He-cSD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hc6-4u-ZHd" secondAttribute="trailing" id="kJF-E3-evz"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7jF-WP-YHH" secondAttribute="trailing" id="seb-Wh-gR0"/>
                                                 <constraint firstItem="7jF-WP-YHH" firstAttribute="leading" secondItem="X3j-xe-mKc" secondAttribute="leadingMargin" id="w6b-J2-eB0"/>
                                             </constraints>
@@ -278,10 +326,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="This is your calculated Daily Target" footerTitle="We suggest you set your protein intake to be 1.8 times your weight in kg, but feel free to adjust any value" id="MMA-cR-8GP">
+                            <tableViewSection headerTitle="Your Daily Target is" footerTitle="" id="MMA-cR-8GP">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zjm-gA-JMm" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="485" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="508" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zjm-gA-JMm" id="etA-CC-JYa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -290,7 +338,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="iyS-SV-qmB" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="529" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="552" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iyS-SV-qmB" id="bGH-tF-PlF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -299,7 +347,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="UTq-TM-eFw" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="573" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="596" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UTq-TM-eFw" id="khC-LZ-Mlj">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -308,7 +356,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hwj-Dt-zJJ" customClass="MacroTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="617" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="640" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwj-Dt-zJJ" id="1HJ-en-N6l">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -331,8 +379,14 @@
                     <connections>
                         <outlet property="caloriesTableViewCell" destination="zjm-gA-JMm" id="8Cd-5o-kbc"/>
                         <outlet property="carbsTableViewCell" destination="UTq-TM-eFw" id="0RW-69-W1O"/>
+                        <outlet property="dietSegmentedControl" destination="7jF-WP-YHH" id="l76-Nf-di0"/>
                         <outlet property="fatTableViewCell" destination="iyS-SV-qmB" id="ZKY-U4-euc"/>
+                        <outlet property="objectiveSegmentedControl" destination="9wO-ei-1N8" id="k1A-sb-dKW"/>
+                        <outlet property="offsetLabel" destination="1bR-8w-Uzb" id="tWg-LU-UKk"/>
+                        <outlet property="offsetStepper" destination="ukU-1o-Irw" id="pxd-O0-Tp4"/>
+                        <outlet property="proteinAmountSegmentedControl" destination="kEH-lt-XtB" id="dRR-Us-Yyi"/>
                         <outlet property="proteinTableViewCell" destination="hwj-Dt-zJJ" id="4xK-3D-Dl1"/>
+                        <outlet property="teeLabel" destination="pcc-fN-GKN" id="oWZ-fr-vBw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Xw-6V-EXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -348,10 +402,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Information required to calculate your Total Daily Energy Expenditure" footerTitle="" id="7gd-fJ-Jk8">
+                            <tableViewSection headerTitle="" footerTitle="Information required to calculate your Total Daily Energy Expenditure" id="7gd-fJ-Jk8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="AsG-e1-9lj" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="73.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="39.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AsG-e1-9lj" id="9wC-Vr-iUn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -381,7 +435,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="KbQ-Jx-0yT" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="117.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="83.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KbQ-Jx-0yT" id="455-7X-NgJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -411,7 +465,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oz2-y7-Amr" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="161.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="127.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oz2-y7-Amr" id="md9-Ds-2bt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -441,7 +495,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6l3-tA-Fka" customClass="FormTableViewCell" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="171.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6l3-tA-Fka" id="IIi-Wl-86x">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -475,7 +529,7 @@
                             <tableViewSection headerTitle="Your Basal Metabolic Rate (BMR) is" footerTitle="This is an estimation of how many calories you burn per day if you do not move or eat" id="TyV-lT-1Ac">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="NYm-Eo-hsB">
-                                        <rect key="frame" x="0.0" y="317" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="307" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NYm-Eo-hsB" id="WWV-wR-353">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -508,7 +562,7 @@
                             <tableViewSection headerTitle="Physical Activity Level (PAL)" footerTitle="" id="TgY-WP-Uml">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="MRc-N6-rs3">
-                                        <rect key="frame" x="0.0" y="452.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="442.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MRc-N6-rs3" id="BCQ-5B-hXp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -542,7 +596,7 @@
                                 <string key="footerTitle">This is an estimation of how many calories you burn per day. It is calculated by multiplying your BMR by a multiplier that depends of your PAL</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="IHw-Di-uRk">
-                                        <rect key="frame" x="0.0" y="564" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="554" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IHw-Di-uRk" id="78T-Ls-nYc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
