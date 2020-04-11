@@ -39,24 +39,37 @@ class ProfileViewController: FormViewController {
         setupHideKeyboardOnTap()
 
         let profileFetchRequest: NSFetchRequest<Profile> = Profile.fetchRequest()
-        if let profile = try! context.fetch(profileFetchRequest).first {
+        if let profile = try! childContext.fetch(profileFetchRequest).first {
             self.profile = profile
         }
         
         birthdateTableViewCell.setupForBirthdate(initWith: profile.birthday!) { [unowned self] date in
+            if self.profile.birthday! == date {
+                return
+            }
             self.profile.birthday = date
             self.reloadData()
         }
         sexTableViewCell.setupForSelection(label: "Sex", options: ["Male", "Female"], initWith: profile.isMale ? 0 : 1) { [unowned self] selectedIndex in
-            self.profile.isMale = selectedIndex == 0
+            let selectedMale = selectedIndex == 0
+            if self.profile.isMale == selectedMale {
+                return
+            }
+            self.profile.isMale = selectedMale
             self.reloadData()
         }
         heightTableViewCell.setupForInteger(label: "Height", from: 100, to: 250, unit: "cm", initWith: Int(profile.height)) { [unowned self] selectedInt in
+            if self.profile.height == Int16(selectedInt) {
+                return
+            }
             self.profile.height = Int16(selectedInt)
             self.reloadData()
         }
         weightTableViewCell.setupForFloat(label: "Weight", from: 20, to: 200, unit: "kg", initWith: profile.currentWeight!.value) { [unowned self] selectedFloat in
-            let weightSample = WeightSample(context: self.context)
+            if self.profile.currentWeight?.value == selectedFloat {
+                return
+            }
+            let weightSample = WeightSample(context: self.childContext)
             weightSample.date = Date()
             weightSample.value = selectedFloat
             self.profile.currentWeight = weightSample
