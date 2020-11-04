@@ -37,10 +37,7 @@ protocol StoryboardIdentifiable {
     static var storyboardIdentifier: String { get }
 }
 
-extension UIViewController: StoryboardIdentifiable { }
-
-extension StoryboardIdentifiable where Self: UIViewController {
-    
+extension UIViewController: StoryboardIdentifiable {
     static var storyboardIdentifier: String {
         return String(describing: self)
     }
