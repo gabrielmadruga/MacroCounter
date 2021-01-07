@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G5E-x2-blZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G5E-x2-blZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,14 +24,14 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sjh-WO-5Rg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4PL-EM-JJg"/>
                             <constraint firstItem="sjh-WO-5Rg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7vL-63-taK"/>
                             <constraint firstItem="sjh-WO-5Rg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kY3-m3-3Qr"/>
                             <constraint firstItem="sjh-WO-5Rg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="z7C-25-8RX"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I"/>
@@ -71,30 +73,30 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jB-2G-e5B" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
-                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLZ-cF-EkQ" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="382" height="152"/>
-                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qF-d8-EQR" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="372" width="382" height="152"/>
-                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-85-e6Q" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="536" width="382" height="152"/>
-                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="C6y-gI-ehs"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="iif-Ey-8mj" firstAttribute="leading" secondItem="C6y-gI-ehs" secondAttribute="leading" constant="16" id="RL1-Md-iLU"/>
                             <constraint firstItem="iif-Ey-8mj" firstAttribute="centerY" secondItem="DJn-Pr-3g7" secondAttribute="centerY" id="jre-Vj-DnA"/>
                             <constraint firstItem="C6y-gI-ehs" firstAttribute="trailing" secondItem="iif-Ey-8mj" secondAttribute="trailing" constant="16" id="sHt-k1-ApE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="C6y-gI-ehs"/>
                     </view>
                     <navigationItem key="navigationItem" title="Goal" id="Ed4-LR-ppP">
                         <barButtonItem key="leftBarButtonItem" title="Set Goal" id="p47-vc-iKF">
@@ -119,4 +121,12 @@
             <point key="canvasLocation" x="206" y="399"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

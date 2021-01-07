@@ -37,6 +37,8 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDeleg
         let ninetyYearsAgo = Calendar.current.date(byAdding: .year, value: -90, to: Date())
         let twelveYearsAgo = Calendar.current.date(byAdding: .year, value: -12, to: Date())
         let datePicker = UIDatePicker()
+        
+        datePicker.preferredDatePickerStyle = .wheels
         datePicker.minimumDate = ninetyYearsAgo
         datePicker.maximumDate = twelveYearsAgo
         datePicker.date = initWith
