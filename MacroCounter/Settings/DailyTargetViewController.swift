@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-extension SetDailyTargetViewController: FormViewControllerDelegate {
+extension DailyTargetViewController: FormViewControllerDelegate {
         
     func validate() -> Bool {
         return true
@@ -20,7 +20,7 @@ extension SetDailyTargetViewController: FormViewControllerDelegate {
     
 }
 
-class SetDailyTargetViewController: FormViewController, UITextFieldDelegate {
+class DailyTargetViewController: FormViewController, UITextFieldDelegate {
     
 
     @IBOutlet weak var fatTableViewCell: MacroTableViewCell!

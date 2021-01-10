@@ -13,24 +13,24 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLeftBarButton()
-        setupToolbar()        
     }
+
     
+    
+    
+#if false
     private func setupLeftBarButton() {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
-//        //        formatter.dateStyle = .medium
-//        //        formatter.timeStyle = .none
-//        let dateLabel = UILabel()
-//        dateLabel.textColor = .secondaryLabel
-//        dateLabel.font = .preferredFont(forTextStyle: .headline)
-//        dateLabel.text = formatter.string(from: .init())
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
-        let button = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showEntries))
-        self.navigationItem.leftBarButtonItem = button
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
+        //        formatter.dateStyle = .medium
+        //        formatter.timeStyle = .none
+        let dateLabel = UILabel()
+        dateLabel.textColor = .secondaryLabel
+        dateLabel.font = .preferredFont(forTextStyle: .headline)
+        dateLabel.text = formatter.string(from: .init())
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
     }
-    
+
     private func setupToolbar() {
         let profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
         let targetButton = UIBarButtonItem(title: "Daily Target", style: .plain, target: self, action: #selector(showDailyTarget))
@@ -72,6 +72,6 @@ class MainViewController: UIViewController {
         let nav = UIStoryboard.init(.entry).instantiateViewController(identifier: "AddEditEntry")
         self.present(nav, animated: true, completion: nil)
     }
-    
+#endif
     
 }

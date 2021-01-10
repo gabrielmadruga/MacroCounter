@@ -80,17 +80,19 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
     }
     
     private func addButtons() {
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save) { [unowned self] in
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .done) { [unowned self] in
             self.saveButtonPressed()
-        }
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel) { [unowned self] in
-            self.cancelButtonPressed()
         }
         let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash) { [unowned self] in
             self.deleteButtonPressed()
         }
         let someSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        self.navigationItem.leftBarButtonItem = cancelButton
+        if (self.presentingViewController != nil) {
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel) { [unowned self] in
+                self.cancelButtonPressed()
+            }
+            self.navigationItem.leftBarButtonItem = cancelButton
+        }
         self.navigationItem.rightBarButtonItem = saveButton
         self.navigationController?.isToolbarHidden = false
         self.toolbarItems = [someSpace, deleteButton, someSpace]
@@ -104,7 +106,11 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
         try! grandChildContext?.save()
         try! childContext.save()
         saveContext()
-        self.dismiss(animated: true)
+        if (self.presentingViewController != nil) {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     private func deleteButtonPressed() {
@@ -119,9 +125,13 @@ class FormViewController: UITableViewController, UIAdaptivePresentationControlle
         self.present(alert, animated: true)
     }
     
-    private func cancelButtonPressed() {
+    @objc private func cancelButtonPressed() {
         self.view.endEditing(true)
-        self.dismiss(animated: true)
+        if (self.presentingViewController != nil) {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {

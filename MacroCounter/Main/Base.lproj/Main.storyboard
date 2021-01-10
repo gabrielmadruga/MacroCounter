@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjh-WO-5Rg">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <connections>
                                     <segue destination="pIs-tn-pvi" kind="embed" id="tP7-rU-WgD"/>
                                 </connections>
@@ -34,23 +35,60 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I">
+                        <barButtonItem key="leftBarButtonItem" title="History" image="list.bullet" catalog="system" id="dbs-9t-i65">
+                            <connections>
+                                <segue destination="rHF-0a-rWR" kind="show" id="lre-PG-zLM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gearshape" catalog="system" id="iFv-kA-klW">
+                            <connections>
+                                <segue destination="hgT-N0-YRc" kind="show" id="D0G-xn-XbT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-762.31884057971024" y="796.875"/>
         </scene>
+        <!--AddEditEntry-->
+        <scene sceneID="sZY-uC-xuX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Entry" referencedIdentifier="AddEditEntry" id="fYf-M7-03J" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Woj-vS-cRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="179" y="70"/>
+        </scene>
+        <!--Entry-->
+        <scene sceneID="KnZ-56-h5y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Entry" id="rHF-0a-rWR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="aya-LF-oc6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YMb-3I-8Rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185" y="590"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="PQU-A8-hih">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="hgT-N0-YRc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Y9R-rH-1TS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XPF-BZ-Rnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="198" y="825"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KZv-uO-xd7">
             <objects>
-                <navigationController toolbarHidden="NO" id="G5E-x2-blZ" sceneMemberID="viewController">
+                <navigationController id="G5E-x2-blZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mCv-ib-C7I">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2XP-Cu-kbZ">
-                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -66,25 +104,41 @@
             <objects>
                 <viewController title="Bars" id="pIs-tn-pvi" customClass="TodayViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJn-Pr-3g7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUX-IH-NLo">
+                                <rect key="frame" x="16" y="704" width="382" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="erO-xr-pKC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="  Add Entry">
+                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="medium" renderingMode="template"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="medium" weight="semibold">
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <segue destination="fYf-M7-03J" kind="presentation" id="RxO-dP-VPK"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iif-Ey-8mj">
-                                <rect key="frame" x="16" y="-7.5" width="382" height="688"/>
+                                <rect key="frame" x="16" y="16" width="382" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jB-2G-e5B" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="180"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLZ-cF-EkQ" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="208" width="382" height="152"/>
+                                        <rect key="frame" x="0.0" y="192" width="382" height="152"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qF-d8-EQR" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="372" width="382" height="152"/>
+                                        <rect key="frame" x="0.0" y="356" width="382" height="152"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-85-e6Q" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="536" width="382" height="152"/>
+                                        <rect key="frame" x="0.0" y="520" width="382" height="152"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -93,9 +147,12 @@
                         <viewLayoutGuide key="safeArea" id="C6y-gI-ehs"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="C6y-gI-ehs" firstAttribute="trailing" secondItem="EUX-IH-NLo" secondAttribute="trailing" constant="16" id="DaD-Yz-dAx"/>
+                            <constraint firstItem="iif-Ey-8mj" firstAttribute="top" secondItem="DJn-Pr-3g7" secondAttribute="top" constant="16" id="GAl-aE-ZP8"/>
                             <constraint firstItem="iif-Ey-8mj" firstAttribute="leading" secondItem="C6y-gI-ehs" secondAttribute="leading" constant="16" id="RL1-Md-iLU"/>
-                            <constraint firstItem="iif-Ey-8mj" firstAttribute="centerY" secondItem="DJn-Pr-3g7" secondAttribute="centerY" id="jre-Vj-DnA"/>
+                            <constraint firstItem="EUX-IH-NLo" firstAttribute="top" secondItem="iif-Ey-8mj" secondAttribute="bottom" constant="16" id="mlX-KA-vme"/>
                             <constraint firstItem="C6y-gI-ehs" firstAttribute="trailing" secondItem="iif-Ey-8mj" secondAttribute="trailing" constant="16" id="sHt-k1-ApE"/>
+                            <constraint firstItem="EUX-IH-NLo" firstAttribute="leading" secondItem="C6y-gI-ehs" secondAttribute="leading" constant="16" id="z08-6k-AcB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Goal" id="Ed4-LR-ppP">
@@ -109,6 +166,7 @@
                             <barButtonItem title="Favorites" id="UgR-GR-qHL"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <size key="freeformSize" width="414" height="800"/>
                     <connections>
                         <outlet property="caloriesProgressView" destination="2jB-2G-e5B" id="myu-ab-MC1"/>
                         <outlet property="carbsProgressView" destination="2qF-d8-EQR" id="dap-Oz-Dll"/>
@@ -118,10 +176,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyg-he-hgl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="206" y="399"/>
+            <point key="canvasLocation" x="-761" y="70"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
