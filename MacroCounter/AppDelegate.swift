@@ -37,20 +37,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             profile.currentWeight = weightSample
             let dailyTarget = DailyTarget.init(context: managedContext)
             dailyTarget.calories = 2000
-            dailyTarget.fats = 40
-            dailyTarget.carbs = 100
-            dailyTarget.proteins = 100
             dailyTarget.profile = profile
             try! managedContext.save()
         }
-        UserDefaults.standard.userInterfaceStyle = .unspecified
+        
         if let userInterfaceStyle = UserDefaults.standard.userInterfaceStyle {
             window.overrideUserInterfaceStyle = userInterfaceStyle
+        } else {
+            UserDefaults.standard.userInterfaceStyle = .unspecified
         }
         
-        #warning("This is just for debugging")
+#if DEBUG
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         print(url!.absoluteString)
+#endif
         
         return true
     }

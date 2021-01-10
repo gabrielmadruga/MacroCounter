@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G5E-x2-blZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,7 +25,7 @@
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sjh-WO-5Rg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4PL-EM-JJg"/>
                             <constraint firstItem="sjh-WO-5Rg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7vL-63-taK"/>
@@ -36,12 +35,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I">
-                        <barButtonItem key="leftBarButtonItem" title="History" image="list.bullet" catalog="system" id="dbs-9t-i65">
+                        <barButtonItem key="leftBarButtonItem" title="History" id="dbs-9t-i65">
+                            <imageReference key="image" image="list.bullet" catalog="system" symbolScale="large"/>
                             <connections>
                                 <segue destination="rHF-0a-rWR" kind="show" id="lre-PG-zLM"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gearshape" catalog="system" id="iFv-kA-klW">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="iFv-kA-klW">
+                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
                             <connections>
                                 <segue destination="hgT-N0-YRc" kind="show" id="D0G-xn-XbT"/>
                             </connections>
@@ -104,7 +105,7 @@
             <objects>
                 <viewController title="Bars" id="pIs-tn-pvi" customClass="TodayViewController" customModule="MacroCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJn-Pr-3g7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUX-IH-NLo">
                                 <rect key="frame" x="16" y="704" width="382" height="44"/>
@@ -123,32 +124,32 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iif-Ey-8mj">
-                                <rect key="frame" x="16" y="16" width="382" height="672"/>
+                                <rect key="frame" x="16" y="8" width="382" height="680"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jB-2G-e5B" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="188"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLZ-cF-EkQ" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="192" width="382" height="152"/>
+                                        <rect key="frame" x="0.0" y="200" width="382" height="152"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qF-d8-EQR" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="356" width="382" height="152"/>
+                                        <rect key="frame" x="0.0" y="364" width="382" height="152"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-85-e6Q" customClass="ProgressView" customModule="MacroCounter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="520" width="382" height="152"/>
+                                        <rect key="frame" x="0.0" y="528" width="382" height="152"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C6y-gI-ehs"/>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="C6y-gI-ehs" firstAttribute="trailing" secondItem="EUX-IH-NLo" secondAttribute="trailing" constant="16" id="DaD-Yz-dAx"/>
-                            <constraint firstItem="iif-Ey-8mj" firstAttribute="top" secondItem="DJn-Pr-3g7" secondAttribute="top" constant="16" id="GAl-aE-ZP8"/>
+                            <constraint firstItem="iif-Ey-8mj" firstAttribute="top" secondItem="DJn-Pr-3g7" secondAttribute="top" constant="8" id="GAl-aE-ZP8"/>
                             <constraint firstItem="iif-Ey-8mj" firstAttribute="leading" secondItem="C6y-gI-ehs" secondAttribute="leading" constant="16" id="RL1-Md-iLU"/>
                             <constraint firstItem="EUX-IH-NLo" firstAttribute="top" secondItem="iif-Ey-8mj" secondAttribute="bottom" constant="16" id="mlX-KA-vme"/>
                             <constraint firstItem="C6y-gI-ehs" firstAttribute="trailing" secondItem="iif-Ey-8mj" secondAttribute="trailing" constant="16" id="sHt-k1-ApE"/>
@@ -166,7 +167,6 @@
                             <barButtonItem title="Favorites" id="UgR-GR-qHL"/>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="800"/>
                     <connections>
                         <outlet property="caloriesProgressView" destination="2jB-2G-e5B" id="myu-ab-MC1"/>
                         <outlet property="carbsProgressView" destination="2qF-d8-EQR" id="dap-Oz-Dll"/>
@@ -183,7 +183,7 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="secondarySystemBackgroundColor">
+        <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">

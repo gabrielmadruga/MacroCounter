@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func showDailyTarget() {
-        let vc = SetDailyTargetViewController.instantiate(fromStoryboard: .settings)
+        let vc = DailyTargetViewController.instantiate(fromStoryboard: .settings)
         //        self.navigationController?.pushViewController(vc, animated: true)
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)

@@ -41,12 +41,12 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
     private var offset: Int = 0 {
         didSet {
             offsetStepper.value = Double(offset)
-            if offset < 0 {
+            if offset <= -10 {
                 objectiveSegmentedControl.selectedSegmentIndex = 0
-            } else if offset == 0 {
-                objectiveSegmentedControl.selectedSegmentIndex = 1
-            } else {
+            } else if offset >= 10 {
                 objectiveSegmentedControl.selectedSegmentIndex = 2
+            } else {
+                objectiveSegmentedControl.selectedSegmentIndex = 1
             }
             offsetLabel.text = "\(offset > 0 ? "+" : "")\(offset)"
         }
@@ -61,6 +61,7 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
         if let profile = try? childContext.fetch(fetchRequest).first {
             self.profile = profile
             offset = Int(round(dailyTarget.calories - profile.tee))
+            offset = offset - (offset % 10)
             self.reloadDietSegmentedControls()
             self.teeLabel.text = "\(Int(round(profile.tee)))"
             caloriesTableViewCell.setup(type: .calories, macroOwner: dailyTarget, calsCell: caloriesTableViewCell) { [unowned self] in
@@ -76,6 +77,11 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
             proteinTableViewCell.setup(type: .proteins, macroOwner: dailyTarget, calsCell: caloriesTableViewCell) { [unowned self] in
                 self.reloadDietSegmentedControls()
             }
+//            In case the values are not correctly initialized
+            calculateDailyTarget()
+            try! grandChildContext?.save()
+            try! childContext.save()
+            saveContext()
         }
     }
     
@@ -103,7 +109,7 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
     
     @IBAction func onOffsetChange(_ sender: UIStepper) {
         offset = Int(sender.value)
-        recalculateDailyTarget()
+        calculateDailyTarget()
     }
     
     
@@ -118,11 +124,11 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
         default:
             fatalError()
         }
-        recalculateDailyTarget()
+        calculateDailyTarget()
     }
     
     @IBAction func onDietChange(_ sender: UISegmentedControl) {
-        recalculateDailyTarget()
+        calculateDailyTarget()
     }
     
     private func reloadDietSegmentedControls() {
@@ -165,7 +171,7 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
         }
     }
     
-    private func recalculateDailyTarget() {
+    private func calculateDailyTarget() {
         let targetCals = profile.tee + Float(offset)
         caloriesTableViewCell.setValue(targetCals)
         caloriesTableViewCell.overrideButton.isHidden = true

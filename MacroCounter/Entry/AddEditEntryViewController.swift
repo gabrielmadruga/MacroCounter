@@ -34,7 +34,7 @@ extension AddEditEntryViewController: FormViewControllerDelegate {
 class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
@@ -50,6 +50,7 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         self.delegate = self
         super.viewDidLoad()
+        datePicker.maximumDate = Date()
         
         calculateCaloriesButton.isHidden = true
         if entry == nil {
@@ -69,21 +70,17 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if grandChildContext != nil {
-            nameTextField.becomeFirstResponder()
-        }
+//        if grandChildContext != nil {
+//            nameTextField.becomeFirstResponder()
+//        }
     }
     
     private func reloadData() {
         guard let entry = self.entry else {
             return
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        let dateString = dateFormatter.string(from: entry.date!)
-        if dateTextField.text != dateString {
-            dateTextField.text = dateString
+        if datePicker.date != entry.date! {
+            datePicker.date = entry.date!
         }
         if (!nameTextField.isEditing) {
             nameTextField.text = entry.name
@@ -114,7 +111,7 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
             case 0:
                 nameTextField.becomeFirstResponder()
             case 1:
-                dateTextField.becomeFirstResponder()
+                datePicker.becomeFirstResponder()
             default:
                 return
             }
@@ -166,23 +163,6 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField == dateTextField) {
-            DispatchQueue.main.async() {
-                textField.resignFirstResponder()
-            }
-            let alert = UIAlertController(title: "Date", message: "Select the day and time you ate this", preferredStyle: .actionSheet)
-            alert.addDatePicker(mode: .dateAndTime, date: date, minimumDate: nil, maximumDate: Date()) {  [unowned self] date in
-                self.entry?.date = date
-                self.reloadData()
-            }
-            alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
-            
-            DispatchQueue.main.async() { [unowned self] in
-                self.present(alert, animated: true)
-            }
-            
-            return
-        }
         if (textField == caloriesTextField) {
             if textField.tag == -1 {
                 DispatchQueue.main.async() {
@@ -205,6 +185,11 @@ class AddEditEntryViewController: FormViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.reloadData()
+    }
+    
+    @IBAction func datePickerValueChanged(_ sender: Any) {
+        self.entry?.date = datePicker.date
         self.reloadData()
     }
     
