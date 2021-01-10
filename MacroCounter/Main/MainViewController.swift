@@ -13,23 +13,34 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBarButtons()
     }
 
     
+    @objc private func onHistoryTouch() {
+        let vc = EntriesViewController.instantiate(fromStoryboard: .entry)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
+    
+    @objc private func onSettingsTouch() {
+        let vc = SettingsViewController.instantiate(fromStoryboard: .settings)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func setupNavBarButtons() {
+        var button = UIButton()
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
+        button.setImage(UIImage(systemName: "list.bullet", withConfiguration: largeConfig), for: .normal)
+        button.addTarget(self, action: #selector(self.onHistoryTouch), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+        button = UIButton()
+        button.setImage(UIImage(systemName: "gearshape", withConfiguration: largeConfig), for: .normal)
+        button.addTarget(self, action: #selector(self.onSettingsTouch), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    }
     
 #if false
-    private func setupLeftBarButton() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
-        //        formatter.dateStyle = .medium
-        //        formatter.timeStyle = .none
-        let dateLabel = UILabel()
-        dateLabel.textColor = .secondaryLabel
-        dateLabel.font = .preferredFont(forTextStyle: .headline)
-        dateLabel.text = formatter.string(from: .init())
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
-    }
 
     private func setupToolbar() {
         let profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
@@ -60,12 +71,6 @@ class MainViewController: UIViewController {
         //        self.navigationController?.pushViewController(vc, animated: true)
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
-    }
-    
-    @objc private func showEntries() {
-        let vc = EntriesViewController.instantiate(fromStoryboard: .entry)
-        self.navigationController?.pushViewController(vc, animated: true)
-        //        self.present(vc, animated: true, completion: nil)
     }
     
     @objc private func presentAddEditEntry() {

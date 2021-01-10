@@ -34,20 +34,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I">
-                        <barButtonItem key="leftBarButtonItem" title="History" id="dbs-9t-i65">
-                            <imageReference key="image" image="list.bullet" catalog="system" symbolScale="large"/>
-                            <connections>
-                                <segue destination="rHF-0a-rWR" kind="show" id="lre-PG-zLM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="iFv-kA-klW">
-                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
-                            <connections>
-                                <segue destination="hgT-N0-YRc" kind="show" id="D0G-xn-XbT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Today" id="wJ8-lZ-M9I"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -180,8 +167,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
