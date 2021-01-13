@@ -37,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             profile.currentWeight = weightSample
             let dailyTarget = DailyTarget.init(context: managedContext)
             dailyTarget.calories = 2000
+            dailyTarget.fats = 67
+            dailyTarget.carbs = 200
+            dailyTarget.proteins = 150
             dailyTarget.profile = profile
             try! managedContext.save()
         }

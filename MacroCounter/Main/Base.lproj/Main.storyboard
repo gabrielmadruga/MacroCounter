@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,26 +47,6 @@
             </objects>
             <point key="canvasLocation" x="179" y="70"/>
         </scene>
-        <!--Entry-->
-        <scene sceneID="KnZ-56-h5y">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Entry" id="rHF-0a-rWR" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="aya-LF-oc6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YMb-3I-8Rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="185" y="590"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="PQU-A8-hih">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="hgT-N0-YRc" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Y9R-rH-1TS"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XPF-BZ-Rnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="198" y="825"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KZv-uO-xd7">
             <objects>
@@ -99,9 +78,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="erO-xr-pKC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <state key="normal" title="  Add Entry">
-                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="medium" renderingMode="template"/>
+                                <state key="normal" title="  Add Entry" image="plus.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="medium" weight="semibold">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </preferredSymbolConfiguration>

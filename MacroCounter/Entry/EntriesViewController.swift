@@ -92,12 +92,12 @@ extension EntriesViewController: UITableViewDelegate {
         let sectionInfo = fetchedResultsController.sections?[section]
         label.text = sectionInfo?.name
         label.textAlignment = .center
-        label.backgroundColor = .secondarySystemBackground
+//        label.backgroundColor = .clear
         return label
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 32
+        return 44
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -134,12 +134,12 @@ extension EntriesViewController: UITableViewDataSource {
 // MARK: - EntryTableViewCell
 class EntryTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var servingsLabel: UILabel!
     
     var entry: Entry! {
         didSet {
@@ -148,14 +148,15 @@ class EntryTableViewCell: UITableViewCell {
     }
     
     private func refresh() {
+        nameLabel.text = entry.name
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "HH:mm"
         dateLabel.text = formatter.string(from: entry.date!)
         fatLabel.text = entry.fats.description
         carbsLabel.text = entry.carbs.description
         proteinLabel.text = entry.proteins.description
         caloriesLabel.text = entry.calories.description
-        servingsLabel.text = "x\(Int(entry.servings).description)"
+//        servingsLabel.text = "x\(Int(entry.servings).description)"
     }
     
 //    override func awakeFromNib() {
