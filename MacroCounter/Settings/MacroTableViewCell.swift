@@ -12,7 +12,6 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var numberTextField: UITextField!
-    @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var overrideButton: UIButton!
     weak var caloriesTableViewCell: MacroTableViewCell!
     
@@ -27,6 +26,7 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
 
     private var onChange: (() -> ())?
+    
     func setup(type: MacroType, macroOwner: HasMacros, calsCell: MacroTableViewCell, onChange: (() -> ())? = nil) {
         self.type = type
         self.macroOwner = macroOwner
@@ -47,6 +47,21 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
         } else {
             setValue(0)
             textField.text = ""
+        }
+    }
+    
+    func value() -> Float {
+        switch type {
+        case .calories:
+            return macroOwner.calories
+        case .fats:
+            return macroOwner.fats
+        case .carbs:
+            return macroOwner.carbs
+        case .proteins:
+            return macroOwner.proteins
+        default:
+            fatalError()
         }
     }
     
@@ -96,20 +111,16 @@ class MacroTableViewCell: UITableViewCell, UITextFieldDelegate {
     private func setup() {
         switch type {
         case .calories:
-            nameLabel.text = "Calories"
-            unitLabel.text = "cal"
+            nameLabel.text = "Calories (cal)"
             numberTextField.tag = 1
         case .fats:
-            nameLabel.text = "Fats"
-            unitLabel.text = "g"
+            nameLabel.text = "Fats (g)"
             numberTextField.tag = 2
         case .carbs:
-            nameLabel.text = "Carbs"
-            unitLabel.text = "g"
+            nameLabel.text = "Carbs (g)"
             numberTextField.tag = 3
         case .proteins:
-            nameLabel.text = "Protein"
-            unitLabel.text = "g"
+            nameLabel.text = "Protein (g)"
             numberTextField.tag = 4
         default:
             fatalError()

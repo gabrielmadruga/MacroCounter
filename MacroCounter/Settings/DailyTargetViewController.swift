@@ -180,8 +180,12 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
         let calsWithoutProt = targetCals - (targetProt * Macros.calsPerProt)
         switch dietSegmentedControl.selectedSegmentIndex {
         case 0:
-            fatTableViewCell.setValue(50)
-            let remainingCals = calsWithoutProt - 50 * Macros.calsPerFat
+            var value = fatTableViewCell.value()
+            if value > 50 {
+                fatTableViewCell.setValue(50)
+                value = 50
+            }
+            let remainingCals = calsWithoutProt - value * Macros.calsPerFat
             let neededCarbs = remainingCals / Macros.calsPerCarb
             carbsTableViewCell.setValue(neededCarbs)
         case 1:
@@ -189,8 +193,12 @@ class DailyTargetViewController: FormViewController, UITextFieldDelegate {
             fatTableViewCell.setValue(calsForFatsAndCarbs / Macros.calsPerFat)
             carbsTableViewCell.setValue(calsForFatsAndCarbs / Macros.calsPerCarb )
         case 2:
-            carbsTableViewCell.setValue(50)
-            let remainingCals = calsWithoutProt - 50 * Macros.calsPerCarb
+            var value = carbsTableViewCell.value()
+            if value > 50 {
+                carbsTableViewCell.setValue(50)
+                value = 50
+            }
+            let remainingCals = calsWithoutProt - value * Macros.calsPerCarb
             let neededFats = remainingCals / Macros.calsPerFat
             fatTableViewCell.setValue(neededFats)
         default:
