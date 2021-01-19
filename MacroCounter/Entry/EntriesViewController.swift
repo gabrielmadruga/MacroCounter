@@ -88,9 +88,26 @@ extension EntriesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        func todaySectionIdentifier() -> String {
+           var calendar = Calendar.current
+           calendar.timeZone = NSTimeZone.local
+           let startOfDay = calendar.startOfDay(for: Date())
+           let formatter = DateFormatter()
+   //        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd MMM", options: 0, locale: Calendar.current.locale)
+           formatter.dateStyle = .long
+           formatter.timeStyle = .none
+           
+           return formatter.string(from: startOfDay)
+       }
+        
         let label = UILabel()
         let sectionInfo = fetchedResultsController.sections?[section]
-        label.text = sectionInfo?.name
+        if sectionInfo?.name == todaySectionIdentifier() {
+            label.text = "Today"
+        } else {
+            label.text = sectionInfo?.name
+        }
+        
         label.textAlignment = .center
 //        label.backgroundColor = .clear
         return label

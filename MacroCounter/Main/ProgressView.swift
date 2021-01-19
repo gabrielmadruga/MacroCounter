@@ -13,7 +13,6 @@ class ProgressView: UIView {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var currentAndTargetLabel: UILabel!
-    @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var progressBackgroundView: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var progressViewTrailingSpaceToContainer: NSLayoutConstraint!
@@ -38,11 +37,16 @@ class ProgressView: UIView {
     }
     
     func setup(name: String, current: Float, target: Float, unit: String, color: UIColor) {
-        nameLabel.text = name
-        currentAndTargetLabel.text = "\(Int(round(current)))/\(Int(round(target)))"
-        unitLabel.text = unit
+        nameLabel.text = "\(name) (\(unit))"
+        let difference = Int(round(target - current))
+        var goalMessage = ""
+        if difference < 0 {
+            goalMessage = "\(difference) extra"
+        } else if difference > 0 {
+            goalMessage = "\(difference) left"
+        }
+        currentAndTargetLabel.text = "\(Int(round(current))) of \(Int(round(target))) - \(goalMessage)"
         self.currentAndTargetLabel.textColor = color
-        self.unitLabel.textColor = color
         self.progressView.backgroundColor = color
         let progress = target != 0 ? CGFloat(current/target) : 1
         self.progressView.superview!.layoutIfNeeded()
